@@ -1,6 +1,7 @@
 package com.example.vitalyevich.onlinesite.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "access")
@@ -14,26 +15,65 @@ public class Access {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Column(name = "identification_number")
-    private Long identificationNumber;
+    @Column(name = "username", nullable = false, length = 20)
+    private String username;
 
-    @Column(name = "access_status")
-    private Boolean accessStatus;
+    @Column(name = "password", nullable = false)
+    private String password;
 
-    public Boolean getAccessStatus() {
-        return accessStatus;
+    @Column(name = "active", nullable = false)
+    private Boolean active = false;
+
+
+    //
+
+    transient private String confirmPassword;
+
+    @ManyToMany
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
+
+    public String getConfirmPassword() {
+        return confirmPassword;
     }
 
-    public void setAccessStatus(Boolean accessStatus) {
-        this.accessStatus = accessStatus;
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
-    public Long getIdentificationNumber() {
-        return identificationNumber;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setIdentificationNumber(Long identificationNumber) {
-        this.identificationNumber = identificationNumber;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+    //
+
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public User getUser() {
