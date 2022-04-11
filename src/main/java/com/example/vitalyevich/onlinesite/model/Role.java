@@ -1,7 +1,6 @@
 package com.example.vitalyevich.onlinesite.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Set;
 
 @Entity
@@ -15,7 +14,6 @@ public class Role {
     @Column(name = "role_name", nullable = false, length = 20)
     private String roleName;
 
-    //
     @ManyToMany(mappedBy = "roles")
     private Set<Access> users;
 
@@ -26,7 +24,6 @@ public class Role {
     public void setUsers(Set<Access> users) {
         this.users = users;
     }
-    //
 
     public Role() {
 

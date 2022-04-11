@@ -24,9 +24,6 @@ public class Access {
     @Column(name = "active", nullable = false)
     private Boolean active = false;
 
-
-    //
-
     transient private String confirmPassword;
 
     @ManyToMany
@@ -49,8 +46,6 @@ public class Access {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
-    //
-
 
     public Boolean getActive() {
         return active;

@@ -7,16 +7,13 @@ import com.example.vitalyevich.onlinesite.model.User;
 import com.example.vitalyevich.onlinesite.service.UserService;
 import com.example.vitalyevich.onlinesite.validator.UserValidator;*/
 import com.example.vitalyevich.onlinesite.repository.RoleDao;
-import com.example.vitalyevich.onlinesite.repository.UserDao;
+import com.example.vitalyevich.onlinesite.repository.AccessDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -27,17 +24,10 @@ import java.util.Set;
 **/
 
 @Controller
-@RequestMapping("/")
 public class UserController {
 
-/*    @GetMapping(value = "/welcome")
-    public String registration(Model model) {
-
-        return "welcome";
-    }*/
-
     @Autowired
-    private UserDao userDao;
+    private AccessDao userDao;
 
     @Autowired
     private RoleDao roleDao;
@@ -53,12 +43,10 @@ public class UserController {
     }
 
     @PostMapping("/registration")
-    public String addUser(Access user, Model model) { //Map<String,Object> model
+    public String addUser(Access user, Model model) {
         Access userFromDb = userDao.findByUsername(user.getUsername());
 
         if (userFromDb != null) {
-            //model.put("message", "User exists!");
-
             model.addAttribute("message", "User exists!");
 
             return "registration";
@@ -78,16 +66,10 @@ public class UserController {
 
         return "redirect:/login";
     }
-
+}
 
   /*  @Autowired
     private UserService userService;*/
-
-/*    @Autowired
-    private SecurityService securityService;
-
-    @Autowired
-    private UserValidator userValidator;*/
 
  /*   @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
@@ -123,14 +105,5 @@ public class UserController {
 
         return "login";
     }
-
-    @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
-    public String welcome(Model model) {
-        return "welcome";
-    }
-
-    @RequestMapping(value = "/admin", method = RequestMethod.GET)
-    public String admin(Model model) {
-        return "admin";
-    }*/
 }
+*/

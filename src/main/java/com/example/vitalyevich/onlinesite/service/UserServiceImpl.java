@@ -1,31 +1,31 @@
+/*
 package com.example.vitalyevich.onlinesite.service;
 
 import com.example.vitalyevich.onlinesite.model.Access;
 import com.example.vitalyevich.onlinesite.model.Role;
-import com.example.vitalyevich.onlinesite.model.User;
 import com.example.vitalyevich.onlinesite.repository.RoleDao;
-import com.example.vitalyevich.onlinesite.repository.UserDao;
+import com.example.vitalyevich.onlinesite.repository.AccessDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
 
+*/
 /**
  * Implementation of {@link com.example.vitalyevich.onlinesite.service.UserService} interface.
  *
  * @author Maksim Vitalyevich
  * @version 1.0
-**/
+**//*
+
 
 @Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserDao userDao;
+    private AccessDao userDao;
 
     @Autowired
     private RoleDao roleDao;
@@ -48,3 +48,4 @@ public class UserServiceImpl implements UserService {
         return userDao.findByUsername(username);
     }
 }
+*/
