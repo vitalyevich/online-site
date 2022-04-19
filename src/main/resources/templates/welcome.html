@@ -1,50 +1,413 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html><html>
 <head>
-    <meta charset="utf-8">
-    <style>
-        .text-center {
-            width: 500px; /* Ширина элемента в пикселах */
-            padding: 100px; /* Поля вокруг текста */
-            margin: auto; /* Выравниваем по центру */
-            background: #e9e9e9; /* Цвет фона */
-        }
-    </style>
-    <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 </head>
-<body class="text-center">
+    <body bgcolor="#c0c0c0">
+        <div class="v26_2">
+            <div class="v26_3">
+                <div class="v26_4"></div>
+            </div>
+        </div>
+        <div class="v26_7">
+            <div class="v26_8"></div>
+        </div>
 
-<div>
-    <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Sign Out"/>
-    </form>
-</div>
-
-    <main class="form-signing">
         <form>
-            <img class="mb-4" src="https://i.ibb.co/fqWtm9R/wel.png" alt="" width="72" height="57"> <!--как вставить картинку?-->
-            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+            <div class="v26_11">
+                <input id="phone" type="tel" name="phone" class="v26_13" maxlength="19"
+                       pattern="^\+375(\s+)?\(?(17|25|29|33|44)\)?(\s+)?[0-9]{3}-?[0-9]{2}-?[0-9]{2}$"
+                       placeholder="Введите Ваш номер телефона">
 
-            <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Email address</label>
-            </div>
-            <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                <label for="floatingPassword">Password</label>
+                <script src="https://unpkg.com/imask"></script>
+                 <script>
+                     var element = document.getElementById('phone');
+                     var maskOptions = {
+                       mask: '+{375} (00) 000-00-00'
+                     };
+                     var mask = IMask(element, maskOptions);
+                 </script>
             </div>
 
-            <div class="checkbox mb-3">
-                <label>
-                    <input type="checkbox" value="remember-me"> Remember me
-                </label>
+            <div class="v26_26">
+            <input id="name" type="text" name="name" class="v26_13" maxlength="19"
+                               placeholder="Введите Ваше имя">
             </div>
-            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-            <p class="mt-5 mb-3 text-muted">© 2017–2021</p>
+
+            <div class="v26_14">
+            <input id="password" type="password" name="password" class="v26_13" maxlength="19"
+                                                       placeholder="Введите пароль">
+            </div>
+
+            <div class="v26_17">
+                <input id="confirm-password" type="password" name="confirm_password" class="v26_13" maxlength="19"
+                                               placeholder="Повторите пароль">
+            </div>
+
+            <div class="v26_20">
+                    <input id="dob" type="text" name="dob" class="v26_13" maxlength="19"
+                                       placeholder="Дата рождения">
+            </div>
+
+            <div class="v26_23">
+                            <input id="mail" type="text" name="mail" class="v26_13" maxlength="19"
+                                               placeholder="Почта">
+            </div>
+
+            <span class="v26_29">Регистрация</span>
+
+            <div class="v26_30">
+               <input class="v26_32" type="submit" value="Создать аккаунт">
+            </div>
+
+            <div class="v26_33">
+                <input id="code" type="text" name="code" class="v26_41" maxlength="6">
+            </div>
+
+            <span class="v26_34">Код пригласившего</span>
+
         </form>
-    </main>
 
-</body>
+        <div class="v26_35">
+            <div class="v26_36"></div>
+        </div>
+
+        <div class="v26_39">
+            <div class="v26_40"></div>
+        </div>
+    </body>
 </html>
+<br/><br/>
+
+<style>* {
+  box-sizing: border-box;
+}
+input {
+    outline: none;
+    border: none;
+}
+body {
+  font-size: 14px;
+}
+.v26_2 {
+  width: 566px;
+  height: 607px;
+  background: rgba(255,255,255,1);
+  opacity: 1;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  border-top-left-radius: 60px;
+  border-top-right-radius: 60px;
+  border-bottom-left-radius: 60px;
+  border-bottom-right-radius: 60px;
+  overflow: hidden;
+}
+.v26_3 {
+  width: 15px;
+  height: 15px;
+  background: url("../images/v26_3.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 341px;
+  left: 217px;
+  overflow: hidden;
+}
+.v26_4 {
+  width: 15px;
+  height: 15px;
+  background: url("../images/v26_4.png");
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border-radius: 50%;
+}
+.v26_7 {
+  width: 15px;
+  height: 15px;
+  background: url("../images/v26_7.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 395px;
+  left: 217px;
+  overflow: hidden;
+}
+.v26_8 {
+  width: 15px;
+  height: 15px;
+  background: url("../images/v26_8.png");
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border-radius: 50%;
+}
+.name {
+  color: #fff;
+}
+.name {
+  color: #fff;
+}
+.v26_11 {
+  width: 360px;
+  height: 26px;
+  background: url("../images/v26_11.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 123px;
+  left: 103px;
+  overflow: hidden;
+}
+.v26_13 {
+  background: transparent;
+  border-bottom: 1px solid #575757;
+  width: 360px;
+  color: rgba(87,87,87,1);
+  position: relative;
+  top: 0px;
+  left: 0px;
+  font-family: Montserrat;
+  font-weight: Regular;
+  font-size: 16px;
+  opacity: 1;
+  text-align: left;
+}
+.v26_14 {
+  width: 360px;
+  height: 26px;
+  background: url("../images/v26_14.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 339px;
+  left: 103px;
+  overflow: hidden;
+}
+.v26_17 {
+  width: 360px;
+  height: 26px;
+  background: url("../images/v26_17.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 393px;
+  left: 103px;
+  overflow: hidden;
+}
+.v26_20 {
+  width: 360px;
+  height: 26px;
+  background: url("../images/v26_20.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 285px;
+  left: 103px;
+  overflow: hidden;
+}
+.name {
+  color: #fff;
+}
+.v26_23 {
+  width: 360px;
+  height: 26px;
+  background: url("../images/v26_23.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 231px;
+  left: 103px;
+  overflow: hidden;
+}
+.v26_26 {
+  width: 360px;
+  height: 26px;
+  background: url("../images/v26_26.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 177px;
+  left: 103px;
+  overflow: hidden;
+}
+.v26_29 {
+  width: 254px;
+  height: 44px;
+  color: rgba(55,55,55,1);
+  position: absolute;
+  left: 156px;
+  top: 51px;
+  font-family: Montserrat;
+  font-weight: Bold;
+  font-size: 36px;
+  opacity: 1;
+  text-align: center;
+}
+.v26_30 {
+  width: 360px;
+  height: 48px;
+  background: url("../images/v26_30.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 508px;
+  left: 103px;
+  overflow: hidden;
+}
+.v26_32 {
+  width: 360px;
+  height: 48px;
+  background: linear-gradient(90deg, rgba(216,84,97,1) 0%, rgba(241,172,85,1) 100%);
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  overflow: hidden;
+
+  color: rgba(255,255,255,1);
+  font-family: Montserrat;
+  font-weight: Medium;
+  font-size: 20px;
+  opacity: 1;
+  text-align: center;
+}
+.v26_33 {
+  width: 180px;
+  height: 33px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 447px;
+  left: 283px;
+  overflow: hidden;
+}
+
+.v26_41 {
+  width: 180px;
+  height: 33px;
+
+    border:2px solid transparent;
+  border-radius: 10px;
+  background-image: linear-gradient(white, white),
+                    linear-gradient(90deg,rgba(216,84,97,1) 0%, rgba(241,172,85,1) 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+
+
+/*  background: transparent; */
+
+/* border-radius:10px;
+                border:2px solid transparent;
+                background:linear-gradient(90deg,rgba(216,84,97,1) 0%, rgba(241,172,85,1) 100%) border-box;
+                -webkit-mask:
+                   linear-gradient(#fff 0 0) padding-box,
+                   linear-gradient(#fff 0 0);
+                -webkit-mask-composite: xor;
+                        mask-composite: exclude; */
+
+  /* border-image: linear-gradient(90deg, rgba(216,84,97,1) 0%, rgba(241,172,85,1) 100%);
+
+  border-style: solid;
+  border-width: 2px;
+  border-image-slice: 1; */
+
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+
+  color: rgba(87,87,87,1);
+  font-family: Montserrat;
+  font-weight: Regular;
+  font-size: 16px;
+  text-align: left;
+  padding-left: 15px;
+}
+
+.v26_34 {
+  width: 167px;
+  color: rgba(87,87,87,1);
+  position: absolute;
+  top: 454px;
+  left: 103px;
+  font-family: Montserrat;
+  font-weight: Regular;
+  font-size: 16px;
+  opacity: 1;
+  text-align: left;
+}
+.v26_35 {
+  width: 15px;
+  height: 15px;
+  background: url("../images/v26_35.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 125px;
+  left: 215px;
+  overflow: hidden;
+}
+.v26_36 {
+  width: 15px;
+  height: 15px;
+  background: url("../images/v26_36.png");
+  opacity: 1;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  border-radius: 50%;
+}
+.v26_39 {
+  width: 15px;
+  height: 15px;
+  background: url("../images/v26_39.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 179px;
+  left: 216px;
+  overflow: hidden;
+}
+.v26_40 {
+  width: 15px;
+  height: 15px;
+  background: url("../images/v26_40.png");
+  opacity: 1;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  border-radius: 50%;
+}
+</style>

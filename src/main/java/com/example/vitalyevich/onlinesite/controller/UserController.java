@@ -42,6 +42,41 @@ public class UserController {
         return "registration";
     }
 
+    @GetMapping("/authorization")
+    public String product() {
+        return "authorization";
+    }
+
+    @GetMapping("/home")
+    public String home() {
+        return "home";
+    }
+
+    @GetMapping("/account")
+    public String account() {
+        return "account";
+    }
+
+    @GetMapping("/selection")
+    public String selection() {
+        return "selection";
+    }
+
+    @GetMapping("/basket")
+    public String basket() {
+        return "basket";
+    }
+
+    @GetMapping("/delivery")
+    public String delivery() {
+        return "delivery";
+    }
+
+    @GetMapping("/order")
+    public String order() {
+        return "order";
+    }
+
     @PostMapping("/registration")
     public String addUser(Access user, Model model) {
         Access userFromDb = userDao.findByUsername(user.getUsername());

@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/basket.css">
+</head>
+<body>
+<div class="v61_346">
+
+    <div th:insert="blocks/header :: header"></div>
+
+    <div class="v40_16">
+        <span class="v75_883">Оформление заказа</span>
+        <span class="v75_891">Ваш заказ</span>
+
+                <div class="v75_885">
+                                <div class="v75_892">
+                                    <span class="v75_894">Введите ваш адрес</span>
+                                </div>
+                                <div class="v75_895">
+                                    <span class="v75_897">Комментарий к заказу</span>
+                                </div>
+                                <div class="v75_898">
+                                        <div class="v75_899">
+                                            <span class="v75_900">Время доставки</span>
+                                            <div class="v75_901">
+                                                <div class="v75_902"></div>
+                                                <div class="v75_903"></div>
+                                                <div class="v75_904"></div>
+                                                <span class="v75_905">Час</span>
+                                                <span class="v75_906">Минуты</span>
+                                                <span class="v75_907">Дата</span>
+                                                <span class="v75_911">17</span>
+                                                <span class="v75_912">00</span>
+                                                <span class="v75_913">15 апреля</span>
+                                            </div>
+                                            <div class="v75_914"></div>
+                                            <span class="v75_915">Ближайшее</span>
+                                        </div>
+                                    <div class="v75_916">
+                                        <span class="v75_917">Способ оплаты</span>
+                                        <div class="v75_918"></div>
+                                        <span class="v75_919">Наличными</span>
+                                        <div class="v75_920"></div>
+                                        <span class="v75_921">Картой</span>
+                                    </div>
+                                </div>
+                                <div class="v75_922">
+                                    <span class="v75_923">Оплата баллами</span>
+                                    <span class="v75_924">У вас 360 баллов, сколько вы хотите использовать?</span>
+                                    <span class="v75_926">0</span>
+                                </div>
+                </div>
+
+                <div class="v75_886"></div>
+                <div class="v75_887"></div>
+                <span class="v75_889">Доставка</span>
+                <span class="v75_890">Самовывоз</span>
+
+                <span class="v75_932">Сумма заказа................................................................................................43 BYN</span>
+                <span class="v75_933">Доставка курьером.....................................................................................7 BYN</span>
+                <span class="v75_934">Оплата баллами...........................................................................................0 BYN</span>
+                <span class="v75_935">Итого к оплате...........................................................................................50 BYN</span>
+
+
+                <div class="v30_13" th:insert="blocks/basket :: basket"></div>
+                <div class="v30_14" th:insert="blocks/basket :: basket"></div>
+                <div class="v30_15" th:insert="blocks/basket :: basket"></div>
+
+
+                <style>
+                .v30_13 {
+                    top: 169px;
+                    left: 833px;
+                    position: absolute;
+                }
+                .v30_14 {
+                    top: 240px;
+                    left: 833px;
+                    position: absolute;
+                }
+                .v30_15 {
+                    top: 311px;
+                    left: 833px;
+                    position: absolute;
+                }
+                </style>
+
+
+                <div class="v75_936">
+                   <img src="../static/images/close_gray.svg" th:src="@{images/close_gray.svg}"/>
+                </div>
+
+                <div class="v75_939">
+                    <img src="../static/images/close_gray.svg" th:src="@{images/close_gray.svg}"/>
+                </div>
+
+                <div class="v75_942">
+                    <img src="../static/images/close_gray.svg" th:src="@{images/close_gray.svg}"/>
+                </div>
+
+                <div class="v75_945">
+                    <div class="v75_946"></div>
+                    <span class="v75_947">Оформить заказ</span>
+                </div>
+                <span class="v75_948">Нажимая кнопку «Оформить заказ», я соглашаюсь с публичной офертой.</span>
+    </div>
+
+    <div th:insert="blocks/footer :: footer"></div>
+
+    <style>
+        .v40_72 {
+             background: #404040;
+        }
+    </style>
+
+    </div>
+</body>
+</html>
+
+<style>* {
+ box-sizing: border-box;
+}
+body {
+ font-size: 14px;
+}
+
+.v40_16 {
+  width: 1440px;
+  height: 905px;
+  margin: auto;
+  background: transparent;
+  opacity: 1;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+.v61_346 {
+  width: 100%;
+  height: 1267px;
+  background: rgba(255,255,255,1);
+  opacity: 1;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+.v75_883 {
+  width: 399px;
+  color: rgba(55,55,55,1);
+  position: absolute;
+  top: 40px;
+  left: 150px;
+  font-family: Montserrat;
+  font-weight: Bold;
+  font-size: 36px;
+  opacity: 1;
+  text-align: left;
+}
+.v75_885 {
+  width: 653px;
+  height: 376px;
+  background: rgba(255,255,255,1);
+  opacity: 1;
+  position: absolute;
+  top: 169px;
+  left: 150px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+.v75_886 {
+  width: 165px;
+  height: 45px;
+  background: rgba(255,255,255,1);
+  opacity: 1;
+  position: absolute;
+  top: 120px;
+  left: 150px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+.v75_887 {
+  width: 165px;
+  height: 21px;
+  background: white;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 155px;
+  left: 150px;
+  overflow: hidden;
+}
+.v75_889 {
+  width: 117px;
+  color: rgba(55,55,55,1);
+  position: absolute;
+  top: 128px;
+  left: 173px;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 24px;
+  opacity: 1;
+  text-align: left;
+}
+.v75_890 {
+  width: 143px;
+  color: rgba(55,55,55,1);
+  position: absolute;
+  top: 128px;
+  left: 337px;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 24px;
+  opacity: 1;
+  text-align: left;
+}
+.v75_891 {
+  width: 130px;
+  color: rgba(55,55,55,1);
+  position: absolute;
+  top: 128px;
+  left: 843px;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 24px;
+  opacity: 1;
+  text-align: left;
+}
+.v75_892 {
+  width: 518px;
+  height: 32px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 32px;
+  left: 37px;
+  overflow: hidden;
+}
+.v75_894 {
+  width: 518px;
+  color: rgba(55,55,55,1);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 18px;
+  opacity: 1;
+  text-align: left;
+}
+.v75_895 {
+  width: 518px;
+  height: 32px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 311px;
+  left: 37px;
+  overflow: hidden;
+}
+.v75_897 {
+  width: 215px;
+  color: rgba(55,55,55,1);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 18px;
+  opacity: 1;
+  text-align: left;
+}
+.v75_898 {
+  width: 498px;
+  height: 97px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 89px;
+  left: 37px;
+  overflow: hidden;
+}
+.v75_899 {
+  width: 299px;
+  height: 97px;
+  background: url("../images/v75_899.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+.v75_900 {
+  width: 155px;
+  color: rgba(55,55,55,1);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 18px;
+  opacity: 1;
+  text-align: left;
+}
+.v75_901 {
+  width: 299px;
+  height: 43px;
+  background: url("../images/v75_901.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 26px;
+  left: 0px;
+  overflow: hidden;
+}
+.v75_902 {
+  width: 4px;
+  height: 9px;
+  background: url("../images/v75_902.png");
+  opacity: 1;
+  position: absolute;
+  top: 27px;
+  left: 46px;
+  border: 2px solid rgba(197,197,197,1);
+}
+.v75_903 {
+  width: 4px;
+  height: 9px;
+  background: url("../images/v75_903.png");
+  opacity: 1;
+  position: absolute;
+  top: 27px;
+  left: 108px;
+  border: 2px solid rgba(197,197,197,1);
+}
+.v75_904 {
+  width: 4px;
+  height: 9px;
+  background: url("../images/v75_904.png");
+  opacity: 1;
+  position: absolute;
+  top: 27px;
+  left: 299px;
+  border: 2px solid rgba(197,197,197,1);
+}
+.v75_905 {
+  width: 23px;
+  color: rgba(197,197,197,1);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 12px;
+  opacity: 1;
+  text-align: left;
+}
+.v75_906 {
+  width: 51px;
+  color: rgba(197,197,197,1);
+  position: absolute;
+  top: 0px;
+  left: 61px;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 12px;
+  opacity: 1;
+  text-align: left;
+}
+.v75_907 {
+  width: 30px;
+  color: rgba(197,197,197,1);
+  position: absolute;
+  top: 0px;
+  left: 158px;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 12px;
+  opacity: 1;
+  text-align: left;
+}
+.v75_911 {
+  width: 16px;
+  color: rgba(55,55,55,1);
+  position: absolute;
+  top: 19px;
+  left: 0px;
+  font-family: Montserrat;
+  font-weight: 600ld;
+  font-size: 16px;
+  opacity: 1;
+  text-align: left;
+}
+.v75_912 {
+  width: 22px;
+  color: rgba(55,55,55,1);
+  position: absolute;
+  top: 19px;
+  left: 61px;
+  font-family: Montserrat;
+  font-weight: 600ld;
+  font-size: 16px;
+  opacity: 1;
+  text-align: left;
+}
+.v75_913 {
+  width: 82px;
+  color: rgba(55,55,55,1);
+  position: absolute;
+  top: 19px;
+  left: 158px;
+  font-family: Montserrat;
+  font-weight: 600ld;
+  font-size: 16px;
+  opacity: 1;
+  text-align: left;
+}
+.v75_914 {
+  width: 12px;
+  height: 12px;
+  background: url("../images/v75_914.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 83px;
+  left: 0px;
+  border: 0.5px solid rgba(55,55,55,1);
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  overflow: hidden;
+}
+.v75_915 {
+  width: 89px;
+  color: rgba(55,55,55,1);
+  position: absolute;
+  top: 80px;
+  left: 16px;
+  font-family: Montserrat;
+  font-weight: 400;
+  font-size: 14px;
+  opacity: 1;
+  text-align: left;
+}
+.v75_916 {
+  width: 145px;
+  height: 72px;
+  background: url("../images/v75_916.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 353px;
+  overflow: hidden;
+}
+.v75_917 {
+  width: 145px;
+  color: rgba(55,55,55,1);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 18px;
+  opacity: 1;
+  text-align: left;
+}
+.v75_918 {
+  width: 12px;
+  height: 12px;
+  background: url("../images/v75_918.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 34px;
+  left: 0px;
+  border: 0.5px solid rgba(55,55,55,1);
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  overflow: hidden;
+}
+.v75_919 {
+  width: 88px;
+  color: rgba(55,55,55,1);
+  position: absolute;
+  top: 31px;
+  left: 16px;
+  font-family: Montserrat;
+  font-weight: 400;
+  font-size: 14px;
+  opacity: 1;
+  text-align: left;
+}
+.v75_920 {
+  width: 12px;
+  height: 12px;
+  background: url("../images/v75_920.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 58px;
+  left: 0px;
+  border: 0.5px solid rgba(55,55,55,1);
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  overflow: hidden;
+}
+.v75_921 {
+  width: 52px;
+  color: rgba(55,55,55,1);
+  position: absolute;
+  top: 55px;
+  left: 16px;
+  font-family: Montserrat;
+  font-weight: 400;
+  font-size: 14px;
+  opacity: 1;
+  text-align: left;
+}
+.v75_922 {
+  width: 380px;
+  height: 75px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 211px;
+  left: 37px;
+  overflow: hidden;
+}
+.v75_923 {
+  width: 157px;
+  color: rgba(55,55,55,1);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 18px;
+  opacity: 1;
+  text-align: left;
+}
+.v75_924 {
+  width: 379px;
+  color: rgba(55,55,55,1);
+  position: absolute;
+  top: 26px;
+  left: 1px;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 14px;
+  opacity: 1;
+  text-align: left;
+}
+.v75_926 {
+  width: 11px;
+  color: rgba(197,197,197,1);
+  position: absolute;
+  top: 60px;
+  left: 1px;
+  font-family: Montserrat;
+  font-weight: 600;
+  font-size: 16px;
+  opacity: 1;
+  text-align: left;
+}
+.v75_930 {
+  width: 55px;
+  height: 41px;
+  background: url("../images/v75_930.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 325px;
+  left: 833px;
+  overflow: hidden;
+}
+.v75_931 {
+  width: 42px;
+  height: 37px;
+  background: url("../images/v75_931.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 399px;
+  left: 840px;
+  overflow: hidden;
+}
+.v75_932 {
+  width: 654px;
+  position: absolute;
+  top: 612px;
+  left: 150px;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 20px;
+  opacity: 1;
+  text-align: left;
+}
+.v75_933 {
+  width: 653px;
+  position: absolute;
+  top: 655px;
+  left: 150px;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 20px;
+  opacity: 1;
+  text-align: left;
+}
+.v75_934 {
+  width: 654px;
+  position: absolute;
+  top: 698px;
+  left: 150px;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 20px;
+  opacity: 1;
+  text-align: left;
+}
+.v75_935 {
+  width: 655px;
+  position: absolute;
+  top: 741px;
+  left: 150px;
+  font-family: Montserrat;
+  font-weight: 700;
+  font-size: 20px;
+  opacity: 1;
+  text-align: left;
+}
+.v75_936 {
+  width: 32px;
+  height: 32px;
+  background: rgba(255,255,255,1);
+  opacity: 1;
+  position: absolute;
+  top: 166px;
+  left: 1216px;
+  overflow: hidden;
+}
+
+.v75_939 {
+  width: 32px;
+  height: 32px;
+  background: rgba(255,255,255,1);
+  opacity: 1;
+  position: absolute;
+  top: 237px;
+  left: 1216px;
+  overflow: hidden;
+}
+.v75_942 {
+  width: 32px;
+  height: 32px;
+  background: rgba(255,255,255,1);
+  opacity: 1;
+  position: absolute;
+  top: 308px;
+  left: 1216px;
+  overflow: hidden;
+}
+.v75_945 {
+  width: 360px;
+  height: 44px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 803px;
+  left: 300px;
+  overflow: hidden;
+}
+.v75_946 {
+  width: 360px;
+  height: 44px;
+  background: linear-gradient(rgba(216,84,97,1), rgba(241,172,85,1));
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  overflow: hidden;
+}
+.v75_947 {
+  width: 176px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 10px;
+  left: 92px;
+  font-family: Montserrat;
+  font-weight: 600ld;
+  font-size: 20px;
+  opacity: 1;
+  text-align: center;
+}
+.v75_948 {
+  width: 382px;
+  position: absolute;
+  top: 856px;
+  left: 289px;
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 9px;
+  opacity: 1;
+  text-align: center;
+}
+</style>
