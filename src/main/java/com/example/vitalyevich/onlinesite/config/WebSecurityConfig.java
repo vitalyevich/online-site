@@ -21,12 +21,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/registration").hasRole("ADMIN")
-                    .antMatchers("/", "/welcome").permitAll()
+                    .antMatchers("/account").hasRole("ADMIN")
+                    /*.antMatchers("/account").hasRole("USER")*/
+                    .antMatchers("/menu/**").permitAll()
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()
-                    .loginPage("/authorization")
+                    .loginPage("/authorization") //login //menu/rolls#blackout-authorization
+                    .defaultSuccessUrl("/account",true)
                     .permitAll()
                 .and()
                     .logout()

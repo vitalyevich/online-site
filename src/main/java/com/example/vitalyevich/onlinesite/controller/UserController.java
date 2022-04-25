@@ -47,9 +47,9 @@ public class UserController {
         return "authorization";
     }
 
-    @GetMapping("/home")
-    public String home() {
-        return "home";
+    @GetMapping("/settings")
+    public String settings() {
+        return "settings";
     }
 
     @GetMapping("/account")
@@ -57,9 +57,14 @@ public class UserController {
         return "account";
     }
 
+    @GetMapping("/admin-panel")
+    public String adminPanel() {
+        return "admin-panel";
+    }
+
     @GetMapping("/selection")
     public String selection() {
-        return "selection";
+        return "menu-selection";
     }
 
     @GetMapping("/basket")

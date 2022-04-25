@@ -29,6 +29,7 @@
     top: 2px;
     left: 340px;
     overflow: hidden;
+    background: url("/images/search.svg");
 }
 .v40_95 {
     width: 72px;
@@ -258,6 +259,7 @@
     top: 61px;
     left: 150px;
     overflow: hidden;
+    background: url("/images/name2.svg");
 }
 .v40_87 {
     width: 263px;

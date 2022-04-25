@@ -4,35 +4,157 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/header.css">
+    <title>Доставка и оплата</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, maximum-scale=1" />
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=7759b55c-a7a8-4b1d-804d-b65454579dd2&lang=ru_RU"
+     type="text/javascript"></script>
+
+     <script>
+
+     var myMap;
+     var suggestView;
+
+     ymaps.ready(init);
+
+         function init (ymaps) {
+                 myMap = new ymaps.Map("myMap", {
+                     center: [53.491125, 26.738866],
+                     zoom: 12
+                     });
+
+                var placemark = new ymaps.Placemark(
+                [53.491125, 26.738866],
+                {
+                    balloonContent: 'stbSushi'
+                });
+                myMap.geoObjects.add(placemark);
+
+                     var myGeoObject = new ymaps.GeoObject({
+                            // Описываем геометрию геообъекта.
+                            geometry: {
+                                // Тип геометрии - "Многоугольник".
+                                type: "Polygon",
+                                // Указываем координаты вершин многоугольника.
+                                coordinates: [
+                                                      [
+                                                      [53.51973251739027,26.667104011951324],
+                                                      [53.524438225384564,26.697316414295074],
+                                                      [53.51870946789297,26.7539646686896],
+                                                      [53.52157394393604,26.807179695545074],
+                                                      [53.512775291319294,26.819539314685702],
+                                                      [53.47530932782826,26.765980965076338],
+                                                      [53.4630181645975,26.781087166248216],
+                                                      [53.44908385597163,26.779027229724782],
+                                                      [53.44313988567794,26.75121808665836],
+                                                      [53.44375481790972,26.71757245677555],
+                                                      [53.44027008367909,26.694569832263827],
+                                                      [53.45461714609523,26.687360054431796],
+                                                      [53.44477968508896,26.67191053050603],
+                                                      [53.452362930148006,26.657834297595855],
+                                                      [53.48800643969344,26.67671704906071],
+                                                      [53.51973251739027,26.667104011951324]
+                                                      ]
+                                                      ],
+                                // Задаем правило заливки внутренних контуров по алгоритму "nonZero".
+                                fillRule: "nonZero"
+                            },
+                            // Описываем свойства геообъекта.
+                            properties:{
+                                // Содержимое балуна.
+                                balloonContent: "Минимальный заказ — 20 р.\nБесплатная доставка от 20 р."
+                            }
+                        }, {
+                            // Описываем опции геообъекта.
+                            // Цвет заливки.
+                            fillColor: '#00a6ff',
+                            // Цвет обводки.
+                            strokeColor: '#0000FF',
+                            // Общая прозрачность (как для заливки, так и для обводки).
+                            opacity: 0.4,
+                            // Ширина обводки.
+                            strokeWidth: 1
+                        });
+
+                        // Добавляем многоугольник на карту.
+                        myMap.geoObjects.add(myGeoObject);
+
+
+                 suggestView = new ymaps.SuggestView('suggest');
+
+                 var myCollection = new ymaps.GeoObjectCollection();
+
+                 suggestView.events.add('select', function (event) {
+                                  var q = event.get('item').value;
+                                  ymaps.geocode(q).then(
+                                      function (result) {
+                                          myCollection.removeAll();
+                                          myMap.setCenter(result.geoObjects.get(0).geometry.getCoordinates());
+                                          myMap.setZoom(14, {smooth: true});
+
+                                           var placemark = new ymaps.Placemark(result.geoObjects.get(0).geometry.getCoordinates());
+                                           myCollection.add(placemark);
+                                           myMap.geoObjects.add(myCollection);
+
+                                      }
+                                  );
+                              });
+         }
+
+     </script>
 </head>
 <body>
     <div class="v61_346">
 
     <div th:insert="blocks/header :: header"></div>
-
-
+    <style>
+    .v61_350 {
+        border-bottom: 1px solid white;
+    }
+    </style>
 
     <div class="v40_16">
         <span class="v69_677">Доставка и оплата</span>
 
-        <div class="v69_678">
-            <img src="../static/images/map.svg" th:src="@{images/map.svg}"/>
-        </div>
+        <div id="myMap" class="v69_678"></div>
 
-        <span class="v69_679">Столбцы</span>
-        <div class="v69_711">
-                <img src="../static/images/down.svg" th:src="@{images/down.svg}"/>
-        </div>
+        <select class="v69_679" id="resizing_select">
+            <option selected="selected" value="Столбцы">Столбцы</option>
+            <option value="Минск">Минск</option>
+        </select>
 
-        <input id="search" type="text" name="search" class="v69_681" maxlength="19" placeholder="Введите ваш адрес (город, улица, дом)">
+        <select class="v69_679" id="width_tmp_select">
+          <option id="width_tmp_option"></option>
+        </select>
 
-        <div class="v69_682">
-             <img src="../static/images/search_black.svg" th:src="@{images/search_black.svg}"/>
-        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+       $(document).ready(function() {
+         $('#resizing_select').change(function(){
+
+              var x = document.getElementById("resizing_select").value;
+
+              if(x == "Минск") {
+                 myMap.setCenter([53.904545762942014,27.55515497753907]);
+                 myMap.setZoom(12, {smooth: true});
+              }
+              if(x == "Столбцы") {
+                 myMap.setCenter([53.491125, 26.738866]);
+                 myMap.setZoom(12, {smooth: true});
+              }
+
+           $("#width_tmp_option").html($('#resizing_select option:selected').text());
+           $(this).width($("#width_tmp_select").width());
+         });
+       });
+        </script>
+
+            <input required="true" id="suggest" class="v69_681" type="text" placeholder="Введите ваш адрес (город, улица, дом)">
+
+            <span class="v69_1">В течении 1 часа</span>
 
         <div class="v69_685">
             <span class="v69_686">Доставка</span>
-            <span class="v69_687">Доставка с 8:00 до 21:00</span>
+            <span class="v69_687">Доставка с 10:00 до 21:00</span>
             <span class="v69_688">Доставка бесплатная при заказе от 30 BYN или стоимость доставки будет - 3 BYN</span>
             <span class="v69_690">В течении 1.5 часа</span>
             <div class="v69_689">
@@ -42,9 +164,9 @@
 
         <div class="v69_691">
             <span class="v69_692">Самовывоз</span>
-            <span class="v69_693">ТЦ “Силуэт”</span>
-            <span class="v69_694">пн-пт 8:00 - 21:00 сб-вс 10:00 - 20:00</span>
-            <span class="v69_695">Ленина 32/2</span>
+            <span class="v69_693">Рынок "Лебедь"</span>
+            <span class="v69_694">пн-пт 10:00 - 20:00 сб-вс 10:00 - 22:00</span>
+            <span class="v69_695">Центральная 14/18</span>
             <div class="v69_696">
                  <img src="../static/images/location.svg" th:src="@{images/location.svg}"/>
             </div>
@@ -67,13 +189,22 @@
 <style>* {
   box-sizing: border-box;
 }
+
+#resizing_select {
+  width: 108px;
+}
+
+#width_tmp_select{
+  display : none;
+}
 body {
   font-size: 14px;
 }
-
-::placeholder {
-    color: black;
+select {
+outline: none;
+border: none;
 }
+
 .v61_346 {
   width: 100%;
   height: 1085px;
@@ -120,7 +251,7 @@ body {
   overflow: hidden;
 }
 .v69_679 {
-  width: 83px;
+  /* width: 108px; */
   color: rgba(55,55,55,1);
   position: absolute;
   top: 68px;
@@ -137,6 +268,7 @@ body {
   border-bottom: 1px solid #373737;
   color: rgba(55,55,55,1);
   position: absolute;
+  line-height: 28px;
   top: 141px;
   left: 150px;
   font-family: Montserrat;
@@ -144,6 +276,17 @@ body {
   font-size: 18px;
   opacity: 1;
   text-align: left;
+
+  background: url("/images/search_black.svg") no-repeat 525px 0px;
+
+}
+.v69_681:valid {
+  background: transparent;
+}
+
+
+.v69_681::placeholder {
+    color: black;
 }
 .v69_682 {
   width: 24px;
@@ -151,9 +294,23 @@ body {
   background: rgba(255,255,255,1);
   opacity: 1;
   position: absolute;
-  top: 224px;
+  top: 140px;
   left: 675px;
   overflow: hidden;
+}
+.v69_1 {
+position: absolute;
+width: 133px;
+height: 17px;
+left: 572px;
+top: 232px;
+
+font-family: Montserrat;
+font-weight: 500;
+font-size: 14px;
+line-height: 17px;
+
+color: #C5C5C5;
 }
 .v69_685 {
   width: 519px;
@@ -181,7 +338,7 @@ body {
   text-align: left;
 }
 .v69_687 {
-  width: 176px;
+  width: 200px;
   color: rgba(55,55,55,1);
   position: absolute;
   top: 44px;
@@ -254,7 +411,7 @@ body {
   text-align: left;
 }
 .v69_693 {
-  width: 106px;
+  width: 170px;
   color: rgba(55,55,55,1);
   position: absolute;
   top: 43px;
@@ -266,7 +423,7 @@ body {
   text-align: left;
 }
 .v69_694 {
-  width: 132px;
+  width: 155px;
   color: rgba(197,197,197,1);
   position: absolute;
   top: 94px;
@@ -278,7 +435,7 @@ body {
   text-align: left;
 }
 .v69_695 {
-  width: 90px;
+  width: 150px;
   color: rgba(55,55,55,1);
   position: absolute;
   top: 66px;

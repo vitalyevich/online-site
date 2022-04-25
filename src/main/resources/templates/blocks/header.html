@@ -1,19 +1,38 @@
 <div th:fragment="header">
     <header>
         <div class="v61_347">
-            <a class="v61_348" href="">Меню</a>
-           <a class="v61_349" href="">Акции</a>
-           <a class="v61_350" href="">Доставка и оплата</a>
+            <a class="v61_348" href="/menu/rolls">Меню</a>
+           <a class="v61_350" href="/delivery">Доставка и оплата</a>
 
-            <div class="v61_355">
-                 <a href="/authorization">
-                 <img src="../static/images/user.svg" th:src="@{images/user.svg}"/>
+
+                 <a href="#blackout-basket">
+                     <div class="v61_395">
+                        <span class="v1_400">1</span>
+                     </div>
                  </a>
-            </div>
 
-            <div class="v61_351">
-                <img src="../static/images/name.svg" th:src="@{images/name.svg}"/>
-            </div>
+
+                 <a href="#blackout-authorization">
+                 <div class="v61_356"></div>
+                 </a>
+            <a href="/menu/rolls">
+                <div class="v61_351"></div>
+            </a>
         </div>
     </header>
+</div>
+
+
+<div th:fragment="blackout-authorization" id="blackout-authorization">
+  <a href="#" class="close"></a>
+  <div id="window">
+    <div th:insert="blocks/authorization :: authorization"></div>
+  </div>
+</div>
+
+<div th:fragment="blackout-basket" id="blackout-basket">
+  <a href="#" class="close"></a>
+  <div id="window">
+    <div th:insert="blocks/basket :: basket"></div>
+  </div>
 </div>

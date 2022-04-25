@@ -1,6 +1,39 @@
-<div th:fragment="basket" class="v77_1495">
-    <img class="v77_1499" src="../static/images/sushi_basket.svg" th:src="@{images/sushi_basket.svg}"/>
-    <span class="v77_1496">Ролл Калифорния x1</span>
-    <span class="v77_1497">8 шт / 240 г</span>
-    <span class="v77_1498">9 BYN</span>
+<div th:fragment="basket" class="v77_1380">
+        <div class="v77_1481">
+
+            <div class="v77_1482">
+                 <input class="v77_1484" type="button" value="Оформить заказ  43 BYN" onClick='location.href="/order"'>
+            </div>
+
+            <span class="v77_1488">Корзина</span>
+            <span class="v77_1489">3</span>
+
+            <a href="">
+                <div class="v77_1490"></div>
+            </a>
+
+            <div class="v30_13" th:insert="blocks/product-basket :: basket"></div>
+            <div class="v30_14" th:insert="blocks/product-basket :: basket"></div>
+            <div class="v30_15" th:insert="blocks/product-basket :: basket"></div>
+
+
+            <style>
+            .v30_13 {
+                top: 123px;
+                left: 17px;
+                position: absolute;
+            }
+            .v30_14 {
+                top: 194px;
+                left: 17px;
+                position: absolute;
+            }
+            .v30_15 {
+                top: 265px;
+                left: 17px;
+                position: absolute;
+            }
+            </style>
+
+        </div>
 </div>

@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>stbSushi</title>
+     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+     <link rel="stylesheet" href="/css/footer.css">
+     <link rel="stylesheet" href="/css/header.css">
+     <link rel="stylesheet" href="/css/product-basket.css">
+     <link rel="stylesheet" href="/css/product.css">
+     <link rel="stylesheet" href="/css/basket.css">
+     <link rel="stylesheet" href="/css/authorization.css">
+     <link rel="stylesheet" href="/css/registration.css">
+
+     <link rel="stylesheet" href="/css/chief-slider.css">
+     <script src="/js/chief-slider.js"></script>
+</head>
+<body>
+
+ <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const slider = new ChiefSlider('.slider', {
+        loop: true
+      });
+    });
+  </script>
+  <style>
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    .slider__wrapper {
+      overflow: hidden;
+    }
+
+    .slider__item {
+      flex: 0 0 14.4%;
+      max-width: 14.4%;
+
+       justify-content: center;
+       align-items: center;
+       display: flex;
+
+        width: 165px;
+        height: 203px;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+        margin-right: 31px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+    <div class="v40_17">
+            <div class="v40_18">
+
+                    <div th:insert="blocks/header :: header"></div>
+                    <style>
+                    .v61_348 {
+                    border-bottom: 1px solid white;
+                    }
+                    </style>
+
+               <div class="v40_29">
+                   <div class="v40_31"></div>
+               </div>
+
+                <div class="logo">
+
+                   <span class="v40_26">ДОСТАВКА</span>
+                   <span class="v40_27">РОЛЛОВ</span>
+
+                   <div class="v40_42">
+                        <input autocomplete="off" id="tags" name="tags" class="v40_44" placeholder="Поиск">
+                       <div class="v40_45"></div>
+                   </div>
+
+                   <a href="">
+                       <div class="v40_48">
+                            <div class="v40_49"></div>
+                            <span class="v40_50">Филадельфия</span>
+                       </div>
+                   </a>
+
+                   <a href="">
+                       <div class="v40_51">
+                            <div class="v40_52"></div>
+                            <span class="v40_53">Бонито</span>
+                       </div>
+                   </a>
+
+                   <a href="">
+                       <div class="v40_54">
+                            <div class="v40_55"></div>
+                            <span class="v40_56">Суп Мисо</span>
+                       </div>
+                   </a>
+                </div>
+
+            <div class="slider">
+                  <div class="slider__wrapper">
+                    <div class="slider__items" style="transform: translateX(0%);">
+                     <a href="/menu/sets">
+                      <div class="slider__item" style="transform: translateX(0%);">
+                      <div class="v50_1">
+                         <div class="v50_3"></div>
+                              <p class="v50_2">Сеты</p>
+                         </div>
+                         </a>
+                      </div>
+                     <a href="/menu/rolls">
+                      <div class="slider__item" style="transform: translateX(0%);">
+                       <div class="v50_1">
+                          <div class="v50_3"></div>
+                          <p class="v50_9">Роллы</p>
+                       </div>
+                      </a>
+                      </div>
+                     <a href="/menu/sushi">
+                      <div class="slider__item" style="transform: translateX(0%);">
+                      <div class="v50_1">
+                          <div class="v50_3"></div>
+                          <p class="v50_10">Суши</p>
+                     </div>
+                     </a>
+                      </div>
+                      <a href="/menu/woks">
+                      <div class="slider__item" style="transform: translateX(0%);">
+                       <div class="v50_1">
+                          <div class="v50_3"></div>
+                          <p class="v50_11">Рис wok</p>
+                      </div>
+                      </a>
+                     </div>
+                     <a href="/menu/soups">
+                      <div class="slider__item" style="transform: translateX(0%);">
+                       <div class="v50_1">
+                         <div class="v50_3"></div>
+                         <p class="v50_12">Супы</p>
+                     </div>
+                     </a>
+                      </div>
+                     <a href="/menu/sauces">
+                      <div class="slider__item" style="transform: translateX(0%);">
+                      <div class="v50_1">
+                          <div class="v50_3"></div>
+                          <p class="v50_9">Соусы</p>
+                      </div>
+                      </a>
+                      </div>
+                     <a href="/menu/drinks">
+                      <div class="slider__item" style="transform: translateX(0%);">
+                        <div class="v50_1">
+                          <div class="v50_3"></div>
+                          <p class="v50_13">Напитки</p>
+                        </div>
+                       </a>
+                       </div>
+                    </div>
+                  <a href="#" class="slider__control" data-slide="prev"></a>
+                  <a href="#" class="slider__control" data-slide="next"></a>
+
+               </div>
+             </div>
+
+                   <div th:insert="blocks/header :: blackout-basket"></div>
+            </div>
+
+
+
+            <div class="v40_16">
+
+                <span class="v40_63" th:text="${menu}"></span>
+
+                <style>
+                .v0 {
+                  background: white;
+                  position: absolute;
+                  opacity: 1;
+                  top: 0px;
+                  left: 0px;
+                  width: 263px;
+                  height: 347px;
+                  border-top-left-radius: 25px;
+                  border-top-right-radius: 25px;
+                }
+                .v1 {
+                  background: white;
+                  position: absolute;
+                  opacity: 1;
+                  top: 0px;
+                  left: 293px;
+                  width: 263px;
+                  height: 347px;
+                    border-top-left-radius: 25px;
+                    border-top-right-radius: 25px;
+                }
+                .v2 {
+                  background: white;
+                  position: absolute;
+                  opacity: 1;
+                  top: 0px;
+                  left: 586px;
+                  width: 263px;
+                  height: 347px;
+                  border-top-left-radius: 25px;
+                  border-top-right-radius: 25px;
+                }
+                .v3 {
+                  background: white;
+                  position: absolute;
+                  opacity: 1;
+                  top: 393px;
+                  left: 0px;
+                  width: 263px;
+                  height: 347px;
+                  border-top-left-radius: 25px;
+                  border-top-right-radius: 25px;
+                }
+                .v4 {
+                  background: white;
+                  position: absolute;
+                  opacity: 1;
+                  top: 393px;
+                  left: 293px;
+                  width: 263px;
+                  height: 347px;
+                  border-top-left-radius: 25px;
+                  border-top-right-radius: 25px;
+                }
+                .v5 {
+                  background: white;
+                  position: absolute;
+                  opacity: 1;
+                  top: 393px;
+                  left: 586px;
+                  width: 263px;
+                  height: 347px;
+                  border-top-left-radius: 25px;
+                  border-top-right-radius: 25px;
+                }
+                .prodlist {
+                    list-style: none;
+                    display: block;
+                    overflow: hidden;
+                    top: 116px;
+                    left: 150px;
+                    width: 849px;
+                    height: 748px;
+                    position: relative;
+                    margin: 0px;
+                    padding: 0px;
+                }
+                </style>
+
+                <ul class="prodlist">
+                            <li th:class="${'v'+iterStat.index}" th:each="el, iterStat : ${products}">
+                                <a th:href="'/menu/selection/' + ${el.id}">
+                                   <img class="v30_0" th:src="@{${el.photo.path + el.photo.name + el.photo.format}}"/>
+                                </a>
+                                    <p class="v30_1" th:text="${el.productName}"></p>
+                                     <p class="v30_2" th:text="${el.ingredients}"></p>
+
+                                    <p class="v30_3" th:inline="text">[[${el.price.price}]]<span class="v30_4">BYN</span></p>
+
+                                    <p class="v30_5" th:text="${el.amount} +' шт / ' + ${el.weight} +' г'"></p>
+
+                                <div class="v30_6">
+                                   <a class="v30_8" href="">Добавить в корзину</a>
+                                </div>
+                        </li>
+                    </ul>
+
+                    <!-- Кнопки -->
+                        <a th:href="${url} + ${page.getNumber()+1}">
+                        <div class="v40_111"></div>
+                        </a>
+
+                         <a th:href="${url} + ${page.getNumber()-1}">
+                         <div class="v40_114"></div>
+                         </a>
+
+                    <div class="v40_75">
+                        <div class="v40_76">
+                            <div class="v40_78"></div>
+                        </div>
+                        <span class="v40_79">Неделя роллов</span>
+                        <span class="v40_80">При покупке сета от 30 BYN ролл Калифорния 8 шт в подарок</span>
+                        <span class="v40_81">Подробнее</span>
+                        <span class="v40_82">30.08 - 07.09</span>
+                    </div>
+            </div>
+
+            <div th:insert="blocks/footer :: footer"></div>
+            <div th:insert="blocks/header :: blackout-authorization"></div>
+            <div th:insert="blocks/authorization :: registration"></div>
+
+        </div>
+    </body>
+</html>
+
+<style>* {
+  box-sizing: border-box;
+}
+body {
+  font-size: 14px;
+}
+.slider {
+  position: absolute;
+  width: 1140px;
+  height: 203px;
+  left: 150px;
+  top: 575px;
+}
+.logo {
+left: 143px;
+position: absolute;
+top: 220px;
+width: 374px;
+height: 300px;
+}
+
+.v30_9 {
+  background: transparent;
+  position: absolute;
+  opacity: 1;
+  top: 116px;
+  left: 443px;
+  width: 263px;
+  height: 347px;
+}
+
+.v50_0 {
+  background: transparent;
+  position: absolute;
+  opacity: 1;
+  top: 116px;
+  left: 150px;
+  width: 263px;
+  height: 347px;
+}
+.v50_1 {
+  position: relative;
+  width: 165px;
+  height: 203px;
+  left: 0px;
+  top: 0px;
+  background: rgba(255,255,255,1);
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+.v50_2 {
+  position: absolute;
+  top: 130px;
+  left: 49px;
+
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+
+  color: #373737;
+}
+
+.v50_9 {
+  position: absolute;
+  top: 130px;
+  left: 39px;
+
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+
+  color: #373737;
+}
+
+.v50_10 {
+  position: absolute;
+  top: 130px;
+  left: 46px;
+
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+
+  color: #373737;
+}
+
+.v50_11 {
+  position: absolute;
+  top: 130px;
+  left: 28px;
+
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+
+  color: #373737;
+}
+
+.v50_12 {
+  position: absolute;
+  top: 130px;
+  left: 47px;
+
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+
+  color: #373737;
+}
+
+.v50_13 {
+  position: absolute;
+  top: 130px;
+  left: 26px;
+
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+
+  color: #373737;
+}
+
+.v50_3 {
+position: absolute;
+left: 16.36%;
+right: 16.36%;
+top: 8.37%;
+bottom: 37.44%;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+
+background: url("/images/sushi-menu.svg");
+}
+
+.v40_17 {
+  width: 100%;
+  height: 2089px;
+  background: transparent;
+  opacity: 1;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+.v40_16 {
+  width: 1440px;
+  height: 938px;
+  margin: auto;
+  background: transparent;
+  opacity: 1;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+.v40_18 {
+  width: 1440px;
+  height: 872px;
+  margin: auto;
+  background: linear-gradient(90deg, rgba(216,84,97,1) 0%, rgba(241,172,85,1) 100%);
+  opacity: 1;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+.v40_19 {
+  width: 57px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 30px;
+  left: 865px;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 18px;
+  opacity: 1;
+  text-align: left;
+}
+.v40_20 {
+  width: 62px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 30px;
+  left: 963px;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 18px;
+  opacity: 1;
+  text-align: left;
+}
+.v40_21 {
+  width: 176px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 30px;
+  left: 1066px;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 18px;
+  opacity: 1;
+  text-align: left;
+}
+.v40_22 {
+  width: 144px;
+  height: 55px;
+  background: url("../images/v40_22.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 14px;
+  left: 159px;
+  overflow: hidden;
+}
+.v40_26 {
+  width: 360px;
+  height: 39px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 0px;
+  left: 5px;
+  font-family: Montserrat;
+  font-weight: 800;
+  font-size: 32px;
+  opacity: 1;
+  text-align: left;
+  letter-spacing: 0.73em;
+}
+.v40_27 {
+  width: 374px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 33px;
+  left: 0px;
+  font-family: Montserrat;
+  font-weight: Bold;
+  font-size: 79px;
+  opacity: 1;
+  text-align: left;
+}
+.v40_29 {
+  width: 429px;
+  height: 291px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 201px;
+  left: 818px;
+  overflow: hidden;
+}
+
+.v40_30 {
+  width: 429px;
+  height: 291px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+.v40_31 {
+  width: 430px;
+  height: 293px;
+  background:transparent;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  overflow: hidden;
+  background: url("/images/logo.svg");
+}
+.v40_39 {
+  width: 24px;
+  height: 24px;
+  background: transparent
+  opacity: 1;
+  position: absolute;
+  top: 28px;
+  left: 1266px;
+  overflow: hidden;
+}
+.v40_40 {
+  width: 24px;
+  height: 24px;
+  background: transparent
+  opacity: 1;
+  position: absolute;
+  top: 28px;
+  left: 1296px;
+  overflow: hidden;
+}
+.v40_42 {
+  width: 360px;
+  height: 26px;
+  background: transparent;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 181px;
+  left: 8px;
+  overflow: hidden;
+}
+
+.v40_45 {
+  width: 16px;
+  height: 16px;
+  background: transparent;
+  opacity: 1;
+  position: absolute;
+  top: 2px;
+  left: 340px;
+  overflow: hidden;
+  background: url("/images/search.svg");
+}
+.v40_48 {
+  width: 142px;
+  height: 29px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 216px;
+  left: 8px;
+  overflow: hidden;
+}
+.v40_49 {
+  width: 142px;
+  height: 29px;
+  background: rgba(197,197,197,0.4000000059604645);
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  overflow: hidden;
+}
+.v40_50 {
+  width: 120px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 4px;
+  left: 12px;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 16px;
+  opacity: 1;
+  text-align: left;
+}
+.v40_51 {
+  width: 84px;
+  height: 29px;
+  background: url("../images/v40_51.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 216px;
+  left: 165px;
+  overflow: hidden;
+}
+.v40_52 {
+  width: 84px;
+  height: 29px;
+  background: rgba(197,197,197,0.4000000059604645);
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  overflow: hidden;
+}
+.v40_53 {
+  width: 61px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 4px;
+  left: 12px;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 16px;
+  opacity: 1;
+  text-align: left;
+}
+.v40_54 {
+  width: 101px;
+  height: 29px;
+  background: url("../images/v40_54.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 216px;
+  left: 265px;
+  overflow: hidden;
+}
+.v40_55 {
+  width: 101px;
+  height: 29px;
+  background: rgba(197,197,197,0.4000000059604645);
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  overflow: hidden;
+}
+.v40_56 {
+  width: 82px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 4px;
+  left: 12px;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 16px;
+  opacity: 1;
+  text-align: left;
+}
+.v40_63 {
+  width:325px;
+  color: rgba(55,55,55,1);
+  position: absolute;
+  top: 44px;
+  left: 150px;
+  font-family: Montserrat;
+  font-weight: Bold;
+  font-size: 36px;
+  opacity: 1;
+  text-align: left;
+}
+.v40_75 {
+  width: 262px;
+  height: 748px;
+  background: url("../images/v40_75.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 116px;
+  left: 1029px;
+  overflow: hidden;
+}
+.v40_76 {
+  width: 262px;
+  height: 748px;
+  background: url("/images/sushi-sale.png");
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  overflow: hidden;
+}
+
+.v40_78 {
+  background: linear-gradient(165deg, rgba(216,84,97,1) 0%, rgba(241,172,85,1) 100%);
+    opacity: 1;
+    position: absolute;
+    top: 55px;
+    left: 0px;
+    width: 1505px;
+    height: 900px;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    transform: skew(101deg)
+
+}
+.v40_79 {
+  width: 200px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 531px;
+  left: 16px;
+  font-family: Montserrat;
+  font-weight: Bold;
+  font-size: 24px;
+  opacity: 1;
+  text-align: left;
+}
+.v40_80 {
+  width: 209px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 569px;
+  left: 17px;
+  font-family: Montserrat;
+  font-weight: 600;
+  font-size: 14px;
+  opacity: 1;
+  text-align: left;
+}
+.v40_81 {
+  width: 86px;
+  color: rgba(0,85,214,1);
+  position: absolute;
+  top: 631px;
+  left: 17px;
+  font-family: Montserrat;
+  font-weight: 600;
+  font-size: 14px;
+  opacity: 1;
+  text-align: left;
+  border-bottom: 1px solid;
+}
+.v40_82 {
+  width: 159px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 700px;
+  left: 51px;
+  font-family: Montserrat;
+  font-weight: Bold;
+  font-size: 24px;
+  opacity: 1;
+  text-align: left;
+}
+
+.v40_111 {
+  width: 34px;
+  height: 34px;
+  background: url("/images/arrow-right-circle.svg");
+  opacity: 1;
+  position: absolute;
+  top: 49px;
+  left: 964px;
+  overflow: hidden;
+}
+
+.v40_114 {
+  width: 34px;
+  height: 34px;
+  opacity: 1;
+  position: absolute;
+  top: 49px;
+  left: 919px;
+  overflow: hidden;
+  background: url("/images/arrow-left-circle.svg");
+}
+</style>
