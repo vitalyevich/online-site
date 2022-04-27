@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserPointRepository extends JpaRepository<UserPoint, Integer> {
 
-    UserPoint findUserPointByUserId(int id);
+    UserPoint findUserPointById(int id);
 }

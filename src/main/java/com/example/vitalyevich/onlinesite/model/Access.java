@@ -86,4 +86,16 @@ public class Access {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    public Access() {
+    }
+
+    public Access(User user, String phone, String password, Boolean active, Set<Role> roles) {
+        this.user = user;
+        this.phone = phone;
+        this.password = password;
+        this.active = active;
+        this.roles = roles;
+    }
+
 }

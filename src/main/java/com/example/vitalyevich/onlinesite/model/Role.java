@@ -29,6 +29,10 @@ public class Role {
 
     }
 
+    public Role(Integer id) {
+        this.id = id;
+    }
+
     public String getRoleName() {
         return roleName;
     }
@@ -44,6 +48,8 @@ public class Role {
     public void setId(Integer id) {
         this.id = id;
     }
+
+
 
   /*  @Override
     public String toString() {

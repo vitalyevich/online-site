@@ -1,66 +1,71 @@
 <div th:fragment="registration" class="v26_2">
-                <div class="v26_3">
-                    <div class="v26_4"></div>
-                </div>
-
-            <div class="v26_7">
-                <div class="v26_8"></div>
-            </div>
-
-            <form>
+         <form th:action="@{/registration}" method="post">
+            <span class="v26_29">Регистрация</span>
                 <div class="v26_11">
-                    <input id="phone" type="tel" name="phone" class="v26_13" maxlength="19"
-                           pattern="^\+375(\s+)?\(?(17|25|29|33|44)\)?(\s+)?[0-9]{3}-?[0-9]{2}-?[0-9]{2}$"
-                           placeholder="Введите Ваш номер телефона">
-
-                    <script src="https://unpkg.com/imask"></script>
-                     <script>
-                         var element = document.getElementById('phone');
-                         var maskOptions = {
-                           mask: '+{375} (00) 000-00-00'
-                         };
-                         var mask = IMask(element, maskOptions);
-                     </script>
+                    <input required id="telephone" type="tel" name="phone" class="v26_13" maxlength="19"
+                           style="background: url(/images/important.svg) no-repeat 343px 0px"
+                           pattern="^\+375(\s+)?\(?(17|25|29|33|44)\)?(\s+)?[0-9]{3}-?[0-9]{2}-?[0-9]{2}$" placeholder="Введите Ваш номер телефона">
+                                 <script src="https://unpkg.com/imask"></script>
+                                 <script>
+                                     var element = document.getElementById('telephone');
+                                     var maskOptions = {
+                                       mask: '+{375} (00) 000-00-00'
+                                     };
+                                     var mask = IMask(element, maskOptions);
+                                 </script>
                 </div>
 
                 <div class="v26_26">
-                <input id="name" type="text" name="name" class="v26_13" maxlength="19"
+                <input required id="name" type="text" name="firstName" class="v26_13" maxlength="18"
+                           style="background: url(/images/important.svg) no-repeat 343px 0px"
                                    placeholder="Введите Ваше имя">
                 </div>
 
                 <div class="v26_14">
-                <input id="password" type="password" name="password" class="v26_13" maxlength="19"
-                                                           placeholder="Введите пароль">
+               <input required type="password" id="pass-input"
+               name="password" class="v26_13" maxlength="20" placeholder="Введите пароль">
+                                   <a href="#" class="pass-control"></a>
+
+                                   <script src="https://snipp.ru/cdn/jquery/2.1.1/jquery.min.js"></script>
+                                   <script>
+                                   $('body').on('click', '.pass-control', function(){
+                                    if ($('#pass-input').attr('type') == 'password'){
+                                        $(this).addClass('view');
+                                        $('#pass-input').attr('type', 'text');
+                                    } else {
+                                        $(this).removeClass('view');
+                                        $('#pass-input').attr('type', 'password');
+                                    }
+                                    return false;
+                                   });
+                                   </script>
                 </div>
 
                 <div class="v26_17">
-                    <input id="confirm-password" type="password" name="confirm_password" class="v26_13" maxlength="19"
+                    <input required type="password" name="confirmPassword" class="v26_13" maxlength="20"
+                            style="background: url(/images/important.svg) no-repeat 343px 0px"
                                                    placeholder="Повторите пароль">
                 </div>
 
                 <div class="v26_20">
-                        <input id="dob" type="text" name="dob" class="v26_13" maxlength="19"
+                        <input type="date" name="dateOfBirth" class="v26_13" maxlength="19" min="1950-01-01" max="2012-01-01"
                                            placeholder="Дата рождения">
                 </div>
 
                 <div class="v26_23">
-                                <input id="mail" type="text" name="mail" class="v26_13" maxlength="19"
-                                                   placeholder="Почта">
+                                <input type="email" name="email" class="v26_13"
+                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Почта">
                 </div>
 
-                <span class="v26_29">Регистрация</span>
+                <span class="v26_34">Код пригласившего</span>
+                <div class="v26_33">
+                    <input id="code" type="text" name="inviteCode" class="v26_41" maxlength="6">
+                </div>
 
                 <div class="v26_30">
                    <input class="v26_32" type="submit" value="Создать аккаунт">
                 </div>
-
-                <div class="v26_33">
-                    <input id="code" type="text" name="code" class="v26_41" maxlength="6">
-                </div>
-
-                <span class="v26_34">Код пригласившего</span>
-
-            </form>
+       </form>
 
             <div class="v26_35">
                 <div class="v26_36"></div>
@@ -69,4 +74,11 @@
             <div class="v26_39">
                 <div class="v26_40"></div>
             </div>
+</div>
+
+<div th:fragment="blackout-registration" id="blackout-registration">
+  <a href="#" class="close"></a>
+  <div id="window-reg">
+    <div th:insert="blocks/registration :: registration"></div>
+  </div>
 </div>

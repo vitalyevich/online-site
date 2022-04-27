@@ -12,7 +12,63 @@
                 <div class="v77_1490"></div>
             </a>
 
-            <div class="v30_13">
+
+                <ul class="basketList">
+                    <li th:style="'top:' + ${iterStat.index * 71} + 'px;'" class="v0" th:each="el, iterStat : ${baskets}">
+                        <img class="v77_1499" th:src="@{${el.product.photo.path + el.product.photo.name + el.product.photo.format}}"/>
+                        <span class="v77_1496" th:text="${el.product.productName} + ' x' + ${el.amount}"></span>
+                        <span class="v77_1497" th:text="${el.product.amount} +' шт / ' + ${el.product.weight} +' г'"></span>
+                        <span class="v77_1498" th:text="${el.product.price.price} * ${el.amount} + ' BYN'"></span>
+                        <div class="v75_936"></div>
+                    </li>
+                </ul>
+
+                    <style>
+                        .basketList {
+                            list-style: none;
+                            display: block;
+                            overflow: hidden;
+                            top: 60px;
+                            left: 25px;
+                            width: 540px;
+                            height: 600px;
+                            position: relative;
+                            margin: 0px;
+                            padding: 0px;
+                        }
+                        .v0 {
+                        top: 0px;
+                        left: 0px;
+                        position: absolute;
+                        width: 540px;
+                        height: 47px;
+                        opacity: 1;
+                        overflow: hidden;
+                        }
+                        .v72_000 {
+                          position: absolute;
+                          font-family: Montserrat;
+                          font-weight: 400;
+                          color: #C5C5C5;
+                        }
+                        .v72_001 {
+                          position: absolute;
+                          font-family: Montserrat;
+                          font-weight: 500;
+                          font-size: 20px;
+                          color: black;
+                          width: 100px;
+                        }
+                        .v72_002 {
+                          position: absolute;
+                          font-family: Montserrat;
+                          font-weight: 700;
+                          font-size: 20px;
+                          color: black;
+                          width: 140px;
+                        }
+                    </style>
+            <!-- <div class="v30_13">
                 <img class="v77_1499" th:src="@{image/sushi_basket}"/>
                 <span class="v77_1496">Ролл Калифорния x1</span>
                 <span class="v77_1497" th:text="${id}"></span>
@@ -25,7 +81,7 @@
                     left: 17px;
                     position: absolute;
                 }
-            </style>
+            </style> -->
             <!-- <div class="v30_13" th:insert="blocks/product-basket :: basket"></div>
             <div class="v30_14" th:insert="blocks/product-basket :: basket"></div>
             <div class="v30_15" th:insert="blocks/product-basket :: basket"></div>

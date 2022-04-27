@@ -14,8 +14,7 @@
 
     <div class="v40_16">
     <span class="v61_390" th:inline="text">Добрый день, [[${user.firstName}]]</span>
-
-
+    <span class="v61_039">Ваш код для приглашения: <span class="v90_000" th:text="${user.userCode}"></span></span>
        <div class="v61_391">
        <span class="v61_411">У вас</span>
                <span class="v61_412" th:text="${points}"></span>
@@ -514,6 +513,18 @@ body {
   opacity: 1;
   text-align: left;
 }
+.v61_039 {
+width: 439px;
+color: rgba(55,55,55,1);
+position: absolute;
+top: 54px;
+left: 888px;
+font-family: Montserrat;
+font-weight: 400;
+font-size: 16px;
+opacity: 1;
+text-align: left;
+}
 .v61_391 {
   width: 263px;
   height: 169px;
@@ -884,5 +895,9 @@ body {
   top: 47px;
   left: 1260px;
   overflow: hidden;
+}
+.v90_000 {
+  font-family: Montserrat;
+  font-weight: 700;
 }
 </style>

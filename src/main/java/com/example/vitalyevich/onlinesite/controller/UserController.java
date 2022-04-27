@@ -2,6 +2,8 @@ package com.example.vitalyevich.onlinesite.controller;
 
 import com.example.vitalyevich.onlinesite.model.*;
 import com.example.vitalyevich.onlinesite.repository.*;
+import net.bytebuddy.utility.RandomString;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,8 +16,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 /**
@@ -45,7 +49,49 @@ public class UserController {
 
     @GetMapping("/registration")
     public String registration() {
-        return "registration";
+        return "redirect:/menu/rolls#blackout-registration";
+    }
+
+    @PostMapping("/registration")
+    public String addUser(Access accessForm, User userForm, Model model) {
+        Access userFromDb = accessRepository.findByPhone(accessForm.getPhone());
+
+        if (userFromDb != null) {
+            model.addAttribute("message", "User exists!");
+
+            return "redirect:/menu/rolls#blackout-registration";
+        }
+
+        if (!accessForm.getPassword().equals(accessForm.getConfirmPassword())) {
+            return "redirect:/menu/rolls#blackout-registration";
+        }
+
+        accessForm.setActive(true);
+        Set<Role> roles = new HashSet<>();
+        roles.add(new Role(1));
+        accessForm.setRoles(roles);
+
+        // point create
+        String generatedCode = RandomStringUtils.randomAlphanumeric(6);
+        userForm.setUserCode(generatedCode.toUpperCase(Locale.ROOT));
+
+        if (userForm.getInviteCode().equals("")) {
+            userForm.setInviteCode(null);
+        }
+        if (userForm.getEmail().equals("")) {
+            userForm.setEmail(null);
+        }
+
+        userRepository.save(userForm);
+
+      //
+        accessForm.setId(userForm.getId());
+        accessForm.setUser(new User(userForm.getId()));
+        accessRepository.save(accessForm);
+
+        userPointRepository.save(new UserPoint(userForm.getId(),0));
+//
+        return "redirect:#blackout-authorization";
     }
 
     @GetMapping("/authorization")
@@ -71,10 +117,30 @@ public class UserController {
     }
 
     @PostMapping("/settings")
-    public String saveSetting(Access access, User user,
+    public String saveSetting(Access accessSetting, User user,
                               Model model) {
 
-        return "settings";
+        access.setPhone(accessSetting.getPhone());
+
+        if (!accessSetting.getPassword().isEmpty() && !accessSetting.getConfirmPassword().isEmpty() ||
+            !accessSetting.getPassword().equals("") && !accessSetting.getConfirmPassword().equals("")) {
+            if (accessSetting.getPassword().equals(accessSetting.getConfirmPassword())) {
+
+                access.setPassword(accessSetting.getPassword());
+
+            } else {
+                model.addAttribute("");
+                return "settings";
+            }
+        }
+        accessRepository.save(access);
+
+        user.setId(access.getUser().getId());
+        user.setUserCode(access.getUser().getUserCode());
+        user.setInviteCode(access.getUser().getInviteCode());
+        userRepository.save(user);
+
+        return "redirect:/profile";
     }
 
     @GetMapping("/profile")
@@ -87,7 +153,7 @@ public class UserController {
 
             User user = userFromDb.getUser();
 
-            UserPoint userPoint = userPointRepository.findUserPointByUserId(user.getId());
+            UserPoint userPoint = userPointRepository.findUserPointById(user.getId());
 
             model.addAttribute("points", userPoint.getBalance());
             model.addAttribute("user", user);
@@ -103,8 +169,6 @@ public class UserController {
         }
     }
 
-
-
     @GetMapping("/admin-panel")
     public String adminPanel() {
         return "admin-panel";
@@ -119,69 +183,8 @@ public class UserController {
     public String delivery() {
         return "delivery";
     }
-
-    @PostMapping("/registration")
-    public String addUser(Access access, Model model) {
-        Access userFromDb = accessRepository.findByPhone(access.getPhone());
-
-        if (userFromDb != null) {
-            model.addAttribute("message", "User exists!");
-
-            return "registration";
-        }
-
-        access.setActive(true);
-        //user.setRoles(Collections.singleton(Role.));
-        Set<Role> roles = new HashSet<>();
-        roles.add(roleRepository.getOne(1));
-        access.setRoles(roles);
-        //
-        User user1 = new User();
-        user1.setId(2);
-        access.setUser(user1);
-        //
-        accessRepository.save(access);
-
-        return "redirect:/login";
-    }
 }
 
-  /*  @Autowired
-    private UserService userService;*/
 
- /*   @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public String registration(Model model) {
-        model.addAttribute("userForm", new User());
 
-        return "registration";
-    }
 
-    @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
-      *//*  userValidator.validate(userForm, bindingResult);
-
-        if (bindingResult.hasErrors()) {
-            return "registration";
-        }
-
-        userService.save(userForm);*//*
-
-        //securityService.autoLogin(userForm.getUsername(), userForm.getConfirmPassword());
-
-        return "redirect:/welcome";
-    }
-
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model, String error, String logout) {
-        if (error != null) {
-            model.addAttribute("error", "Username or password is incorrect.");
-        }
-
-        if (logout != null) {
-            model.addAttribute("message", "Logged out successfully.");
-        }
-
-        return "login";
-    }
-}
-*/

@@ -44,7 +44,7 @@ public class BasketController {
         return "redirect:/menu/rolls";
     }
 
-    @GetMapping("/basket") // фикс с id пользователя
+    @GetMapping("/basket")
     public String basket(Model model) {
 
         //
@@ -55,7 +55,6 @@ public class BasketController {
         Iterable<Basket> baskets = basketRepository.findBasketByUserId(userFromDb.getUser().getId());
 
         model.addAttribute("baskets", baskets);
-        model.addAttribute("id", userFromDb.getUser().getId());
         return "redirect:/menu/rolls#blackout-basket";
     }
 

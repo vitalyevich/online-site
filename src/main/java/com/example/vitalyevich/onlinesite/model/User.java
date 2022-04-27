@@ -1,8 +1,9 @@
 package com.example.vitalyevich.onlinesite.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "users")
@@ -18,6 +19,7 @@ public class User {
     @Column(name = "first_name", nullable = false, length = 20)
     private String firstName;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
 
@@ -26,8 +28,6 @@ public class User {
 
     @Column(name = "invite_code", length = 6)
     private String inviteCode;
-
-    //transient confirmPassword
 
     public String getInviteCode() {
         return inviteCode;
@@ -45,8 +45,8 @@ public class User {
         this.email = email;
     }
 
-    public String getDateOfBirth() {
-        return dateOfBirth.format(DateTimeFormatter.ofPattern("dd.MM.yy"));
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
     }
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
@@ -79,6 +79,19 @@ public class User {
 
     public User(Integer id) {
         this.id = id;
+    }
+
+    public User(String userCode, String firstName, LocalDate dateOfBirth, String email, String inviteCode) {
+        this.userCode = userCode;
+        this.firstName = firstName;
+        this.dateOfBirth = dateOfBirth;
+        this.email = email;
+        this.inviteCode = inviteCode;
+    }
+
+    public User(String userCode, String firstName) {
+        this.userCode = userCode;
+        this.firstName = firstName;
     }
 
     public User() {
