@@ -5,34 +5,20 @@
            <a class="v61_350" href="/delivery">Доставка и оплата</a>
 
 
-                 <a href="#blackout-basket">
+                 <a href="/basket">
                      <div class="v61_395">
-                        <span class="v1_400">1</span>
+<!--                         <span class="v1_400">1</span> -->
                      </div>
                  </a>
 
 
-                 <a href="#blackout-authorization">
-                 <div class="v61_356"></div>
+                 <a href="/profile"> <!-- #blackout-authorization -->
+                    <div class="v61_356"></div>
                  </a>
+
             <a href="/menu/rolls">
                 <div class="v61_351"></div>
             </a>
         </div>
     </header>
-</div>
-
-
-<div th:fragment="blackout-authorization" id="blackout-authorization">
-  <a href="#" class="close"></a>
-  <div id="window">
-    <div th:insert="blocks/authorization :: authorization"></div>
-  </div>
-</div>
-
-<div th:fragment="blackout-basket" id="blackout-basket">
-  <a href="#" class="close"></a>
-  <div id="window">
-    <div th:insert="blocks/basket :: basket"></div>
-  </div>
 </div>

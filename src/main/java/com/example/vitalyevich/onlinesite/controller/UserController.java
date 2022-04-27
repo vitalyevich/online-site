@@ -1,18 +1,20 @@
 package com.example.vitalyevich.onlinesite.controller;
 
-import com.example.vitalyevich.onlinesite.model.Access;
-import com.example.vitalyevich.onlinesite.model.Role;
-import com.example.vitalyevich.onlinesite.model.User;
-/*import com.example.vitalyevich.onlinesite.service.SecurityService;
-import com.example.vitalyevich.onlinesite.service.UserService;
-import com.example.vitalyevich.onlinesite.validator.UserValidator;*/
-import com.example.vitalyevich.onlinesite.repository.RoleDao;
-import com.example.vitalyevich.onlinesite.repository.AccessDao;
+import com.example.vitalyevich.onlinesite.model.*;
+import com.example.vitalyevich.onlinesite.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,15 +29,19 @@ import java.util.Set;
 public class UserController {
 
     @Autowired
-    private AccessDao userDao;
+    private AccessRepository accessRepository;
 
     @Autowired
-    private RoleDao roleDao;
+    private RoleRepository roleRepository;
 
-    @GetMapping("/welcome")
-    public String welcome() {
-        return "welcome";
-    }
+    @Autowired
+    private UserPointRepository userPointRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
 
     @GetMapping("/registration")
     public String registration() {
@@ -43,19 +49,61 @@ public class UserController {
     }
 
     @GetMapping("/authorization")
-    public String product() {
-        return "authorization";
+    public String authorization() {
+        return "redirect:/menu/rolls#blackout-authorization";
     }
 
+    private Access access = new Access();
+
     @GetMapping("/settings")
-    public String settings() {
+    public String settings(Model model) {
+        Page<Product> page = productRepository.findAll(PageRequest.of(0, 4));
+        Iterable<Product> products = page;
+
+        //
+        String phone = SecurityContextHolder.getContext().getAuthentication().getName();
+        access = accessRepository.findByPhone(phone);
+        //
+
+        model.addAttribute("products", products);
+        model.addAttribute("user", access);
         return "settings";
     }
 
-    @GetMapping("/account")
-    public String account() {
-        return "account";
+    @PostMapping("/settings")
+    public String saveSetting(Access access, User user,
+                              Model model) {
+
+        return "settings";
     }
+
+    @GetMapping("/profile")
+    public String profile(Model model) {
+
+        if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser")) {
+            String phone = SecurityContextHolder.getContext().getAuthentication().getName();
+
+            Access userFromDb = accessRepository.findByPhone(phone);
+
+            User user = userFromDb.getUser();
+
+            UserPoint userPoint = userPointRepository.findUserPointByUserId(user.getId());
+
+            model.addAttribute("points", userPoint.getBalance());
+            model.addAttribute("user", user);
+
+            Page<Product> page = productRepository.findAll(PageRequest.of(0, 4));
+            Iterable<Product> products = page;
+            model.addAttribute("products", products);
+
+            return "profile";
+        }
+        else {
+            return "redirect:#blackout-authorization";
+        }
+    }
+
+
 
     @GetMapping("/admin-panel")
     public String adminPanel() {
@@ -67,24 +115,14 @@ public class UserController {
         return "menu-selection";
     }
 
-    @GetMapping("/basket")
-    public String basket() {
-        return "basket";
-    }
-
     @GetMapping("/delivery")
     public String delivery() {
         return "delivery";
     }
 
-    @GetMapping("/order")
-    public String order() {
-        return "order";
-    }
-
     @PostMapping("/registration")
-    public String addUser(Access user, Model model) {
-        Access userFromDb = userDao.findByUsername(user.getUsername());
+    public String addUser(Access access, Model model) {
+        Access userFromDb = accessRepository.findByPhone(access.getPhone());
 
         if (userFromDb != null) {
             model.addAttribute("message", "User exists!");
@@ -92,17 +130,17 @@ public class UserController {
             return "registration";
         }
 
-        user.setActive(true);
+        access.setActive(true);
         //user.setRoles(Collections.singleton(Role.));
         Set<Role> roles = new HashSet<>();
-        roles.add(roleDao.getOne(1));
-        user.setRoles(roles);
+        roles.add(roleRepository.getOne(1));
+        access.setRoles(roles);
         //
         User user1 = new User();
         user1.setId(2);
-        user.setUser(user1);
+        access.setUser(user1);
         //
-        userDao.save(user);
+        accessRepository.save(access);
 
         return "redirect:/login";
     }

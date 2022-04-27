@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/product.css">
+    <link rel="stylesheet" href="/css/product-footer.css">
 </head>
 <body>
     <div class="v61_346">
@@ -31,7 +32,7 @@
             <span class="v72_761">Итого<span class="v72_000">.................................................................................................
                                               <span class="v72_001" th:inline="text">[[${el.price.price}]] BYN</span></span></span>
             </div>
-             <span class="v72_768">С этим блюдом заказывают</span>
+
         </div>
              <div class="v72_776">
                  <span class="v72_777">Соевый соус</span>
@@ -65,81 +66,15 @@
 
         <div class="v70_0"></div>
 
-        <div class="v61_455"></div>
-        <div class="v61_458"></div>
-
-
-                <ul class="scrollList">
-                            <li th:class="${'vs'+iterStat.index}" th:each="el, iterStat : ${products}">
-                                <a th:href="'/menu/selection/' + ${el.id}">
-                                   <img class="v30_0" th:src="@{${el.photo.path + el.photo.name + el.photo.format}}"/>
-                                </a>
-                                    <p class="v30_1" th:text="${el.productName}"></p>
-                                     <p class="v30_2" th:text="${el.ingredients}"></p>
-
-                                    <p class="v30_3" th:inline="text">[[${el.price.price}]]<span class="v30_4">BYN</span></p>
-
-                                    <p class="v30_5" th:text="${el.amount} +' шт / ' + ${el.weight} +' г'"></p>
-
-                        </li>
-                    </ul>
-
+         <div th:insert="blocks/product-footer :: product-footer"></div>
                        <style>
-                              .vs0 {
-                                    top: 0px;
-                                    left: 0px;
-                                    background: white;
-                                    position: absolute;
-                                    opacity: 1;
-                                    width: 263px;
-                                    height: 347px;
-                                    border-top-left-radius: 25px;
-                                    border-top-right-radius: 25px;
-                              }
-                              .vs1 {
-                                  top: 0px;
-                                  left: 293px;
-                                    background: white;
-                                    position: absolute;
-                                    opacity: 1;
-                                    width: 263px;
-                                    height: 347px;
-                                    border-top-left-radius: 25px;
-                                    border-top-right-radius: 25px;
-                              }
-                              .vs2 {
-                                  top: 0px;
-                                  left: 586px;
-                                    background: white;
-                                    position: absolute;
-                                    opacity: 1;
-                                    width: 263px;
-                                    height: 347px;
-                                    border-top-left-radius: 25px;
-                                    border-top-right-radius: 25px;
-                              }
-                              .vs3 {
-                                  top: 0px;
-                                  left: 879px;
-                                    background: white;
-                                    position: absolute;
-                                    opacity: 1;
-                                    width: 263px;
-                                    height: 347px;
-                                    border-top-left-radius: 25px;
-                                    border-top-right-radius: 25px;
-                              }
                               .scrollList {
-                                  list-style: none;
-                                  display: block;
-                                  overflow: hidden;
                                   top: 879px;
                                   left: 150px;
-                                  width: 1142px;
-                                  height: 367px;
-                                  position: relative;
-                                  margin: 0px;
-                                  padding: 0px;
+                              }
+                              .v72_768 {
+                                  top: 814px;
+                                  left: 155px;
                               }
                        </style>
         </div>
@@ -355,18 +290,6 @@ body {
   opacity: 1;
   text-align: left;
 }
-.v72_768 {
-  width: 483px;
-  color: rgba(55,55,55,1);
-  position: absolute;
-  top: 814px;
-  left: 155px;
-  font-family: Montserrat;
-  font-weight: Bold;
-  font-size: 32px;
-  opacity: 1;
-  text-align: left;
-}
 .v72_769 {
   width: 160px;
   color: rgba(197,197,197,1);
@@ -423,6 +346,9 @@ body {
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
   overflow: hidden;
+}
+.v72_802:active {
+  border: 2px solid rgba(241,172,85,1);
 }
 .v72_777 {
   width: 101px;
@@ -566,27 +492,5 @@ body {
   top: 1162px;
   left: 443px;
   overflow: hidden;
-}
-.v61_455 {
-  width: 34px;
-  height: 34px;
-  background: transparent;
-  opacity: 1;
-  position: absolute;
-  top: 817px;
-  left: 1255px;
-  overflow: hidden;
-  background: url("/images/arrow-right-circle.svg");
-}
-.v61_458 {
-  width: 34px;
-  height: 34px;
-  background: transparent;
-  opacity: 1;
-  position: absolute;
-  top: 817px;
-  left: 1210px;
-  overflow: hidden;
-  background: url("/images/arrow-left-circle.svg");
 }
 </style>

@@ -12,7 +12,21 @@
                 <div class="v77_1490"></div>
             </a>
 
-            <div class="v30_13" th:insert="blocks/product-basket :: basket"></div>
+            <div class="v30_13">
+                <img class="v77_1499" th:src="@{image/sushi_basket}"/>
+                <span class="v77_1496">Ролл Калифорния x1</span>
+                <span class="v77_1497" th:text="${id}"></span>
+                <span class="v77_1498">9 BYN</span>
+            </div>
+
+            <style>
+                .v30_13 {
+                    top: 123px;
+                    left: 17px;
+                    position: absolute;
+                }
+            </style>
+            <!-- <div class="v30_13" th:insert="blocks/product-basket :: basket"></div>
             <div class="v30_14" th:insert="blocks/product-basket :: basket"></div>
             <div class="v30_15" th:insert="blocks/product-basket :: basket"></div>
 
@@ -32,8 +46,15 @@
                 top: 265px;
                 left: 17px;
                 position: absolute;
-            }
+            } -->
             </style>
 
         </div>
+</div>
+
+<div th:fragment="blackout-basket" id="blackout-basket">
+  <a href="#" class="close"></a>
+  <div id="window">
+    <div th:insert="blocks/basket :: basket"></div>
+  </div>
 </div>

@@ -1,16 +1,8 @@
 package com.example.vitalyevich.onlinesite.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Set;
-
-/**
- * Simple JavaBean domain object that represents a User.
- *
- * @author Maksim Vitalyevich
- * @version 1.0
-**/
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "users")
@@ -20,25 +12,31 @@ public class User {
     @Column(name = "id", nullable = false)
     private Integer id;
 
+    @Column(name = "user_code", nullable = false, length = 6)
+    private String userCode;
+
     @Column(name = "first_name", nullable = false, length = 20)
     private String firstName;
 
-    @Column(name = "last_name", nullable = false, length = 20)
-    private String lastName;
-
-    @Column(name = "phone", nullable = false, length = 20)
-    private String phone;
-
-    @Column(name = "date_of_birth", nullable = false)
+    @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
 
     @Column(name = "email", length = 20)
     private String email;
 
-    public User() {
+    @Column(name = "invite_code", length = 6)
+    private String inviteCode;
 
+    //transient confirmPassword
+
+    public String getInviteCode() {
+        return inviteCode;
     }
-    
+
+    public void setInviteCode(String inviteCode) {
+        this.inviteCode = inviteCode;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -47,28 +45,12 @@ public class User {
         this.email = email;
     }
 
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
+    public String getDateOfBirth() {
+        return dateOfBirth.format(DateTimeFormatter.ofPattern("dd.MM.yy"));
     }
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getFirstName() {
@@ -79,6 +61,14 @@ public class User {
         this.firstName = firstName;
     }
 
+    public String getUserCode() {
+        return userCode;
+    }
+
+    public void setUserCode(String userCode) {
+        this.userCode = userCode;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -87,17 +77,10 @@ public class User {
         this.id = id;
     }
 
-/*    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", phone='" + phone + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                ", email='" + email + '\'' +
-                ", confirmPassword='" + confirmPassword + '\'' +
-                ", roles=" + roles +
-                '}';
-    }*/
+    public User(Integer id) {
+        this.id = id;
+    }
+
+    public User() {
+    }
 }

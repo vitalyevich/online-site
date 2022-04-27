@@ -15,8 +15,8 @@ public class Access {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Column(name = "username", nullable = false, length = 20)
-    private String username;
+    @Column(name = "phone", nullable = false, length = 19)
+    private String phone;
 
     @Column(name = "password", nullable = false)
     private String password;
@@ -63,12 +63,12 @@ public class Access {
         this.password = password;
     }
 
-    public String getUsername() {
-        return username;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public User getUser() {

@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/product.css">
+    <link rel="stylesheet" href="/css/product-footer.css">
 </head>
 <body>
     <div class="v61_346">
@@ -12,12 +13,12 @@
     <div th:insert="blocks/header :: header"></div>
 
     <div class="v40_16">
-    <span class="v61_390">Добрый день, Максим</span>
+    <span class="v61_390" th:inline="text">Добрый день, [[${user.firstName}]]</span>
 
 
        <div class="v61_391">
        <span class="v61_411">У вас</span>
-               <span class="v61_412">370</span>
+               <span class="v61_412" th:text="${points}"></span>
                <span class="v61_413">бонусных баллов</span>
        </div>
 
@@ -46,7 +47,9 @@
         </div>
 
             <div class="v61_406">
+              <a href="">
                 <span class="v61_407">Условия акции</span>
+              </a>
                 <span class="v61_408">Получай кэшбэк до 5%</span>
                 <span class="v61_409">Оплачивай покупки баллами. 1 балл = 1 рубль</span>
                 <span class="v61_410">Бонусы начисляются при каждой покупке в течении 1 дня</span>
@@ -64,55 +67,28 @@
                 </div>
             </div>
 
+                 <div th:insert="blocks/product-footer :: product-footer"></div>
+                   <style>
+                          .scrollList {
+                              top: 442px;
+                              left: 150px;
+                          }
+                          .v72_768 {
+                              top: 552px;
+                              left: 155px;
+                          }
+                   </style>
 
-        <span class="v61_429">Вам может понравиться</span>
-
-
-        <div class="v30_13" th:insert="blocks/product :: product"></div>
-        <div class="v30_14" th:insert="blocks/product :: product"></div>
-        <div class="v30_15" th:insert="blocks/product :: product"></div>
-        <div class="v30_16" th:insert="blocks/product :: product"></div>
-
-
-        <style>
-        .v30_13 {
-            top: 617px;
-            left: 150px;
-            position: absolute;
-        }
-        .v30_14 {
-            top: 617px;
-            left: 443px;
-            position: absolute;
-        }
-        .v30_15 {
-            top: 617px;
-            left: 735px;
-            position: absolute;
-        }
-        .v30_16 {
-            top: 617px;
-            left: 1027px;
-            position: absolute;
-        }
-
-        </style>
-
-
-        <div class="v61_455">
-              <img src="../static/images/arrow-right-circle.svg" th:src="@{images/arrow-right-circle.svg}"/>
-        </div>
-        <div class="v61_458">
-            <img src="../static/images/arrow-left-circle.svg" th:src="@{images/arrow-left-circle.svg}"/>
-        </div>
-
-        <div class="v61_461">
-                <img src="../static/images/settings.svg" th:src="@{images/settings.svg}"/>
-        </div>
-
-        <div class="v61_464">
-                <img src="../static/images/logout.svg" th:src="@{images/logout.svg}"/>
-        </div>
+        <a href="/settings">
+            <div class="v61_461">
+                    <img src="../static/images/settings.svg" th:src="@{images/settings.svg}"/>
+            </div>
+        </a>
+        <a href="/logout">
+            <div class="v61_464">
+                    <img src="../static/images/logout.svg" th:src="@{images/logout.svg}"/>
+            </div>
+        </a>
 
     </div>
 
@@ -640,6 +616,7 @@ body {
   font-size: 12px;
   opacity: 1;
   text-align: left;
+  border-bottom: 1px solid;
 }
 .v61_400 {
   width: 157px;
@@ -728,6 +705,7 @@ body {
   font-size: 12px;
   opacity: 1;
   text-align: left;
+  border-bottom: 1px solid;
 }
 .v61_408 {
   width: 249px;
@@ -885,38 +863,6 @@ body {
   position: absolute;
   top: 0px;
   left: 0px;
-  overflow: hidden;
-}
-.v61_429 {
-  width: 424px;
-  color: rgba(55,55,55,1);
-  position: absolute;
-  top: 552px;
-  left: 155px;
-  font-family: Montserrat;
-  font-weight: Bold;
-  font-size: 32px;
-  opacity: 1;
-  text-align: left;
-}
-.v61_455 {
-  width: 34px;
-  height: 34px;
-  background: transparent;
-  opacity: 1;
-  position: absolute;
-  top: 555px;
-  left: 1255px;
-  overflow: hidden;
-}
-.v61_458 {
-  width: 34px;
-  height: 34px;
-  background: transparent;
-  opacity: 1;
-  position: absolute;
-  top: 555px;
-  left: 1210px;
   overflow: hidden;
 }
 .v61_461 {

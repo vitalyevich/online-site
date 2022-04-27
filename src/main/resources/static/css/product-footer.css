@@ -1,0 +1,68 @@
+.vs0 {
+    top: 0px;
+    left: 0px;
+    background: white;
+    position: absolute;
+    opacity: 1;
+    width: 263px;
+    height: 347px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+.vs1 {
+    top: 0px;
+    left: 293px;
+    background: white;
+    position: absolute;
+    opacity: 1;
+    width: 263px;
+    height: 347px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+.vs2 {
+    top: 0px;
+    left: 586px;
+    background: white;
+    position: absolute;
+    opacity: 1;
+    width: 263px;
+    height: 347px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+.vs3 {
+    top: 0px;
+    left: 879px;
+    background: white;
+    position: absolute;
+    opacity: 1;
+    width: 263px;
+    height: 347px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+.scrollList {
+    list-style: none;
+    display: block;
+    overflow: hidden;
+    top: 0px;
+    left: 0px;
+    width: 1142px;
+    height: 367px;
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+}
+.v72_768 {
+    width: 483px;
+    color: rgba(55,55,55,1);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-family: Montserrat;
+    font-weight: Bold;
+    font-size: 32px;
+    opacity: 1;
+    text-align: left;
+}

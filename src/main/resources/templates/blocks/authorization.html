@@ -1,8 +1,8 @@
  <div th:fragment="authorization" class="window">
-      <form th:action="@{/authorization}" method="post">
+      <form th:action="@{/authorization}" method="post"> <!-- enctype="text/plain" -->
                 <div class="v1_3">
                 <!-- username -> phone -->
-                    <input required id="phone" type="tel" name="username" class="v1_5" maxlength="19" pattern="^\+375(\s+)?\(?(17|25|29|33|44)\)?(\s+)?[0-9]{3}-?[0-9]{2}-?[0-9]{2}$" placeholder="Номер телефона">
+                    <input required id="phone" type="tel" name="phone" class="v1_5" maxlength="19" pattern="^\+375(\s+)?\(?(17|25|29|33|44)\)?(\s+)?[0-9]{3}-?[0-9]{2}-?[0-9]{2}$" placeholder="Номер телефона">
 
                     <script src="https://unpkg.com/imask"></script>
                      <script>
@@ -42,11 +42,16 @@
                     <input class="v1_14" type="button" value="Создать аккаунт">
                     </a>
                 </div>
-
-                <span class="v1_15">Авторизация</span>
       </form>
+                <span class="v1_15">Авторизация</span>
 </div>
 
+<div th:fragment="blackout-authorization" id="blackout-authorization">
+  <a href="#" class="close"></a>
+  <div id="window">
+    <div th:insert="blocks/authorization :: authorization"></div>
+  </div>
+</div>
 
 <div th:fragment="registration" id="registration">
   <a href="#" class="close"></a>

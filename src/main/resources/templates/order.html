@@ -61,52 +61,75 @@
                 <span class="v75_889">Доставка</span>
                 <span class="v75_890">Самовывоз</span>
 
-                <span class="v75_932">Сумма заказа................................................................................................43 BYN</span>
-                <span class="v75_933">Доставка курьером.....................................................................................7 BYN</span>
-                <span class="v75_934">Оплата баллами...........................................................................................0 BYN</span>
-                <span class="v75_935">Итого к оплате...........................................................................................50 BYN</span>
+                <span class="v75_932">Сумма заказа<span class="v72_000">................................................................................................
+                <span class="v72_001" th:inline="text">[[${sum}]] BYN</span></span></span>
+                <span class="v75_933">Доставка курьером<span class="v72_000">........................................................................................
+                <span class="v72_001" th:inline="text">[[${delivery}]] BYN</span></span></span>
 
+                <span class="v75_934">Оплата баллами<span class="v72_000">.................................................................................................
+                <span class="v72_001" th:inline="text">0 BYN</span></span></span>
 
-                <div class="v30_13" th:insert="blocks/product-basket :: basket"></div>
-                <div class="v30_14" th:insert="blocks/product-basket :: basket"></div>
-                <div class="v30_15" th:insert="blocks/product-basket :: basket"></div>
+                <span class="v75_935">Итого к оплате<span class="v72_000">.............................................................................................
+                <span class="v72_002" th:inline="text">[[${result}]] BYN</span></span></span>
 
+                <ul class="basketList">
+                    <li th:style="'top:' + ${iterStat.index * 71} + 'px;'" class="v0" th:each="el, iterStat : ${baskets}">
+                        <img class="v77_1499" th:src="@{${el.product.photo.path + el.product.photo.name + el.product.photo.format}}"/>
+                        <span class="v77_1496" th:text="${el.product.productName} + ' x' + ${el.amount}"></span>
+                        <span class="v77_1497" th:text="${el.product.amount} +' шт / ' + ${el.product.weight} +' г'"></span>
+                        <span class="v77_1498" th:text="${el.product.price.price} * ${el.amount} + ' BYN'"></span>
+                        <div class="v75_936"></div>
+                    </li>
+                </ul>
 
-                <style>
-                .v30_13 {
-                    top: 169px;
-                    left: 833px;
-                    position: absolute;
-                }
-                .v30_14 {
-                    top: 240px;
-                    left: 833px;
-                    position: absolute;
-                }
-                .v30_15 {
-                    top: 311px;
-                    left: 833px;
-                    position: absolute;
-                }
-                </style>
+                    <style>
+                        .basketList {
+                            list-style: none;
+                            display: block;
+                            overflow: hidden;
+                            top: 169px;
+                            left: 833px;
+                            width: 540px;
+                            height: 600px;
+                            position: relative;
+                            margin: 0px;
+                            padding: 0px;
+                        }
+                        .v0 {
+                        top: 0px;
+                        left: 0px;
+                        position: absolute;
+                        width: 540px;
+                        height: 47px;
+                        opacity: 1;
+                        overflow: hidden;
+                        }
+                        .v72_000 {
+                          position: absolute;
+                          font-family: Montserrat;
+                          font-weight: 400;
+                          color: #C5C5C5;
+                        }
+                        .v72_001 {
+                          position: absolute;
+                          font-family: Montserrat;
+                          font-weight: 500;
+                          font-size: 20px;
+                          color: black;
+                          width: 100px;
+                        }
+                        .v72_002 {
+                          position: absolute;
+                          font-family: Montserrat;
+                          font-weight: 700;
+                          font-size: 20px;
+                          color: black;
+                          width: 140px;
+                        }
+                    </style>
 
+                <input type="submit" class="v75_945" value="Оформить заказ">
 
-                <div class="v75_936">
-                   <img src="../static/images/close_gray.svg" th:src="@{images/close_gray.svg}"/>
-                </div>
-
-                <div class="v75_939">
-                    <img src="../static/images/close_gray.svg" th:src="@{images/close_gray.svg}"/>
-                </div>
-
-                <div class="v75_942">
-                    <img src="../static/images/close_gray.svg" th:src="@{images/close_gray.svg}"/>
-                </div>
-
-                <div class="v75_945">
-                    <div class="v75_946"></div>
-                    <span class="v75_947">Оформить заказ</span>
-                </div>
                 <span class="v75_948">Нажимая кнопку «Оформить заказ», я соглашаюсь с публичной офертой.</span>
     </div>
 
@@ -672,31 +695,13 @@ body {
   background: rgba(255,255,255,1);
   opacity: 1;
   position: absolute;
-  top: 166px;
-  left: 1216px;
+  top: 0px;
+  left: 444px;
   overflow: hidden;
+  background: url("/images/close_gray.svg");
+  text-align: right;
 }
 
-.v75_939 {
-  width: 32px;
-  height: 32px;
-  background: rgba(255,255,255,1);
-  opacity: 1;
-  position: absolute;
-  top: 237px;
-  left: 1216px;
-  overflow: hidden;
-}
-.v75_942 {
-  width: 32px;
-  height: 32px;
-  background: rgba(255,255,255,1);
-  opacity: 1;
-  position: absolute;
-  top: 308px;
-  left: 1216px;
-  overflow: hidden;
-}
 .v75_945 {
   width: 360px;
   height: 44px;
@@ -708,33 +713,20 @@ body {
   top: 803px;
   left: 300px;
   overflow: hidden;
+    background: linear-gradient(90deg, rgba(216,84,97,1) 0%, rgba(241,172,85,1) 100%);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: rgba(255,255,255,1);
+        font-family: Montserrat;
+        font-weight: 600ld;
+        font-size: 20px;
+        opacity: 1;
+        text-align: center;
+        cursor: pointer;
 }
-.v75_946 {
-  width: 360px;
-  height: 44px;
-  background: linear-gradient(rgba(216,84,97,1), rgba(241,172,85,1));
-  opacity: 1;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  overflow: hidden;
-}
-.v75_947 {
-  width: 176px;
-  color: rgba(255,255,255,1);
-  position: absolute;
-  top: 10px;
-  left: 92px;
-  font-family: Montserrat;
-  font-weight: 600ld;
-  font-size: 20px;
-  opacity: 1;
-  text-align: center;
-}
+
 .v75_948 {
   width: 382px;
   position: absolute;

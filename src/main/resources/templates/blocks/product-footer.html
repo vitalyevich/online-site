@@ -1,0 +1,17 @@
+<div th:fragment="product-footer">
+             <span class="v72_768">Вам может понравиться</span>
+        <ul class="scrollList">
+                    <li th:class="${'vs'+iterStat.index}" th:each="el, iterStat : ${products}">
+                        <a th:href="'/menu/selection/' + ${el.id}">
+                           <img class="v30_0" th:src="@{${el.photo.path + el.photo.name + el.photo.format}}"/>
+                        </a>
+                            <p class="v30_1" th:text="${el.productName}"></p>
+                             <p class="v30_2" th:text="${el.ingredients}"></p>
+
+                            <p class="v30_3" th:inline="text">[[${el.price.price}]]<span class="v30_4">BYN</span></p>
+
+                            <p class="v30_5" th:text="${el.amount} +' шт / ' + ${el.weight} +' г'"></p>
+
+                </li>
+            </ul>
+</div>

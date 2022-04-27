@@ -168,7 +168,7 @@
                </div>
              </div>
 
-                   <div th:insert="blocks/header :: blackout-basket"></div>
+                   <div th:insert="blocks/basket :: blackout-basket"></div>
             </div>
 
 
@@ -269,10 +269,11 @@
                                     <p class="v30_3" th:inline="text">[[${el.price.price}]]<span class="v30_4">BYN</span></p>
 
                                     <p class="v30_5" th:text="${el.amount} +' шт / ' + ${el.weight} +' г'"></p>
-
+                        <form action="#" th:action="@{'/basket/add/'+ ${el.id}}" method="post">
                                 <div class="v30_6">
-                                   <a class="v30_8" href="">Добавить в корзину</a>
+                                   <input class="v30_8" type="submit" value="Добавить в корзину">
                                 </div>
+                        </form>
                         </li>
                     </ul>
 
@@ -297,7 +298,7 @@
             </div>
 
             <div th:insert="blocks/footer :: footer"></div>
-            <div th:insert="blocks/header :: blackout-authorization"></div>
+                <div th:insert="blocks/authorization :: blackout-authorization"></div>
             <div th:insert="blocks/authorization :: registration"></div>
 
         </div>

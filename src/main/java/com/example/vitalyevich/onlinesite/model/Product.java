@@ -111,4 +111,11 @@ public class Product {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    public Product(Integer id) {
+        this.id = id;
+    }
+
+    public Product() {
+    }
 }
