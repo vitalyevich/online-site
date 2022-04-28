@@ -24,43 +24,124 @@
              <span class="v72_769" th:text="${el.amount} +' шт / ' + ${el.weight} +' г'"></span>
              <span class="v72_766">Дополнительно</span>
 
+              <form action="" th:action="@{'/basket/add/menu/'+ ${el.id}}" method="post">
+                 <input type="submit" class="v72_781" value="Добавить в корзину">
+              </form>
+
             <div>
                  <span class="v72_759">Блюдо<span class="v72_000">..............................................................................................
                  <span class="v72_001" th:inline="text">[[${el.price.price}]] BYN</span></span></span>
                  <span class="v72_760">Дополнительно<span class="v72_000">.............................................................................
-                                  <span class="v72_001">0 BYN</span></span></span>
+                                  <span id="sum" class="v72_001">0 BYN</span></span></span>
             <span class="v72_761">Итого<span class="v72_000">.................................................................................................
-                                              <span class="v72_001" th:inline="text">[[${el.price.price}]] BYN</span></span></span>
+                                              <span class="v72_001" id="res" th:inline="text">[[${el.price.price}]] BYN</span></span></span>
             </div>
 
         </div>
-             <div class="v72_776">
+             <div id="sauce" onclick="sauce()" class="v72_776">
                  <span class="v72_777">Соевый соус</span>
                  <div class="v72_778"></div>
              </div>
 
-             <div class="v72_800">
+             <div id="ginger" onclick="ginger()" class="v72_800">
                  <span class="v72_801">Имбирь</span>
                  <div class="v72_779"></div>
              </div>
 
-             <div class="v72_802">
+             <div id="wasabi" onclick="wasabi()" class="v72_802">
                   <span class="v72_803">Васаби</span>
                   <div class="v72_804"></div>
              </div>
 
-
-             <input class="v72_781" value="Добавить в корзину">
-
              <div class="v72_783">
 
-                 <a href="">
-                 <div class="v70_1"></div>
-                 </a>
-                 <a href="">
-                 <div class="v70_2"></div>
-                 </a>
-                 <span class="v72_785">1</span>
+                <script>
+                    function sauce() {
+                        var sauce = document.getElementById('sauce');
+                        var ginger = document.getElementById('ginger');
+                        var wasabi = document.getElementById('wasabi');
+                        var sum = document.getElementById('sum');
+                        var res = document.getElementById('res');
+
+                        if (sauce.style.border != "2px solid orange") {
+                            sauce.style.border="2px solid orange";
+                            ginger.style.border="1px solid rgba(197,197,197,1)"
+                            wasabi.style.border="1px solid rgba(197,197,197,1)"
+                            sum.innerHTML = "1.2 BYN";
+                            res.innerHTML = parseFloat(document.getElementById('res').innerHTML)+1.2 + " BYN";
+                        } else {
+                            sauce.style.border="1px solid rgba(197,197,197,1)"
+                            ginger.style.border="1px solid rgba(197,197,197,1)"
+                            wasabi.style.border="1px solid rgba(197,197,197,1)"
+                            sum.innerHTML = "0 BYN";
+                            res.innerHTML = parseFloat(document.getElementById('res').innerHTML)-1.2 + " BYN";
+                        }
+                    }
+                    function ginger() {
+                        var sauce = document.getElementById('sauce');
+                        var ginger = document.getElementById('ginger');
+                        var wasabi = document.getElementById('wasabi');
+                        var sum = document.getElementById('sum');
+                        var res = document.getElementById('res');
+
+                        if (ginger.style.border != "2px solid orange") {
+                            ginger.style.border="2px solid orange";
+                            sauce.style.border="1px solid rgba(197,197,197,1)"
+                            wasabi.style.border="1px solid rgba(197,197,197,1)"
+                            sum.innerHTML = "1.2 BYN";
+                            res.innerHTML = parseFloat(document.getElementById('res').innerHTML)+1.2 + " BYN";
+                            }
+                        else {
+                            sauce.style.border="1px solid rgba(197,197,197,1)"
+                            ginger.style.border="1px solid rgba(197,197,197,1)"
+                            wasabi.style.border="1px solid rgba(197,197,197,1)"
+                            sum.innerHTML = "0 BYN";
+                            res.innerHTML = parseFloat(document.getElementById('res').innerHTML)-1.2 + " BYN";
+                        }
+                    }
+                    function wasabi() {
+                        var sauce = document.getElementById('sauce');
+                        var ginger = document.getElementById('ginger');
+                        var wasabi = document.getElementById('wasabi');
+                        var sum = document.getElementById('sum');
+                        var res = document.getElementById('res');
+
+                        if (wasabi.style.border != "2px solid orange") {
+                            wasabi.style.border="2px solid orange";
+                            sauce.style.border="1px solid rgba(197,197,197,1)"
+                            ginger.style.border="1px solid rgba(197,197,197,1)"
+                            sum.innerHTML = "1.2 BYN";
+                            res.innerHTML = parseFloat(document.getElementById('res').innerHTML)+1.2 + " BYN";
+                            }
+                        else {
+                            sauce.style.border="1px solid rgba(197,197,197,1)"
+                            ginger.style.border="1px solid rgba(197,197,197,1)"
+                            wasabi.style.border="1px solid rgba(197,197,197,1)"
+                            sum.innerHTML = "0 BYN";
+                            res.innerHTML = parseFloat(document.getElementById('res').innerHTML)-1.2 + " BYN";
+                        }
+                    }
+
+                    function add() {
+                    	var elem = parseInt(document.getElementById('number').innerHTML)+1;
+                    	number.innerHTML = elem;
+                    }
+                    function sub() {
+                    	var elem = parseInt(document.getElementById('number').innerHTML)-1;
+                    	if (elem > 0) {
+                    	number.innerHTML = elem;
+                    	}
+                    }
+
+                </script>
+
+
+                 <div onclick="sub()" class="v70_1"></div>
+
+                 <span id="number" class="v72_785">1</span>
+
+                  <div onclick="add()" class="v70_2"></div>
+
              </div>
 
 
@@ -269,6 +350,7 @@ body {
     background: url("/images/minus.svg");
     width: 21px;
     height: 3px;
+    cursor: pointer;
 }
 .v70_2 {
     top: 10px;
@@ -277,6 +359,7 @@ body {
     background: url("/images/plus.svg");
     width: 25px;
     height: 25px;
+    cursor: pointer;
 }
 .v72_767 {
   width: 344px;
@@ -316,6 +399,7 @@ body {
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
   overflow: hidden;
+  cursor: pointer;
 }
 .v72_800 {
   width: 165px;
@@ -331,6 +415,7 @@ body {
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
   overflow: hidden;
+    cursor: pointer;
 }
 .v72_802 {
   width: 165px;
@@ -346,8 +431,15 @@ body {
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
   overflow: hidden;
+  cursor: pointer;
 }
-.v72_802:active {
+.v72_802:hover {
+  border: 2px solid rgba(241,172,85,1);
+}
+.v72_800:hover {
+  border: 2px solid rgba(241,172,85,1);
+}
+.v72_776:hover {
   border: 2px solid rgba(241,172,85,1);
 }
 .v72_777 {
@@ -438,6 +530,7 @@ body {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   overflow: hidden;
+  cursor: pointer;
 
     color: rgba(255,255,255,1);
     font-family: Montserrat;
@@ -469,16 +562,16 @@ body {
   overflow: hidden;
 }
 .v72_785 {
-  width: 21px;
+  width: 34px;
   color: rgba(55,55,55,1);
   position: absolute;
   top: 0px;
-  left: 72px;
+  left: 65px;
   font-family: Montserrat;
   font-weight: 500;
   font-size: 36px;
   opacity: 1;
-  text-align: left;
+  text-align: center;
 }
 .v72_797 {
   width: 262px;

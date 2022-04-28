@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/product-basket.css">
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=7759b55c-a7a8-4b1d-804d-b65454579dd2&lang=ru_RU"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 </head>
 <body>
 <div class="v61_346">
@@ -18,48 +21,229 @@
         <span class="v75_891">Ваш заказ</span>
 
                 <div class="v75_885">
-                                <div class="v75_892">
-                                    <span class="v75_894">Введите ваш адрес</span>
-                                </div>
-                                <div class="v75_895">
-                                    <span class="v75_897">Комментарий к заказу</span>
-                                </div>
-                                <div class="v75_898">
-                                        <div class="v75_899">
-                                            <span class="v75_900">Время доставки</span>
-                                            <div class="v75_901">
-                                                <div class="v75_902"></div>
-                                                <div class="v75_903"></div>
-                                                <div class="v75_904"></div>
-                                                <span class="v75_905">Час</span>
-                                                <span class="v75_906">Минуты</span>
-                                                <span class="v75_907">Дата</span>
-                                                <span class="v75_911">17</span>
-                                                <span class="v75_912">00</span>
-                                                <span class="v75_913">15 апреля</span>
-                                            </div>
-                                            <div class="v75_914"></div>
-                                            <span class="v75_915">Ближайшее</span>
-                                        </div>
-                                    <div class="v75_916">
-                                        <span class="v75_917">Способ оплаты</span>
-                                        <div class="v75_918"></div>
-                                        <span class="v75_919">Наличными</span>
-                                        <div class="v75_920"></div>
-                                        <span class="v75_921">Картой</span>
-                                    </div>
-                                </div>
-                                <div class="v75_922">
-                                    <span class="v75_923">Оплата баллами</span>
-                                    <span class="v75_924">У вас 360 баллов, сколько вы хотите использовать?</span>
-                                    <span class="v75_926">0</span>
-                                </div>
+
                 </div>
 
-                <div class="v75_886"></div>
-                <div class="v75_887"></div>
-                <span class="v75_889">Доставка</span>
-                <span class="v75_890">Самовывоз</span>
+<div class="target target-1">
+            <div class="v75_885">
+                        <input required id="suggest" class="v75_894" placeholder="Введите ваш адрес">
+
+
+                        <script>
+                         ymaps.ready(init);
+
+                         function init() {
+                             var suggestView1 = new ymaps.SuggestView('suggest');
+                         }
+                        </script>
+                        <input class="v75_897" placeholder="Комментарий к заказу">
+
+
+                        <div class="v75_898">
+                                <div class="v75_899">
+                                    <span class="v75_900">Время доставки</span>
+                                    <div class="v75_901">
+                                        <span class="v75_905">Час</span>
+                                        <span class="v75_906">Минуты</span>
+                                        <span class="v75_907">Дата</span>
+
+                                        <select class="v75_911" id="resizing_select">
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                            <option value="13">13</option>
+                                            <option value="14">14</option>
+                                            <option value="15">15</option>
+                                            <option value="16">16</option>
+                                            <option value="17">17</option>
+                                            <option value="18">18</option>
+                                            <option selected="selected" value="19">19</option>
+                                        </select>
+
+                                        <select class="v75_912" id="resizing_select">
+                                            <option value="1">00</option>
+                                            <option value="2">10</option>
+                                            <option value="3">20</option>
+                                            <option value="4">30</option>
+                                            <option value="5">40</option>
+                                            <option selected="selected" value="6">50</option>
+                                        </select>
+
+                                        <select class="v75_913" id="resizing_select">
+                                            <option value="15">15 апреля</option>
+                                            <option value="16">16 апреля</option>
+                                            <option value="17">17 апреля</option>
+                                            <option value="18">18 апреля</option>
+                                            <option value="19">19 апреля</option>
+                                            <option selected="selected" value="20">20 апреля</option>
+                                        </select>
+
+                                    </div>
+                                    <input type="checkbox" class="v75_914" id="box" name="box" >
+                                          <label class="v75_915" for="box">Ближайшее</label>
+                                </div>
+                            <div class="v75_916">
+                                <span class="v75_917">Способ оплаты</span>
+                                <input class="v75_918" type="radio" id="contactChoice1"
+                                     name="contact" value="email">
+                                    <label class="v75_919" for="contactChoice1">Наличными</label>
+
+                                    <input class="v75_920" type="radio" id="contactChoice2"
+                                     name="contact" value="phone">
+                                    <label class="v75_921" for="contactChoice2">Картой</label>
+
+                            </div>
+                        </div>
+                        <div class="v75_922">
+                            <span class="v75_923">Оплата баллами</span>
+                            <span class="v75_924">У вас 360 баллов, сколько вы хотите использовать?</span>
+                            <input class="v75_926" th:value="${balance}">
+                        </div>
+                </div>
+        <div class="v75_886"></div>
+        <div class="v75_887"></div>
+        </div>
+        <div class="target target-2">
+        <div class="v75_885">
+
+                    <select class="v75_894" id="resizing_select">
+                        <option selected="selected" value="1">Столбцы, Центральная 14/18</option>
+                        <option value="2">Минск</option>
+                    </select>
+
+                    <input class="v75_897" placeholder="Комментарий к заказу">
+
+
+                    <div class="v75_898">
+                            <div class="v75_899">
+                                <span class="v75_900">Время доставки</span>
+                                <div class="v75_901">
+                                    <span class="v75_905">Час</span>
+                                    <span class="v75_906">Минуты</span>
+                                    <span class="v75_907">Дата</span>
+
+                                    <select class="v75_911" id="resizing_select">
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                        <option value="16">16</option>
+                                        <option value="17">17</option>
+                                        <option value="18">18</option>
+                                        <option selected="selected" value="19">19</option>
+                                    </select>
+
+                                    <select class="v75_912" id="resizing_select">
+                                        <option value="1">00</option>
+                                        <option value="2">10</option>
+                                        <option value="3">20</option>
+                                        <option value="4">30</option>
+                                        <option value="5">40</option>
+                                        <option selected="selected" value="6">50</option>
+                                    </select>
+
+                                    <select class="v75_913" id="resizing_select">
+                                        <option value="15">15 апреля</option>
+                                        <option value="16">16 апреля</option>
+                                        <option value="17">17 апреля</option>
+                                        <option value="18">18 апреля</option>
+                                        <option value="19">19 апреля</option>
+                                        <option selected="selected" value="20">20 апреля</option>
+                                    </select>
+
+                                </div>
+                                <input type="checkbox" class="v75_914" id="box" name="box" >
+                                      <label class="v75_915" for="box">Ближайшее</label>
+                            </div>
+                        <div class="v75_916">
+                            <span class="v75_917">Способ оплаты</span>
+                            <input class="v75_918" type="radio" id="contactChoice1"
+                                 name="contact" value="email">
+                                <label class="v75_919" for="contactChoice1">Наличными</label>
+
+                                <input class="v75_920" type="radio" id="contactChoice2"
+                                 name="contact" value="phone">
+                                <label class="v75_921" for="contactChoice2">Картой</label>
+
+                        </div>
+                    </div>
+                    <div class="v75_922">
+                        <span class="v75_923">Оплата баллами</span>
+                        <span class="v75_924">У вас 360 баллов, сколько вы хотите использовать?</span>
+                        <input class="v75_926" th:value="${balance}">
+                    </div>
+            </div>
+            <div class="v75_800"></div>
+        <div class="v75_801"></div>
+</div>
+
+               <a class="v75_889 source source-1">Доставка</a>
+               <a class="v75_890 source source-2">Самовывоз</a>
+
+                   <script>
+
+                   var HIDDEN_CLASS_NAME = 'hidden'
+                   var TARGET_CLASS_NAME = 'target'
+                   var SOURCE_CLASS_NAME = 'source'
+
+                   var targetIdToShow = 1
+
+                   function main() {
+                    var targets = getElements(TARGET_CLASS_NAME)
+                    var sources = getElements(SOURCE_CLASS_NAME)
+                    sources.forEach(function (sourceNode) {
+                        var sourceNodeId = extractId(sourceNode, SOURCE_CLASS_NAME)
+                        sourceNode.addEventListener('click', function () {
+                            showTarget(targets, sourceNodeId)
+                        })
+                    })
+                    showTarget(targets, targetIdToShow)
+                   }
+
+                   function getElements(type) {
+                    return [].slice.call(document.querySelectorAll('.' + type)).sort(function (targetNode1, targetNode2) {
+                        var target1Num = extractId(targetNode1, TARGET_CLASS_NAME)
+                        var target2Num = extractId(targetNode2, TARGET_CLASS_NAME)
+                        return target1Num > target2Num
+                    })
+                   }
+
+                   function extractId(targetNode, baseClass) {
+                    var currentClassIndex = targetNode.classList.length
+                    while (currentClassIndex--) {
+                        var currentClass = targetNode.classList.item(currentClassIndex)
+                        var maybeIdNum = parseInt(currentClass.split('-')[1])
+                        if (isNaN(maybeIdNum)) {
+                            continue
+                        }
+                        var classStrinToValidate = baseClass + '-' + maybeIdNum
+                        if (classStrinToValidate === currentClass) {
+                            return maybeIdNum
+                        }
+                    }
+                   }
+
+                   function showTarget(targets, targetId) {
+                    targets.forEach(function (targetNode, targetIndex) {
+                       var currentTargetNodeId = extractId(targetNode, TARGET_CLASS_NAME)
+                        if (currentTargetNodeId === targetId) {
+                            targetNode.classList.remove(HIDDEN_CLASS_NAME)
+                        } else {
+                            targetNode.classList.add(HIDDEN_CLASS_NAME)
+                        }
+                    })
+                   }
+
+                   main()
+                   </script>
+
+                   <style>
+                   .hidden {
+                     display: none
+                   }
+                   </style>
 
                 <span class="v75_932">Сумма заказа<span class="v72_000">................................................................................................
                 <span class="v72_001" th:inline="text">[[${sum}]] BYN</span></span></span>
@@ -78,7 +262,10 @@
                         <span class="v77_1496" th:text="${el.product.productName} + ' x' + ${el.amount}"></span>
                         <span class="v77_1497" th:text="${el.product.amount} +' шт / ' + ${el.product.weight} +' г'"></span>
                         <span class="v77_1498" th:text="${el.product.price.price} * ${el.amount} + ' BYN'"></span>
-                        <div class="v75_936"></div>
+
+                        <form th:action="@{'/basket/del/order/'+ ${el.product.id}}" method="post">
+                        <input value="" type="image" class="v75_936">
+                        </form>
                     </li>
                 </ul>
 
@@ -220,6 +407,31 @@ body {
   left: 150px;
   overflow: hidden;
 }
+
+.v75_800 {
+  width: 165px;
+  height: 45px;
+  background: rgba(255,255,255,1);
+  opacity: 1;
+  position: absolute;
+  top: 120px;
+  left: 327px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+.v75_801 {
+  width: 165px;
+  height: 21px;
+  background: white;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 155px;
+  left: 327px;
+  overflow: hidden;
+}
 .v75_889 {
   width: 117px;
   color: rgba(55,55,55,1);
@@ -231,6 +443,7 @@ body {
   font-size: 24px;
   opacity: 1;
   text-align: left;
+  cursor: pointer;
 }
 .v75_890 {
   width: 143px;
@@ -243,6 +456,7 @@ body {
   font-size: 24px;
   opacity: 1;
   text-align: left;
+  cursor: pointer;
 }
 .v75_891 {
   width: 130px;
@@ -256,53 +470,34 @@ body {
   opacity: 1;
   text-align: left;
 }
-.v75_892 {
-  width: 518px;
-  height: 32px;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  opacity: 1;
-  position: absolute;
-  top: 32px;
-  left: 37px;
-  overflow: hidden;
-}
+
 .v75_894 {
   width: 518px;
   color: rgba(55,55,55,1);
   position: absolute;
-  top: 0px;
-  left: 0px;
+  top: 32px;
+  left: 37px;
   font-family: Montserrat;
   font-weight: 500;
   font-size: 18px;
   opacity: 1;
   text-align: left;
+  border-bottom: 1px solid;
+  line-height: 30px;
 }
-.v75_895 {
+.v75_897 {
   width: 518px;
-  height: 32px;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  opacity: 1;
+  color: rgba(55,55,55,1);
   position: absolute;
   top: 311px;
   left: 37px;
-  overflow: hidden;
-}
-.v75_897 {
-  width: 215px;
-  color: rgba(55,55,55,1);
-  position: absolute;
-  top: 0px;
-  left: 0px;
   font-family: Montserrat;
   font-weight: 500;
   font-size: 18px;
   opacity: 1;
   text-align: left;
+    border-bottom: 1px solid;
+    line-height: 30px;
 }
 .v75_898 {
   width: 498px;
@@ -354,36 +549,6 @@ body {
   left: 0px;
   overflow: hidden;
 }
-.v75_902 {
-  width: 4px;
-  height: 9px;
-  background: url("../images/v75_902.png");
-  opacity: 1;
-  position: absolute;
-  top: 27px;
-  left: 46px;
-  border: 2px solid rgba(197,197,197,1);
-}
-.v75_903 {
-  width: 4px;
-  height: 9px;
-  background: url("../images/v75_903.png");
-  opacity: 1;
-  position: absolute;
-  top: 27px;
-  left: 108px;
-  border: 2px solid rgba(197,197,197,1);
-}
-.v75_904 {
-  width: 4px;
-  height: 9px;
-  background: url("../images/v75_904.png");
-  opacity: 1;
-  position: absolute;
-  top: 27px;
-  left: 299px;
-  border: 2px solid rgba(197,197,197,1);
-}
 .v75_905 {
   width: 23px;
   color: rgba(197,197,197,1);
@@ -421,40 +586,47 @@ body {
   text-align: left;
 }
 .v75_911 {
-  width: 16px;
+  width: 44px;
   color: rgba(55,55,55,1);
   position: absolute;
   top: 19px;
   left: 0px;
   font-family: Montserrat;
-  font-weight: 600ld;
+  font-weight: 600;
   font-size: 16px;
   opacity: 1;
   text-align: left;
+  border-bottom: 1px solid;
+}
+select {
+outline: none;
+border: none;
 }
 .v75_912 {
-  width: 22px;
+  width: 66px;
   color: rgba(55,55,55,1);
   position: absolute;
   top: 19px;
   left: 61px;
   font-family: Montserrat;
-  font-weight: 600ld;
+  font-weight: 600;
   font-size: 16px;
   opacity: 1;
   text-align: left;
+    border-bottom: 1px solid;
 }
 .v75_913 {
-  width: 82px;
+  width: 122px;
   color: rgba(55,55,55,1);
   position: absolute;
   top: 19px;
   left: 158px;
   font-family: Montserrat;
-  font-weight: 600ld;
+  font-weight: 600;
   font-size: 16px;
   opacity: 1;
   text-align: left;
+    border-bottom: 1px solid;
 }
 .v75_914 {
   width: 12px;
@@ -465,7 +637,7 @@ body {
   background-size: cover;
   opacity: 1;
   position: absolute;
-  top: 83px;
+  top: 80px;
   left: 0px;
   border: 0.5px solid rgba(55,55,55,1);
   border-top-left-radius: 2px;
@@ -479,7 +651,7 @@ body {
   color: rgba(55,55,55,1);
   position: absolute;
   top: 80px;
-  left: 16px;
+  left: 23px;
   font-family: Montserrat;
   font-weight: 400;
   font-size: 14px;
@@ -520,7 +692,7 @@ body {
   background-size: cover;
   opacity: 1;
   position: absolute;
-  top: 34px;
+  top: 30px;
   left: 0px;
   border: 0.5px solid rgba(55,55,55,1);
   border-top-left-radius: 6px;
@@ -533,8 +705,8 @@ body {
   width: 88px;
   color: rgba(55,55,55,1);
   position: absolute;
-  top: 31px;
-  left: 16px;
+top: 30px;
+left: 22px;
   font-family: Montserrat;
   font-weight: 400;
   font-size: 14px;
@@ -544,13 +716,12 @@ body {
 .v75_920 {
   width: 12px;
   height: 12px;
-  background: url("../images/v75_920.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
   opacity: 1;
   position: absolute;
-  top: 58px;
+  top: 54px;
   left: 0px;
   border: 0.5px solid rgba(55,55,55,1);
   border-top-left-radius: 6px;
@@ -563,8 +734,8 @@ body {
   width: 52px;
   color: rgba(55,55,55,1);
   position: absolute;
-  top: 55px;
-  left: 16px;
+top: 54px;
+left: 22px;
   font-family: Montserrat;
   font-weight: 400;
   font-size: 14px;
@@ -573,7 +744,7 @@ body {
 }
 .v75_922 {
   width: 380px;
-  height: 75px;
+  height: 100px;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -596,7 +767,7 @@ body {
   text-align: left;
 }
 .v75_924 {
-  width: 379px;
+  width: 400px;
   color: rgba(55,55,55,1);
   position: absolute;
   top: 26px;
@@ -608,16 +779,18 @@ body {
   text-align: left;
 }
 .v75_926 {
-  width: 11px;
-  color: rgba(197,197,197,1);
+  width: 372px;
+  color: rgba(55,55,55,1);
   position: absolute;
-  top: 60px;
-  left: 1px;
+  top: 40px;
+  left: 0px;
   font-family: Montserrat;
   font-weight: 600;
   font-size: 16px;
   opacity: 1;
   text-align: left;
+  border-bottom: 1px solid;
+  line-height: 30px;
 }
 .v75_930 {
   width: 55px;
@@ -700,6 +873,7 @@ body {
   overflow: hidden;
   background: url("/images/close_gray.svg");
   text-align: right;
+  padding: 16px;
 }
 
 .v75_945 {
@@ -720,7 +894,7 @@ body {
     border-bottom-right-radius: 10px;
     color: rgba(255,255,255,1);
         font-family: Montserrat;
-        font-weight: 600ld;
+        font-weight: 600;
         font-size: 20px;
         opacity: 1;
         text-align: center;

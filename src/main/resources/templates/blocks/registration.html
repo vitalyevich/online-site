@@ -1,6 +1,7 @@
 <div th:fragment="registration" class="v26_2">
          <form th:action="@{/registration}" method="post">
             <span class="v26_29">Регистрация</span>
+                            <p class="v26_50" th:text="${message}"></p>
                 <div class="v26_11">
                     <input required id="telephone" type="tel" name="phone" class="v26_13" maxlength="19"
                            style="background: url(/images/important.svg) no-repeat 343px 0px"

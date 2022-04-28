@@ -2,48 +2,76 @@
         <div class="v77_1481">
 
             <div class="v77_1482">
-                 <input class="v77_1484" type="button" value="Оформить заказ  43 BYN" onClick='location.href="/order"'>
+                 <a href="/order">
+                     <span class="v77_1484" th:text="'Оформить заказ ' + ${sum} + ' BYN'"></span>
+                 </a>
             </div>
 
             <span class="v77_1488">Корзина</span>
-            <span class="v77_1489">3</span>
+            <span class="v77_1489" th:text="${number}"></span>
 
             <a href="">
                 <div class="v77_1490"></div>
             </a>
-
 
                 <ul class="basketList">
                     <li th:style="'top:' + ${iterStat.index * 71} + 'px;'" class="v0" th:each="el, iterStat : ${baskets}">
                         <img class="v77_1499" th:src="@{${el.product.photo.path + el.product.photo.name + el.product.photo.format}}"/>
                         <span class="v77_1496" th:text="${el.product.productName} + ' x' + ${el.amount}"></span>
                         <span class="v77_1497" th:text="${el.product.amount} +' шт / ' + ${el.product.weight} +' г'"></span>
-                        <span class="v77_1498" th:text="${el.product.price.price} * ${el.amount} + ' BYN'"></span>
-                        <div class="v75_936"></div>
+                        <span class="v77_1498" style="left: 249px;" th:text="${el.product.price.price} * ${el.amount} + ' BYN'"></span>
+
+                        <form th:action="@{'/basket/add/basket/'+ ${el.product.id}}" method="post">
+                        <input class="v77_1600" value="" type="image">
+                        </form>
+                        <form th:action="@{'/basket/sub/basket/'+ ${el.product.id}}" method="post">
+                        <input class="v77_1700" value="" type="image">
+                         </form>
                     </li>
                 </ul>
 
                     <style>
+                    .v77_1600 {
+                    height: 17px;
+                    width: 17px;
+                    left: 461px;
+                    top: 10px;
+                    position: absolute;
+                    background-image: url(/images/plus.svg);
+                    padding-right: 26px;
+                    padding-top: 24px;
+                    }
+                    .v77_1700 {
+                    position: absolute;
+                    border-bottom-right-radius: 10px;
+                    border-bottom-left-radius: 10px;
+                    background-image: url(/images/minus.svg);
+                    background-repeat: no-repeat;
+                    padding-right: 20px;
+                    padding-top: 24px;
+                    left: 429px;
+                    top: 21px;
+                    }
                         .basketList {
                             list-style: none;
                             display: block;
                             overflow: hidden;
-                            top: 60px;
-                            left: 25px;
-                            width: 540px;
+                            top: 123px;
+                            left: 27px;
+                            width: 500px;
                             height: 600px;
                             position: relative;
                             margin: 0px;
                             padding: 0px;
                         }
                         .v0 {
+                        background: white;
+                        position: absolute;
+                        opacity: 1;
                         top: 0px;
                         left: 0px;
-                        position: absolute;
-                        width: 540px;
-                        height: 47px;
-                        opacity: 1;
-                        overflow: hidden;
+                        width: 263px;
+                        height: 46px;
                         }
                         .v72_000 {
                           position: absolute;
@@ -68,48 +96,11 @@
                           width: 140px;
                         }
                     </style>
-            <!-- <div class="v30_13">
-                <img class="v77_1499" th:src="@{image/sushi_basket}"/>
-                <span class="v77_1496">Ролл Калифорния x1</span>
-                <span class="v77_1497" th:text="${id}"></span>
-                <span class="v77_1498">9 BYN</span>
-            </div>
-
-            <style>
-                .v30_13 {
-                    top: 123px;
-                    left: 17px;
-                    position: absolute;
-                }
-            </style> -->
-            <!-- <div class="v30_13" th:insert="blocks/product-basket :: basket"></div>
-            <div class="v30_14" th:insert="blocks/product-basket :: basket"></div>
-            <div class="v30_15" th:insert="blocks/product-basket :: basket"></div>
-
-
-            <style>
-            .v30_13 {
-                top: 123px;
-                left: 17px;
-                position: absolute;
-            }
-            .v30_14 {
-                top: 194px;
-                left: 17px;
-                position: absolute;
-            }
-            .v30_15 {
-                top: 265px;
-                left: 17px;
-                position: absolute;
-            } -->
-            </style>
-
         </div>
 </div>
 
 <div th:fragment="blackout-basket" id="blackout-basket">
-  <a href="#" class="close"></a>
+  <a href="" class="close"></a>
   <div id="window">
     <div th:insert="blocks/basket :: basket"></div>
   </div>

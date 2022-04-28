@@ -2,8 +2,10 @@ package com.example.vitalyevich.onlinesite.controller;
 
 import com.example.vitalyevich.onlinesite.model.Access;
 import com.example.vitalyevich.onlinesite.model.Basket;
+import com.example.vitalyevich.onlinesite.model.UserPoint;
 import com.example.vitalyevich.onlinesite.repository.AccessRepository;
 import com.example.vitalyevich.onlinesite.repository.BasketRepository;
+import com.example.vitalyevich.onlinesite.repository.UserPointRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,9 @@ public class OrderController {
     @Autowired
     private AccessRepository accessRepository;
 
+    @Autowired
+    private UserPointRepository userPointRepository;
+
     @GetMapping("/order")
     private String order(Model model) {
 
@@ -29,6 +34,9 @@ public class OrderController {
         String phone = SecurityContextHolder.getContext().getAuthentication().getName();
         Access userFromDb = accessRepository.findUserByPhone(phone);
         //
+
+        UserPoint userPoint = userPointRepository.findUserPointById(userFromDb.getUser().getId());
+
 
         Iterable<Basket> baskets = basketRepository.findBasketByUserId(userFromDb.getUser().getId());
         model.addAttribute("baskets", baskets);
@@ -56,6 +64,7 @@ public class OrderController {
         model.addAttribute("sum",sum);
         model.addAttribute("result",result);
         model.addAttribute("delivery",delivery);
+        model.addAttribute("balance", userPoint.getBalance());
         return "order";
     }
 }

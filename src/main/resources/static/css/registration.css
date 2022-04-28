@@ -259,6 +259,19 @@
     left: 0px;
     border-radius: 50%;
 }
+.v26_50 {
+       width: 371px;
+       height: 40px;
+       color: red;
+       position: absolute;
+       left: 105px;
+       top: 83px;
+       font-family: Montserrat;
+       font-weight: 400;
+       font-size: 15px;
+       opacity: 1;
+       text-align: left;
+   }
 .pass-control {
     position: absolute;
     top: 0px;

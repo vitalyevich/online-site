@@ -40,6 +40,7 @@
     font-size: 20px;
     text-align: center;
     cursor: pointer;
+    padding-top: 9px;
 }
 .v77_1488 {
     width: 111px;
@@ -72,7 +73,7 @@
     opacity: 1;
     position: absolute;
     top: 22px;
-    left: 335px;
+    left: 382px;
     overflow: hidden;
     background: url("/images/close.svg");
 }

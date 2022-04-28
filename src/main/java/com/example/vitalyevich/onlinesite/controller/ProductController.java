@@ -1,17 +1,23 @@
 package com.example.vitalyevich.onlinesite.controller;
 
+import com.example.vitalyevich.onlinesite.model.Access;
+import com.example.vitalyevich.onlinesite.model.Basket;
 import com.example.vitalyevich.onlinesite.model.Category;
 import com.example.vitalyevich.onlinesite.model.Product;
+import com.example.vitalyevich.onlinesite.repository.AccessRepository;
+import com.example.vitalyevich.onlinesite.repository.BasketRepository;
 import com.example.vitalyevich.onlinesite.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -20,11 +26,43 @@ public class ProductController {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private AccessRepository accessRepository;
+
+    @Autowired
+    private BasketRepository basketRepository;
+
     private Category category = new Category();
 
 
     @GetMapping({"/menu/rolls/page/{offset}", "/menu/rolls"})
     public String menuRolls(Model model, @PathVariable(required = false) Integer offset) {
+
+        // корзина
+        if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser")) {
+            String phone = SecurityContextHolder.getContext().getAuthentication().getName();
+            Access userFromDb = accessRepository.findUserByPhone(phone);
+            //
+
+            Iterable<Basket> baskets = basketRepository.findBasketByUserId(userFromDb.getUser().getId());
+
+            List<Basket> basketList = new ArrayList<Basket>();
+            baskets.forEach(basketList::add);
+            model.addAttribute("baskets", baskets);
+
+
+            float sum = 0;
+            float result = 0;
+            int delivery = 0;
+            for (Basket b : basketList) {
+                sum += b.getAmount() * Double.parseDouble(b.getProduct().getPrice().getPrice());
+            }
+
+            model.addAttribute("sum", String.format("%.1f",sum).replace(',','.'));
+            model.addAttribute("number", basketList.size());
+        }
+        //
+
 
         if (offset == null) {
             offset = 0;

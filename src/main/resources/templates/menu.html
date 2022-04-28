@@ -168,7 +168,9 @@
                </div>
              </div>
 
-                   <div th:insert="blocks/basket :: blackout-basket"></div>
+                    <div th:insert="blocks/basket :: blackout-basket"></div>
+
+
             </div>
 
 
@@ -185,7 +187,7 @@
                   top: 0px;
                   left: 0px;
                   width: 263px;
-                  height: 347px;
+                  height: 370px;
                   border-top-left-radius: 25px;
                   border-top-right-radius: 25px;
                 }
@@ -196,7 +198,7 @@
                   top: 0px;
                   left: 293px;
                   width: 263px;
-                  height: 347px;
+                  height: 370px;
                     border-top-left-radius: 25px;
                     border-top-right-radius: 25px;
                 }
@@ -207,7 +209,7 @@
                   top: 0px;
                   left: 586px;
                   width: 263px;
-                  height: 347px;
+                  height: 370px;
                   border-top-left-radius: 25px;
                   border-top-right-radius: 25px;
                 }
@@ -218,7 +220,7 @@
                   top: 393px;
                   left: 0px;
                   width: 263px;
-                  height: 347px;
+                  height: 370px;
                   border-top-left-radius: 25px;
                   border-top-right-radius: 25px;
                 }
@@ -229,7 +231,7 @@
                   top: 393px;
                   left: 293px;
                   width: 263px;
-                  height: 347px;
+                  height: 370px;
                   border-top-left-radius: 25px;
                   border-top-right-radius: 25px;
                 }
@@ -240,7 +242,7 @@
                   top: 393px;
                   left: 586px;
                   width: 263px;
-                  height: 347px;
+                  height: 370px;
                   border-top-left-radius: 25px;
                   border-top-right-radius: 25px;
                 }
@@ -269,7 +271,7 @@
                                     <p class="v30_3" th:inline="text">[[${el.price.price}]]<span class="v30_4">BYN</span></p>
 
                                     <p class="v30_5" th:text="${el.amount} +' шт / ' + ${el.weight} +' г'"></p>
-                        <form action="#" th:action="@{'/basket/add/'+ ${el.id}}" method="post">
+                        <form action="#" th:action="@{'/basket/add/menu/'+ ${el.id}}" method="post">
                                 <div class="v30_6">
                                    <input class="v30_8" type="submit" value="Добавить в корзину">
                                 </div>
@@ -693,7 +695,6 @@ background: url("/images/sushi-menu.svg");
 .v40_51 {
   width: 84px;
   height: 29px;
-  background: url("../images/v40_51.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -732,7 +733,6 @@ background: url("/images/sushi-menu.svg");
 .v40_54 {
   width: 101px;
   height: 29px;
-  background: url("../images/v40_54.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -783,7 +783,6 @@ background: url("/images/sushi-menu.svg");
 .v40_75 {
   width: 262px;
   height: 748px;
-  background: url("../images/v40_75.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.SecureRandom;
 import java.time.LocalDate;
@@ -53,11 +54,11 @@ public class UserController {
     }
 
     @PostMapping("/registration")
-    public String addUser(Access accessForm, User userForm, Model model) {
+    public String addUser(Access accessForm, User userForm, Model model, RedirectAttributes rm) {
         Access userFromDb = accessRepository.findByPhone(accessForm.getPhone());
 
         if (userFromDb != null) {
-            model.addAttribute("message", "User exists!");
+            rm.addFlashAttribute("message", "Данный номер телефона уже используется!");
 
             return "redirect:/menu/rolls#blackout-registration";
         }
@@ -167,11 +168,6 @@ public class UserController {
         else {
             return "redirect:#blackout-authorization";
         }
-    }
-
-    @GetMapping("/admin-panel")
-    public String adminPanel() {
-        return "admin-panel";
     }
 
     @GetMapping("/selection")

@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class BasketController {
@@ -24,8 +25,8 @@ public class BasketController {
     @Autowired
     private AccessRepository accessRepository;
 
-    @PostMapping("/basket/add/{id}")
-    public String add(@PathVariable(value = "id") int id) {
+    @PostMapping("/basket/add/{tag}/{id}")
+    public String add(@PathVariable(value = "id") int id, @PathVariable(value = "tag") String tag) {
 
         //
         String phone = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -41,20 +42,72 @@ public class BasketController {
         }
         basketRepository.save(basket);
 
+
+        if (tag.equals("menu")) {
+            return "redirect:/menu/rolls";
+        }
+        if (tag.equals("basket")) {
+            return "redirect:/basket";
+        }
+
         return "redirect:/menu/rolls";
     }
 
-    @GetMapping("/basket")
-    public String basket(Model model) {
+    @PostMapping("/basket/sub/{tag}/{id}")
+    public String sub(@PathVariable(value = "id") int id, @PathVariable(value = "tag") String tag) {
 
         //
         String phone = SecurityContextHolder.getContext().getAuthentication().getName();
         Access userFromDb = accessRepository.findUserByPhone(phone);
         //
 
-        Iterable<Basket> baskets = basketRepository.findBasketByUserId(userFromDb.getUser().getId());
+        Basket basket = basketRepository.findBasketByProductId(id);
 
-        model.addAttribute("baskets", baskets);
+        if (basket.getAmount() == 1) {
+            basketRepository.delete(new Basket(new BasketId(userFromDb.getUser().getId(), id), new User(userFromDb.getUser().getId()), new Product(id), basket.getAmount()));
+        } else {
+            basket = new Basket(new BasketId(userFromDb.getUser().getId(), id), new User(userFromDb.getUser().getId()), new Product(id), basket.getAmount() - 1);
+            basketRepository.save(basket);
+        }
+
+
+       /* if (tag.equals("menu")) {
+            return "redirect:/menu/rolls";
+        }*/
+        if (tag.equals("basket")) {
+            return "redirect:/basket";
+        }
+
+        return "redirect:/menu/rolls";
+    }
+
+    @PostMapping("/basket/del/{tag}/{id}")
+    public String del(@PathVariable(value = "id") int id, @PathVariable(value = "tag") String tag) {
+
+        //
+        String phone = SecurityContextHolder.getContext().getAuthentication().getName();
+        Access userFromDb = accessRepository.findUserByPhone(phone);
+        //
+
+        Basket basket = basketRepository.findBasketByProductId(id);
+
+        basketRepository.delete(new Basket(new BasketId(userFromDb.getUser().getId(), id), new User(userFromDb.getUser().getId()), new Product(id), basket.getAmount()));
+
+
+
+        if (tag.equals("order")) {
+            return "redirect:/order";
+        }
+        if (tag.equals("basket")) {
+            return "redirect:/basket";
+        }
+
+        return "redirect:/menu/rolls";
+    }
+
+    @GetMapping("/basket")
+    public String basket(Model model, RedirectAttributes rm) {
+
         return "redirect:/menu/rolls#blackout-basket";
     }
 
