@@ -30,9 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    /*.antMatchers("/account").hasRole("ADMIN")*/
                     .mvcMatchers("/profile", "/menu/rolls#blackout-basket", "/order", "/basket").hasAnyRole("USER", "ADMIN")
-                    /*.mvcMatchers("/account/{authentication.principal.username}").hasRole("ADMIN")*/
                     .mvcMatchers("/admin/panel").hasRole("ADMIN")
                     .antMatchers("/menu/**", "/delivery", "/authorization", "/registration").permitAll()
                     .anyRequest().authenticated()
@@ -40,7 +38,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .formLogin()
                     .loginPage("/authorization")
                     .failureUrl("/authorization?error=true")
-/*                    .successHandler(successHandler)*/
                     .defaultSuccessUrl("/profile",true)
                     .usernameParameter("phone")
                     .passwordParameter("password")
@@ -51,21 +48,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .logout()
                 .logoutSuccessUrl("/menu/rolls");
-               /* .and()
-                    .exceptionHandling()
-                    .accessDeniedPage("/access-denied");*/
-                    /*.permitAll();*/
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-/*        web
-                .ignoring()
-                .antMatchers("/menu/**");*/
         web.ignoring()
                 .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**", "/fonts/**",
-                        "/blocks/**"); // "/templates/**",
-/*                .antMatchers("/publics/**");*/
+                        "/blocks/**");
     }
 
     @Override
