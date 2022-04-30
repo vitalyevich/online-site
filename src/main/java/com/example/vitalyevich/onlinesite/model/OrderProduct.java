@@ -3,18 +3,18 @@ package com.example.vitalyevich.onlinesite.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "baskets")
-public class Basket {
-    @EmbeddedId
-    private BasketId id;
+@Table(name = "order_products")
+public class OrderProduct {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Integer id;
 
-    @MapsId("userId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "order_id", nullable = false)
+    private Order order;
 
-    @MapsId("productId")
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
@@ -37,37 +37,33 @@ public class Basket {
         this.product = product;
     }
 
-    public User getUser() {
-        return user;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
-    public BasketId getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(BasketId id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Basket() {
-    }
-
-    public Basket(User user, Product product, Integer amount) {
-        this.user = user;
+    public OrderProduct(Product product, Integer amount) {
         this.product = product;
         this.amount = amount;
     }
 
-    public Basket(BasketId id, User user, Product product, Integer amount) {
-        this.id = id;
-        this.user = user;
+    public OrderProduct() {
+    }
+
+    public OrderProduct(Order order, Product product, Integer amount) {
+        this.order = order;
         this.product = product;
         this.amount = amount;
     }
-
-
 }

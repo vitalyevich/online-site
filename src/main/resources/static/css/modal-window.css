@@ -1,0 +1,216 @@
+input {
+    outline: none;
+    border: none;
+}
+body {
+    font-size: 14px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+}
+
+.window {
+
+    width: 566px;
+    height: 406px;
+    background: rgba(255,255,255,1);
+    opacity: 1;
+    position: relative;
+
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
+    border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+    overflow: hidden;
+}
+#blackout-modal {
+    background: rgba(40, 40, 40, 0.7);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+}
+#window-black {
+    display: flex;
+    justify-content: center;
+    padding: 170px 0;
+    margin: auto;
+}
+.v0_0 {
+    height: 131px;
+    position: absolute;
+    top: 33px;
+    left: 213px;
+}
+.close {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor:pointer;
+}
+#blackout-modal:target {display: block;}
+.v1_3 {
+    width: 360px;
+    height: 26px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 121px;
+    left: 103px;
+    overflow: hidden;
+}
+
+.v1_6 {
+    width: 360px;
+    height: 26px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 175px;
+    left: 103px;
+    overflow: hidden;
+}
+
+.password-control {
+    position: absolute;
+    top: 0px;
+    right: 6px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url(https://snipp.ru/demo/495/view.svg) 0 0 no-repeat;
+}
+.password-control.view {
+    background: url(https://snipp.ru/demo/495/no-view.svg) 0 0 no-repeat;
+}
+
+.v1_5 {
+    background: transparent;
+    border-bottom: 1px solid #575757;
+    position: relative;
+    width: 360px;
+    height: 26px;
+    font-family: Montserrat;
+    font-weight: 400;
+    font-size: 16px;
+    opacity: 1;
+    text-align: left;
+}
+
+.v1_5:focus{
+    border-bottom: 2px solid #575757;
+
+}
+
+.v1_9 {
+    width: 360px;
+    height: 48px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 241px;
+    left: 103px;
+    overflow: hidden;
+}
+.v1_11 {
+    width: 360px;
+    height: 48px;
+    background: rgb(216,84,97);
+    background: linear-gradient(90deg, rgba(216,84,97,1) 0%, rgba(241,172,85,1) 100%);
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    overflow: hidden;
+    color: rgba(255,255,255,1);
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 20px;
+    text-align: center;
+}
+
+.v1_11:hover {opacity: 0.6}
+
+.v1_12 {
+    width: 360px;
+    height: 48px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 307px;
+    left: 103px;
+    overflow: hidden;
+}
+.v1_14 {
+    width: 360px;
+    height: 48px;
+    background: rgb(255,255,255);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    border: 1px solid rgba(0,0,0,1);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    overflow: hidden;
+    color: rgba(87,87,87,1);
+    top: 0px;
+    left: 0px;
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 20px;
+    text-align: center;
+}
+
+.v1_14:hover {
+    border: 2px solid rgba(0,0,0,1);
+    color: rgb(1,1,1);
+}
+
+.v1_15 {
+    position: absolute;
+    width: 361px;
+    height: 44px;
+    left: 102px;
+    top: 169px;
+    color: #383838;
+    font-family: Montserrat;
+    font-weight: 300;
+    font-size: 27px;
+    line-height: 44px;
+    opacity: 1;
+    text-align: center;
+}
+.close {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor:pointer;
+}
+#registration:target {display: block;}

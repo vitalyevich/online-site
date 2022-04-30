@@ -15,7 +15,7 @@
 <div class="v61_346">
 
     <div th:insert="blocks/header :: header"></div>
-
+ <form th:action="@{/order}" method="post">
     <div class="v40_16">
         <span class="v75_883">Оформление заказа</span>
         <span class="v75_891">Ваш заказ</span>
@@ -26,8 +26,9 @@
 
 <div class="target target-1">
             <div class="v75_885">
-                        <input required id="suggest" class="v75_894" placeholder="Введите ваш адрес">
+                        <input required name="address" id="suggest" class="v75_894" placeholder="Введите ваш адрес">
 
+                        <input name="comment" class="v75_897" type="text" placeholder="Комментарий к заказу">
 
                         <script>
                          ymaps.ready(init);
@@ -36,8 +37,6 @@
                              var suggestView1 = new ymaps.SuggestView('suggest');
                          }
                         </script>
-                        <input class="v75_897" placeholder="Комментарий к заказу">
-
 
                         <div class="v75_898">
                                 <div class="v75_899">
@@ -47,7 +46,7 @@
                                         <span class="v75_906">Минуты</span>
                                         <span class="v75_907">Дата</span>
 
-                                        <select class="v75_911" id="resizing_select">
+                                        <select required name="h" class="v75_911" id="resizing_select">
                                             <option value="10">10</option>
                                             <option value="11">11</option>
                                             <option value="12">12</option>
@@ -58,46 +57,51 @@
                                             <option value="17">17</option>
                                             <option value="18">18</option>
                                             <option selected="selected" value="19">19</option>
+                                            <option value="20">20</option>
                                         </select>
 
-                                        <select class="v75_912" id="resizing_select">
-                                            <option value="1">00</option>
-                                            <option value="2">10</option>
-                                            <option value="3">20</option>
-                                            <option value="4">30</option>
-                                            <option value="5">40</option>
-                                            <option selected="selected" value="6">50</option>
+                                        <select required name="m" class="v75_912" id="resizing_select">
+                                            <option value="0">00</option>
+                                            <option value="10">10</option>
+                                            <option value="15">15</option>
+                                            <option value="20">20</option>
+                                            <option value="30">30</option>
+                                            <option value="40">40</option>
+                                            <option value="45">45</option>
+                                            <option selected="selected" value="50">50</option>
+                                            <option value="55">55</option>
                                         </select>
 
-                                        <select class="v75_913" id="resizing_select">
-                                            <option value="15">15 апреля</option>
-                                            <option value="16">16 апреля</option>
-                                            <option value="17">17 апреля</option>
-                                            <option value="18">18 апреля</option>
-                                            <option value="19">19 апреля</option>
-                                            <option selected="selected" value="20">20 апреля</option>
+                                        <select required name="d" class="v75_913" id="resizing_select">
+                                            <option value="1">1 мая</option>
+                                            <option value="2">2 мая</option>
+                                            <option value="3">3 мая</option>
+                                            <option value="4">4 мая</option>
+                                            <option value="5">5 мая</option>
+                                            <option value="6">6 мая</option>
+                                            <option selected="selected" value="7">7 мая</option>
                                         </select>
 
                                     </div>
-                                    <input type="checkbox" class="v75_914" id="box" name="box" >
+                                    <input type="checkbox" class="v75_914" id="box" name="box" value="1">
                                           <label class="v75_915" for="box">Ближайшее</label>
                                 </div>
                             <div class="v75_916">
                                 <span class="v75_917">Способ оплаты</span>
-                                <input class="v75_918" type="radio" id="contactChoice1"
-                                     name="contact" value="email">
+                                <input required class="v75_918" type="radio" id="contactChoice1"
+                                     name="contact" value="1">
                                     <label class="v75_919" for="contactChoice1">Наличными</label>
 
-                                    <input class="v75_920" type="radio" id="contactChoice2"
-                                     name="contact" value="phone">
+                                    <input required class="v75_920" type="radio" id="contactChoice2"
+                                     name="contact" value="2">
                                     <label class="v75_921" for="contactChoice2">Картой</label>
 
                             </div>
                         </div>
                         <div class="v75_922">
                             <span class="v75_923">Оплата баллами</span>
-                            <span class="v75_924">У вас 360 баллов, сколько вы хотите использовать?</span>
-                            <input class="v75_926" th:value="${balance}">
+                            <span class="v75_924" th:text="'У вас ' + ${balance} + ' баллов, сколько вы хотите использовать?'"></span>
+                            <input name="point" type="number" class="v75_926" th:value="${balance}">
                         </div>
                 </div>
         <div class="v75_886"></div>
@@ -171,7 +175,7 @@
                     </div>
                     <div class="v75_922">
                         <span class="v75_923">Оплата баллами</span>
-                        <span class="v75_924">У вас 360 баллов, сколько вы хотите использовать?</span>
+                        <span class="v75_924" th:text="'У вас ' + ${balance} + ' баллов, сколько вы хотите использовать?'"></span>
                         <input class="v75_926" th:value="${balance}">
                     </div>
             </div>
@@ -316,6 +320,7 @@
                     </style>
 
                 <input type="submit" class="v75_945" value="Оформить заказ">
+                 </form>
 
                 <span class="v75_948">Нажимая кнопку «Оформить заказ», я соглашаюсь с публичной офертой.</span>
     </div>
@@ -899,6 +904,9 @@ left: 22px;
         opacity: 1;
         text-align: center;
         cursor: pointer;
+}
+.v75_945:hover {
+opacity: 0.7;
 }
 
 .v75_948 {

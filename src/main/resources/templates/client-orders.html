@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/product.css">
     <link rel="stylesheet" href="/css/product-footer.css">
-    <link rel="stylesheet" href="/css/modal-window.css">
 </head>
 <body>
     <div class="v61_346">
@@ -14,81 +13,28 @@
     <div th:insert="blocks/header :: header"></div>
 
     <div class="v40_16">
-    <span class="v61_390" th:inline="text">Добрый день, [[${user.firstName}]]</span>
-    <span class="v61_039">Ваш код для приглашения: <span class="v90_000" th:text="${user.userCode}"></span></span>
-       <div class="v61_391">
-       <span class="v61_411">У вас</span>
-               <span class="v61_412" th:text="${points}"></span>
-               <span class="v61_413">бонусных баллов</span>
-       </div>
 
+    <ul class="orderList">
+            <li th:style="'top:' + ${iterStat.index * 321} + 'px;'" class="v0" th:each="el, iterStat : ${orders}">
+                <span class="v77_1496" style="top: 27px;" th:text="'Дата заказа: ' + ${el.orderDate}"></span>
+                <span class="v77_1496" style="font-weight: 400;top: 67px;left: 29px;width: 375px;" th:text="${el.order}"></span>
+                <span class="v77_1497" style="top: 148px;width: 201px;left: 30px;" th:text="'Стоимость: ' + ${el.price} + ' BYN'"></span>
+                <span class="v77_1497" style="top: 199px;left: 145px;width: 200px;" th:text="'Статус: ' + ${el.status}"></span>
+                <a th:href="'/profile/orders/cancel/' + ${el.id}">
+                <input type="submit" class="v77_1497" style="top: 231px;left: 112px;width: 200px;border-radius: 15px;height: 33px;cursor:pointer;" value="Отменить">
+                </a>
+            </li>
+    </ul>
 
-       <div class="v61_392">
-           <span class="v61_393">Укажите свою дату рождения</span>
-           <span class="v61_394">В день рождения у нас принято дарить подарки</span>
-           <div class="v61_414">
-                <img src="../static/images/gift.svg" th:src="@{images/gift.svg}"/>
-           </div>
-       </div>
-
-
-
-       <div class="v61_396">
-            <span class="v61_398">Мы готовим Ваш заказ</span>
-            <a href="/profile/orders" class="v61_399">Все заказы</a>
-            <a href="" class="v61_400">Просмотреть ваши адреса</a>
-            <span class="v61_401">Здесь вы можете просмотреть ваши заказы</span>
-            <div class="v61_402"></div>
-            <div class="v61_403"></div>
-        </div>
-
-            <div class="v61_406">
-              <a href="">
-                <span class="v61_407">Условия акции</span>
-              </a>
-                <span class="v61_408">Получай кэшбэк до 5%</span>
-                <span class="v61_409">Оплачивай покупки баллами. 1 балл = 1 рубль</span>
-                <span class="v61_410">Бонусы начисляются при каждой покупке в течении 1 дня</span>
-            </div>
-
-
-            <div class="v61_421">
-
-                <span class="v61_422">Максим, Ваши любимые роллы Калифорния в подарок</span>
-                <span class="v61_423">При заказе от 30 BYN</span>
-                <span class="v61_424">30.08 - 07.09</span>
-
-                <div class="v61_425">
-                    <div class="v61_428"></div>
-                </div>
-            </div>
-
-                 <div th:insert="blocks/product-footer :: product-footer"></div>
-                   <style>
-                          .scrollList {
-                              top: 442px;
-                              left: 150px;
-                          }
-                          .v72_768 {
-                              top: 552px;
-                              left: 155px;
-                          }
-                   </style>
-
-        <a href="/settings">
-            <div class="v61_461">
-                    <img src="../static/images/settings.svg" th:src="@{images/settings.svg}"/>
-            </div>
-        </a>
-         <a href="/modal">
+         <a href="/profile">
             <div class="v61_464">
-                    <img src="../static/images/logout.svg" th:src="@{images/logout.svg}"/>
+                    <span class="v77_1496" style="left: 36px;font-weight: 600;">Выход</span>
+                    <img th:src="@{/images/logout.svg}"/>
             </div>
          </a>
 
     </div>
 
-    <div th:insert="blocks/modal-window :: blackout-modal"></div>
     <div th:insert="blocks/footer :: footer"></div>
 
     <style>
@@ -107,10 +53,56 @@
 body {
   font-size: 14px;
 }
-
+.v77_1496 {
+    width: 250px;
+    height: 20px;
+    top: 4px;
+    left: 83px;
+    color: #383838;
+    position: absolute;
+    font-family: Montserrat;
+    font-weight: 700;
+    font-size: 16px;
+    opacity: 1;
+}
+.v77_1497 {
+    width: 110px;
+    height: 17px;
+    top: 25px;
+    left: 788px;
+    color: black;
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 14px;
+    opacity: 1;
+    position: absolute;
+    overflow: hidden;
+}
+.orderList {
+    list-style: none;
+    display: block;
+    overflow: hidden;
+    top: 50px;
+    left: 455px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+}
+.v0 {
+    position: absolute;
+    width: 433px;
+    height: 290px;
+    opacity: 1;
+    overflow: hidden;
+    border: 2px solid;
+    border-color: #c9c9c9;
+    border-radius: 50px;
+}
 .v61_346 {
   width: 100%;
-  height: 1346px;
+  height: 1800px;
   background: rgba(255,255,255,1);
   opacity: 1;
   position: relative;
@@ -403,7 +395,7 @@ body {
 }
 .v40_16 {
   width: 1440px;
-  height: 984px;
+  height: 1429px;
   margin: auto;
   background: transparent;
   opacity: 1;
@@ -498,7 +490,7 @@ body {
   text-align: left;
 }
 .v61_390 {
-  width: 582px;
+  width: 439px;
   color: rgba(55,55,55,1);
   position: absolute;
   top: 40px;
@@ -624,19 +616,18 @@ text-align: left;
   opacity: 1;
   text-align: left;
   border-bottom: 1px solid;
-  cursor: pointer;
 }
 .v61_400 {
-    width: 183px;
-    color: rgb(168 210 82);
-    position: absolute;
-    top: 88px;
-    left: 27px;
-    font-family: Montserrat;
-    font-weight: 600;
-    font-size: 12px;
-    opacity: 1;
-    text-align: left;
+  width: 157px;
+  color: rgba(55,55,55,1);
+  position: absolute;
+  top: 88px;
+  left: 27px;
+  font-family: Montserrat;
+  font-weight: 600;
+  font-size: 12px;
+  opacity: 1;
+  text-align: left;
 }
 .v61_401 {
   width: 295px;
@@ -884,7 +875,7 @@ text-align: left;
   overflow: hidden;
 }
 .v61_464 {
-  width: 30px;
+  width: 103px;
   height: 30px;
   background: rgba(255,255,255,1);
   opacity: 1;

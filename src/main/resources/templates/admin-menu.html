@@ -1,0 +1,89 @@
+<!DOCTYPE html><html>
+<head>
+<title>Admin Panel</title>
+<link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,650,700,800,900" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+         <link rel="stylesheet" href="/css/admins.css">
+</head>
+    <body>
+        <div class="v2_17">
+
+<div class="v2_20">
+            <span class="v2_209">Роллы</span>
+            <img class="v77_1504" th:src="@{/images/adminsetting.svg}"/>
+            <div class="v70_1"></div>
+
+            <ul class="menuList">
+                <li th:style="'top:' + ${iterStat.index * 101} + 'px;'" class="v0" th:each="el, iterStat : ${menu}">
+                    <img class="v77_1499" th:src="@{${el.photo.path + el.photo.name + el.photo.format}}"/>
+                    <input class="v77_1496" th:value="${el.productName}">
+                    <input class="v77_1497" th:value="${el.amount} +' шт / ' + ${el.weight} +' г'">
+                    <input class="v77_1500" th:value="${el.ingredients}">
+                    <input class="v77_1498" th:value="${el.price.price} +' BYN'">
+                    <img class="v77_1501" th:src="@{/images/basketpanel.svg}"/>
+                    <img class="v77_1503" th:src="@{/images/adminsetting.svg}"/>
+                    <img class="v77_1505" th:src="@{/images/panelback.svg}"/>
+                    <div class="v77_1502"></div>
+                </li>
+                <li th:style="'top:' + ${size * 101} + 'px;'" class="v0">
+                    <img class="v77_1499" style="background: gray;"/>
+                    <span class="v77_1496">Введите название</span>
+                    <span class="v77_1497">00 шт / 00 г</span>
+                    <span class="v77_1500">Введите ингредиенты</span>
+                    <span class="v77_1498">00 BYN</span>
+                    <img class="v77_1501" th:src="@{/images/basketpanel.svg}"/>
+                    <img class="v77_1503" th:src="@{/images/adminsetting.svg}"/>
+                    <img class="v77_1505" th:src="@{/images/panelback.svg}"/>
+                    <div class="v77_1502"></div>
+                </li>
+            </ul>
+                </div>
+
+            <div class="v2_18">
+            <div class="v70_0"></div>
+            <img class="v80_1" th:src="@{/images/menu.svg}"/>
+            <a href="/admin/menu" class="v2_210">Меню</a>
+            <img class="v80_1" style="top:531px;" th:src="@{/images/mng.svg}"/>
+            <a href="/admin/actions" class="v2_218">Маркетинг</a>
+            <img class="v80_1" style="top:1076px;" th:src="@{/images/exit.svg}"/>
+            <a href="/menu/rolls" class="v2_229">Выход</a>
+            <img class="v80_1" style="top:729px;" th:src="@{/images/client.svg}"/>
+
+            <a href="/admin/clients" class="v2_222">Работа с клиентами</a>
+
+            <img class="v80_1" style="top:916px;" th:src="@{/images/setadmin.svg}"/>
+            <a href="/admin/main" class="v2_226">Настройки</a>
+
+            <a href="/admin/menu/rolls" class="v2_212">Роллы</a>
+            <a href="/admin/menu/sushi" class="v2_213">Суши</a>
+            <a href="/admin/menu/woks" class="v2_214">Рис Wok</a>
+            <a href="/admin/menu/soups" class="v2_215">Супы</a>
+            <a href="/admin/menu/sauces" class="v2_217">Соусы</a>
+            <a href="/admin/menu/drinks" class="v2_216">Напитки</a>
+            <a href="/admin/menu/sets" class="v2_211">Сеты</a>
+
+            <a href="/admin/program" class="v2_219">Программа лояльности</a>
+
+            <a href="/admin/actions" class="v2_220">Акции и скидки</a>
+            <a href="/admin/stats" class="v2_221">Стастистика</a>
+
+            <a href="/admin/clients" class="v2_223">Наши клиенты</a>
+            <a href="/admin/orders" class="v2_224">Заказы</a>
+            <a href="/admin/points" class="v2_225">Баллы</a>
+
+            <a href="/admin/main" class="v2_227">Главные</a>
+            <a href="/admin/payments" class="v2_228">Формы оплаты</a>
+            <a href="/admin/menu">
+                <div class="v2_19"></div>
+            </a>
+            </div>
+        </div>
+    </body>
+</html>
+
+<style>
+input {
+border: none;
+outline: none;
+}
+</style>

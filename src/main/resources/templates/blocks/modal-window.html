@@ -1,0 +1,23 @@
+ <div th:fragment="modal" class="window">
+
+                <img class="v0_0" th:src="@{/images/smile.svg}"/>
+                <div class="v1_9">
+                    <a href="/logout">
+                    <input class="v1_11" type="submit" value="Да, прости">
+                    </a>
+                </div>
+
+                <div class="v1_12">
+                    <a href="/profile">
+                    <input class="v1_14" type="button" value="Нет, останусь">
+                    </a>
+                </div>
+                <span class="v1_15">Вы уже уходите?</span>
+</div>
+
+<div th:fragment="blackout-modal" id="blackout-modal">
+  <a href="#" class="close"></a>
+  <div id="window-black">
+    <div th:insert="blocks/modal-window :: modal"></div>
+  </div>
+</div>

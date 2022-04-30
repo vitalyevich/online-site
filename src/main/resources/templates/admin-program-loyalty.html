@@ -1,0 +1,119 @@
+<!DOCTYPE html><html>
+<head>
+<title>Admin Panel</title>
+<link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,650,700,800,900" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+         <link rel="stylesheet" href="/css/admins.css">
+</head>
+    <body>
+        <div class="v2_17">
+
+    <div class="v2_20">
+                        <span class="v2_209">Программа лояльности</span>
+                        <div class="v70_1"></div>
+
+                       <span class="v2_230">Награда клиенту, который пригласил своего друга</span>
+                       <input class="v2_231" type="text" value="2,50 руб.">
+
+                        <span class="v2_232">Мотивируйте клиента активнее рекомендовать ваш бренд
+                             его друзьям, чтобы улучшить эффект «сарафанного радио».</span>
+
+                        <span style="top: 289px;" class="v2_232">После совершения первого заказа клиент получит специальный пригласительный промокод.
+                        С его помощью он может рекомендовать вашу доставку друзьям.</span>
+
+                        <span style="top: 338px;" class="v2_232">Рубли начисляются клиенту после того, как его друг скачает приложение,
+                        укажет свой номер телефона и введёт промокод во вкладке «Бонусный счёт».</span>
+
+                        <span style="top: 388px;" class="v2_230">Награда клиенту, который пришёл по приглашению</span>
+                        <input style="top: 446px;" class="v2_231" type="text" value="0 руб.">
+                        <span style="top: 491px;" class="v2_232">Мотивируйте клиента быстрее совершить первый заказ,
+                              начислив ему на бонусный счёт перед первым заказом какую-то сумму рублей.</span>
+                        <span style="top: 524px;" class="v2_232">Клиент получает награду после того, как скачает приложение, укажет свой номер телефона и введёт промокод, который он получил от друга, сотрудника вашей компании или
+                              из рекламного буклета.</span>
+
+
+                        <span style="top: 582px;" class="v2_230">Сколько раз клиент может получить награду за приглашения?</span>
+                        <input style="top: 639px;" class="v2_231"  type="text" value="0 руб.">
+
+                        <span style="top: 687px;" class="v2_232">Вы можете ограничить количество друзей,
+                        за которых клиент получит награду.</span>
+
+
+                        <span style="top: 723px;" class="v2_230">Награда клиенту за заполнение профиля</span>
+                        <input style="top: 781px;" class="v2_231" type="text" value="3 руб.">
+                        <span style="top: 827px;" class="v2_232">Мотивируйте клиента указать данные о себе,
+                        которыми вы сможете воспользоваться в рекламных акциях.</span>
+
+                          <ul class="hr">
+                           <li>
+                           <span style="top: -37px; left: 40px;" class="v2_230">Кэшбэк</span>
+                           <input type="text" style="top: -6px;left: 41px;width: 93px;" class="v2_231"  value="3">
+                           </li>
+                           <li>
+                           <span style="top: -37px; left: 170px;" class="v2_230">Реферал 1</span>
+                           <input type="text" class="v2_231" style="top: -6px;left: 171px;width: 122px"  value="3">
+                           </li>
+                           <li>
+                           <span style="top: -37px; left: 325px;" class="v2_230" >Реферал 2</span>
+                           <input type="text" style="top: -6px;left: 327px;width: 122px" class="v2_231" value="3">
+                           </li>
+                          </ul>
+
+                          <span style="top: 949px;" class="v2_232">Пользователь получит определённый процент c заказов на свой бонусный счёт.
+                                              Начисления будут поддерживать высокую лояльность:
+                                              клиенты будут чаще совершать заказы и намного реже удалять приложение.</span>
+                          <span style="top: 997px;" class="v2_232" >Реферал 1 и 2 — сколько процентов получит
+                                клиент с заказов своих друзей и друзей друзей.</span>
+
+            <span style="top: 1046px;" class="v2_230">Макс. процент от суммы заказа, который можно оплатить баллами</span>
+                <input style="top: 1102px; width:60px;" class="v2_231" type="text" value="0%">
+                <span style="top: 1144px;" class="v2_232">Оставьте поля пустыми, если ваше кассовое оборудование
+                позволяет делать произвольные скидки (до 100%).</span>
+                <span style="top: 1176px;" class="v2_232">Вы можете указать набор скидок,
+                которые дублируют возможности кассового оборудования.</span>
+                <span style="top: 1206px;" class="v2_232">Вы можете указать набор скидок,
+            которые дублируют возможности кассового оборудования.</span>
+
+                    </div>
+
+            <div class="v2_18">
+            <div class="v70_0"></div>
+            <img class="v80_1" th:src="@{/images/menu.svg}"/>
+            <a href="/admin/menu" class="v2_210">Меню</a>
+            <img class="v80_1" style="top:531px;" th:src="@{/images/mng.svg}"/>
+            <a href="/admin/actions" class="v2_218">Маркетинг</a>
+            <img class="v80_1" style="top:1076px;" th:src="@{/images/exit.svg}"/>
+            <a href="/menu/rolls" class="v2_229">Выход</a>
+            <img class="v80_1" style="top:729px;" th:src="@{/images/client.svg}"/>
+
+            <a href="/admin/clients" class="v2_222">Работа с клиентами</a>
+
+            <img class="v80_1" style="top:916px;" th:src="@{/images/setadmin.svg}"/>
+            <a href="/admin/main" class="v2_226">Настройки</a>
+
+            <a href="/admin/menu/rolls" class="v2_212">Роллы</a>
+            <a href="/admin/menu/sushi" class="v2_213">Суши</a>
+            <a href="/admin/menu/woks" class="v2_214">Рис Wok</a>
+            <a href="/admin/menu/soups" class="v2_215">Супы</a>
+            <a href="/admin/menu/sauces" class="v2_217">Соусы</a>
+            <a href="/admin/menu/drinks" class="v2_216">Напитки</a>
+            <a href="/admin/menu/sets" class="v2_211">Сеты</a>
+
+            <a href="/admin/program" class="v2_219">Программа лояльности</a>
+
+            <a href="/admin/actions" class="v2_220">Акции и скидки</a>
+            <a href="/admin/stats" class="v2_221">Стастистика</a>
+
+            <a href="/admin/clients" class="v2_223">Наши клиенты</a>
+            <a href="/admin/orders" class="v2_224">Заказы</a>
+            <a href="/admin/points" class="v2_225">Баллы</a>
+
+            <a href="/admin/main" class="v2_227">Главные</a>
+            <a href="/admin/payments" class="v2_228">Формы оплаты</a>
+            <a href="/admin/menu">
+                <div class="v2_19"></div>
+            </a>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,7 +1,5 @@
 package com.example.vitalyevich.onlinesite.model;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -19,7 +17,6 @@ public class User {
     @Column(name = "first_name", nullable = false, length = 20)
     private String firstName;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
 
@@ -91,6 +88,10 @@ public class User {
 
     public User(String userCode, String firstName) {
         this.userCode = userCode;
+        this.firstName = firstName;
+    }
+
+    public User(String firstName) {
         this.firstName = firstName;
     }
 

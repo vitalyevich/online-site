@@ -15,7 +15,7 @@
             </a>
 
                 <ul class="basketList">
-                    <li th:style="'top:' + ${iterStat.index * 71} + 'px;'" class="v0" th:each="el, iterStat : ${baskets}">
+                    <li th:style="'top:' + ${iterStat.index * 71} + 'px;'" class="vs0" th:each="el, iterStat : ${baskets}">
                         <img class="v77_1499" th:src="@{${el.product.photo.path + el.product.photo.name + el.product.photo.format}}"/>
                         <span class="v77_1496" th:text="${el.product.productName} + ' x' + ${el.amount}"></span>
                         <span class="v77_1497" th:text="${el.product.amount} +' шт / ' + ${el.product.weight} +' г'"></span>
@@ -64,7 +64,7 @@
                             margin: 0px;
                             padding: 0px;
                         }
-                        .v0 {
+                        .vs0 {
                         background: white;
                         position: absolute;
                         opacity: 1;

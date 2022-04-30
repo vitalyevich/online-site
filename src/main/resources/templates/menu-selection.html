@@ -24,17 +24,17 @@
              <span class="v72_769" th:text="${el.amount} +' шт / ' + ${el.weight} +' г'"></span>
              <span class="v72_766">Дополнительно</span>
 
-              <form action="" th:action="@{'/basket/add/menu/'+ ${el.id}}" method="post">
+              <form id="basket" th:action="@{'/menu/selection/' + ${el.id} + '/add/3'}" method="post">
                  <input type="submit" class="v72_781" value="Добавить в корзину">
               </form>
 
             <div>
                  <span class="v72_759">Блюдо<span class="v72_000">..............................................................................................
-                 <span class="v72_001" th:inline="text">[[${el.price.price}]] BYN</span></span></span>
+                 <span class="v72_001" id="price" th:inline="text">[[${el.price.price}]]<span class="v72_002">BYN</span></span></span></span>
                  <span class="v72_760">Дополнительно<span class="v72_000">.............................................................................
                                   <span id="sum" class="v72_001">0 BYN</span></span></span>
             <span class="v72_761">Итого<span class="v72_000">.................................................................................................
-                                              <span class="v72_001" id="res" th:inline="text">[[${el.price.price}]] BYN</span></span></span>
+                                              <span class="v72_001" id="res" th:inline="text">[[${el.price.price}]]<span class="v72_002">BYN</span></span></span></span>
             </div>
 
         </div>
@@ -62,19 +62,20 @@
                         var wasabi = document.getElementById('wasabi');
                         var sum = document.getElementById('sum');
                         var res = document.getElementById('res');
+                        sum.innerHTML = "0 BYN";
 
                         if (sauce.style.border != "2px solid orange") {
                             sauce.style.border="2px solid orange";
                             ginger.style.border="1px solid rgba(197,197,197,1)"
                             wasabi.style.border="1px solid rgba(197,197,197,1)"
                             sum.innerHTML = "1.2 BYN";
-                            res.innerHTML = parseFloat(document.getElementById('res').innerHTML)+1.2 + " BYN";
+                            res.innerHTML = (parseFloat(document.getElementById('res').innerHTML)+1.2).toFixed(1) + ' BYN';
                         } else {
                             sauce.style.border="1px solid rgba(197,197,197,1)"
                             ginger.style.border="1px solid rgba(197,197,197,1)"
                             wasabi.style.border="1px solid rgba(197,197,197,1)"
                             sum.innerHTML = "0 BYN";
-                            res.innerHTML = parseFloat(document.getElementById('res').innerHTML)-1.2 + " BYN";
+                            res.innerHTML = (parseFloat(document.getElementById('res').innerHTML)-1.2).toFixed(1) + ' BYN';
                         }
                     }
                     function ginger() {
@@ -83,20 +84,21 @@
                         var wasabi = document.getElementById('wasabi');
                         var sum = document.getElementById('sum');
                         var res = document.getElementById('res');
+                        sum.innerHTML = "0 BYN";
 
                         if (ginger.style.border != "2px solid orange") {
                             ginger.style.border="2px solid orange";
                             sauce.style.border="1px solid rgba(197,197,197,1)"
                             wasabi.style.border="1px solid rgba(197,197,197,1)"
                             sum.innerHTML = "1.2 BYN";
-                            res.innerHTML = parseFloat(document.getElementById('res').innerHTML)+1.2 + " BYN";
+                            res.innerHTML = (parseFloat(document.getElementById('res').innerHTML)+1.2).toFixed(1) + ' BYN';
                             }
                         else {
                             sauce.style.border="1px solid rgba(197,197,197,1)"
                             ginger.style.border="1px solid rgba(197,197,197,1)"
                             wasabi.style.border="1px solid rgba(197,197,197,1)"
                             sum.innerHTML = "0 BYN";
-                            res.innerHTML = parseFloat(document.getElementById('res').innerHTML)-1.2 + " BYN";
+                            res.innerHTML = (parseFloat(document.getElementById('res').innerHTML)-1.2).toFixed(1) + ' BYN';
                         }
                     }
                     function wasabi() {
@@ -105,32 +107,42 @@
                         var wasabi = document.getElementById('wasabi');
                         var sum = document.getElementById('sum');
                         var res = document.getElementById('res');
+                        sum.innerHTML = "0 BYN";
 
                         if (wasabi.style.border != "2px solid orange") {
                             wasabi.style.border="2px solid orange";
                             sauce.style.border="1px solid rgba(197,197,197,1)"
                             ginger.style.border="1px solid rgba(197,197,197,1)"
                             sum.innerHTML = "1.2 BYN";
-                            res.innerHTML = parseFloat(document.getElementById('res').innerHTML)+1.2 + " BYN";
+                            res.innerHTML = (parseFloat(document.getElementById('res').innerHTML)+1.2).toFixed(1) + ' BYN';
                             }
                         else {
                             sauce.style.border="1px solid rgba(197,197,197,1)"
                             ginger.style.border="1px solid rgba(197,197,197,1)"
                             wasabi.style.border="1px solid rgba(197,197,197,1)"
                             sum.innerHTML = "0 BYN";
-                            res.innerHTML = parseFloat(document.getElementById('res').innerHTML)-1.2 + " BYN";
+                            res.innerHTML = (parseFloat(document.getElementById('res').innerHTML)-1.2).toFixed(1) + ' BYN';
                         }
                     }
 
+                    const productConst = parseFloat(document.getElementById('price').innerHTML);
                     function add() {
+                        var res = document.getElementById('res');
                     	var elem = parseInt(document.getElementById('number').innerHTML)+1;
+                    	var product = parseFloat(document.getElementById('price').innerHTML);
                     	number.innerHTML = elem;
+                    	price.innerHTML = parseFloat(product + productConst).toFixed(1) + ' BYN';
+                    	res.innerHTML = (parseFloat(document.getElementById('res').innerHTML) + productConst).toFixed(1) + ' BYN';
                     }
                     function sub() {
+                        var res = document.getElementById('res');
                     	var elem = parseInt(document.getElementById('number').innerHTML)-1;
+                    	var product = parseFloat(document.getElementById('price').innerHTML);
                     	if (elem > 0) {
                     	number.innerHTML = elem;
-                    	}
+                        price.innerHTML = parseFloat(product - productConst).toFixed(1) + ' BYN';
+                        res.innerHTML = (parseFloat(document.getElementById('res').innerHTML) - productConst).toFixed(1) + ' BYN';
+                        }
                     }
 
                 </script>
@@ -254,7 +266,16 @@ body {
   font-weight: 500;
   font-size: 20px;
   color: black;
+  width: 150px;
+}
+.v72_002 {
+  position: absolute;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 20px;
+  color: black;
   width: 100px;
+  padding-left: 5px;
 }
 .v72_760 {
   width: 557px;

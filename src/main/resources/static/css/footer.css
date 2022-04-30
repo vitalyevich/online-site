@@ -274,7 +274,7 @@
     text-align: left;
 }
 .v40_88 {
-    width: 179px;
+    width: 190px;
     color: rgba(116,116,116,1);
     position: absolute;
     top: 178px;
@@ -305,6 +305,10 @@ input {
     font-size: 16px;
     opacity: 1;
     text-align: left;
+}
+
+.v40_44:focus {
+    border-bottom: 2px solid #C5C5C5;
 }
 
 ::placeholder {

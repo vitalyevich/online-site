@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
@@ -47,6 +48,12 @@ public class UserController {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private ActionRepository actionRepository;
+
+    @Autowired
+    private OrderRepository orderRepository;
 
     @GetMapping("/registration")
     public String registration() {
@@ -163,6 +170,7 @@ public class UserController {
             Iterable<Product> products = page;
             model.addAttribute("products", products);
 
+
             return "profile";
         }
         else {
@@ -175,9 +183,28 @@ public class UserController {
         return "menu-selection";
     }
 
+
+    @GetMapping("/modal")
+    public String modal() {
+        return "redirect:/profile#blackout-modal";
+    }
+
     @GetMapping("/delivery")
     public String delivery() {
         return "delivery";
+    }
+
+    @GetMapping("/profile/orders")
+    public String orders(Model model) {
+        //
+        String phone = SecurityContextHolder.getContext().getAuthentication().getName();
+        access = accessRepository.findByPhone(phone);
+        //
+
+        List<Order> orders = orderRepository.findOrderByAccessId(access.getId());
+        model.addAttribute("orders", orders);
+
+        return "client-orders";
     }
 }
 

@@ -13,6 +13,7 @@
 
      var myMap;
      var suggestView;
+     var myGeoObject;
 
      ymaps.ready(init);
 
@@ -29,7 +30,7 @@
                 });
                 myMap.geoObjects.add(placemark);
 
-                     var myGeoObject = new ymaps.GeoObject({
+                     myGeoObject = new ymaps.GeoObject({
                             // Описываем геометрию геообъекта.
                             geometry: {
                                 // Тип геометрии - "Многоугольник".
@@ -94,7 +95,6 @@
                                            var placemark = new ymaps.Placemark(result.geoObjects.get(0).geometry.getCoordinates());
                                            myCollection.add(placemark);
                                            myMap.geoObjects.add(myCollection);
-
                                       }
                                   );
                               });
@@ -283,7 +283,9 @@ border: none;
 .v69_681:valid {
   background: transparent;
 }
-
+.v69_681:focus {
+  border-bottom: 2px solid #373737;
+}
 
 .v69_681::placeholder {
     color: black;

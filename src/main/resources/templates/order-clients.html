@@ -1,0 +1,125 @@
+<!DOCTYPE html><html>
+<head>
+<title>Admin Panel</title>
+<link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,650,700,800,900" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+         <link rel="stylesheet" href="/css/admins.css">
+</head>
+    <body>
+        <div class="v2_17">
+
+                                        <div class="v2_20">
+                                         <span class="v2_209">Заказы</span>
+                                         <div class="v70_1"></div>
+
+                                         <select name="status" class="v69_680">
+                                              <option value="Статус">Статус</option>
+                                              <option value="Новый">Новый</option>
+                                              <option value="Принят">Принят</option>
+                                              <option value="Доставлен">Доставлен</option>
+                                              <option value="Отмена">Отмена</option>
+                                              <option value="В очереди">В очереди</option>
+                                          </select>
+
+                                          <select style="left: 206px;" name="status" class="v69_680">
+                                                    <option value="Зона доставки">Зона доставки</option>
+                                                <option value="Бесплатная">Бесплатная</option>
+                                                <option value="7 руб">7 руб</option>
+                                          </select>
+
+                                          <select style="left: 386px;" name="status" class="v69_680">
+                                                  <option value="Пункт самовывоза">Пункт самовывоза</option>
+                                              <option value="Столбцы">Столбцы</option>
+                                        </select>
+
+                                        <select style="left: 60px;top: 212px;" name="status" class="v69_680">
+                                                  <option value="Метод оплаты">Метод оплаты</option>
+                                              <option value="Наличными">Наличными</option>
+                                              <option value="Картой">Картой</option>
+                                        </select>
+
+
+                                            <table class="table">
+                                                                    	<thead>
+                                            <tr>
+                                            <th>Дата</th>
+                                            <th>Клиент</th>
+                                            <th>Телефон</th>
+                                            <th>Заказ</th>
+                                            <th>Итого</th>
+                                            <th>Статус</th>
+                                            </tr>
+                    </thead>
+                    	<tbody>
+                                            <tr th:each="lst : ${orders}">
+                                             <td th:utext="${lst.orderDate}">Дата</td>
+                                             <td th:utext="${lst.access.user.firstName}">Имя</td>
+                                             <td th:utext="${lst.access.phone}">Телефон</td>
+                                             <td th:text="${lst.order}">Заказ</td>
+                                             <td th:utext="${lst.price}">Итого</td>
+                                             <td>
+                                             <form id="form" th:action="@{'/admin/orders/' + ${lst.id}}" method="post" >
+                                             <select name="status" class="v69_679 select_send_ajax">
+                                                             <option th:value="${lst.status}" th:text="${lst.status}"></option>
+                                                             <option value="Новый">Новый</option>
+                                                             <option value="Принят">Принят</option>
+                                                             <option value="Доставлен">Доставлен</option>
+                                                             <option value="Отмена">Отмена</option>
+                                                             <option value="В очереди">В очереди</option>
+                                                         </select>
+                                             </form>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                        <script>
+                        $('.select_send_ajax').on('change', function() {
+                            var form = document.getElementById('form');
+                            form.submit();
+                        });
+                        </script>
+
+                                                </td>
+                                           </tr>
+                                                                  	</tbody>
+                                        </table>
+                                        </div>
+
+            <div class="v2_18">
+            <div class="v70_0"></div>
+            <img class="v80_1" th:src="@{/images/menu.svg}"/>
+            <a href="/admin/menu" class="v2_210">Меню</a>
+            <img class="v80_1" style="top:531px;" th:src="@{/images/mng.svg}"/>
+            <a href="/admin/actions" class="v2_218">Маркетинг</a>
+            <img class="v80_1" style="top:1076px;" th:src="@{/images/exit.svg}"/>
+            <a href="/menu/rolls" class="v2_229">Выход</a>
+            <img class="v80_1" style="top:729px;" th:src="@{/images/client.svg}"/>
+
+            <a href="/admin/clients" class="v2_222">Работа с клиентами</a>
+
+            <img class="v80_1" style="top:916px;" th:src="@{/images/setadmin.svg}"/>
+            <a href="/admin/main" class="v2_226">Настройки</a>
+
+            <a href="/admin/menu/rolls" class="v2_212">Роллы</a>
+            <a href="/admin/menu/sushi" class="v2_213">Суши</a>
+            <a href="/admin/menu/woks" class="v2_214">Рис Wok</a>
+            <a href="/admin/menu/soups" class="v2_215">Супы</a>
+            <a href="/admin/menu/sauces" class="v2_217">Соусы</a>
+            <a href="/admin/menu/drinks" class="v2_216">Напитки</a>
+            <a href="/admin/menu/sets" class="v2_211">Сеты</a>
+
+            <a href="/admin/program" class="v2_219">Программа лояльности</a>
+
+            <a href="/admin/actions" class="v2_220">Акции и скидки</a>
+            <a href="/admin/stats" class="v2_221">Стастистика</a>
+
+            <a href="/admin/clients" class="v2_223">Наши клиенты</a>
+            <a href="/admin/orders" class="v2_224">Заказы</a>
+            <a href="/admin/points" class="v2_225">Баллы</a>
+
+            <a href="/admin/main" class="v2_227">Главные</a>
+            <a href="/admin/payments" class="v2_228">Формы оплаты</a>
+            <a href="/admin/menu">
+                <div class="v2_19"></div>
+            </a>
+            </div>
+        </div>
+    </body>
+</html>

@@ -38,6 +38,9 @@
     opacity: 1;
     text-align: left;
 }
+.v26_13:focus{
+    border-bottom: 2px solid #575757;
+}
 .v26_14 {
     width: 360px;
     height: 26px;
@@ -149,6 +152,7 @@
 
     cursor: pointer;
 }
+.v26_32:hover {opacity: 0.6}
 .v26_33 {
     width: 180px;
     height: 33px;
