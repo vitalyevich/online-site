@@ -24,7 +24,7 @@
              <span class="v72_769" th:text="${el.amount} +' шт / ' + ${el.weight} +' г'"></span>
              <span class="v72_766">Дополнительно</span>
 
-              <form id="basket" th:action="@{'/menu/selection/' + ${el.id} + '/add/3'}" method="post">
+              <form id="basket" th:action="@{'/selection/' + ${el.id} + '/add/3'}" method="post">
                  <input type="submit" class="v72_781" value="Добавить в корзину">
               </form>
 

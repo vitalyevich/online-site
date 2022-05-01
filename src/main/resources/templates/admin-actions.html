@@ -10,7 +10,6 @@
 
         <div class="v2_20">
          <span class="v2_209">Акции и скидки</span>
-         <img class="v77_1504" th:src="@{/images/adminsetting.svg}"/>
          <div class="v70_1"></div>
 
          <select class="v69_679" id="resizing_select">
@@ -21,10 +20,10 @@
          <ul class="menuList">
              <li th:style="'top:' + ${iterStat.index * 251} + 'px;'" class="v0" th:each="el, iterStat : ${actions}">
                  <img class="v77_1499" th:src="@{${el.product.photo.path + el.product.photo.name + el.product.photo.format}}"/>
-                 <span class="v77_1496" th:text="${el.name}"></span>
-                 <span class="v77_1500" th:text="${el.description}"></span>
-                 <span class="v77_1498" style="left: 768px;" th:text="${el.startDate}"></span>
-                 <span class="v77_1498" style="top: 32px;left: 768px;" th:text="${el.endDate}"></span>
+                 <input class="v77_1496" th:value="${el.name}">
+                 <input class="v77_1500" th:value="${el.description}">
+                 <input class="v77_1498" style="left: 768px;" th:value="${el.startDate}">
+                 <input class="v77_1498" style="top: 32px;left: 768px;" th:value="${el.endDate}">
                  <span class="v77_1500" style="left: 663px;top: 0px;">Дата начала</span>
                  <span class="v77_1500" style="top: 34px;left: 633px;">Дата окончания</span>
 
@@ -95,7 +94,10 @@
 </html>
 
 <style>
-
+input {
+border: none;
+outline: none;
+}
 select {
 outline: none;
     border-radius: 7px;
@@ -143,8 +145,8 @@ height: 196px;
     overflow: hidden;
 }
 .v77_1496 {
-    width: 370px;
-    height: 20px;
+width: 329px;
+    height: 40px;
     top: 40px;
     left: 328px;
     color: #383838;

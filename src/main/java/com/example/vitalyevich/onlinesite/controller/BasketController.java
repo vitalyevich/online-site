@@ -33,7 +33,7 @@ public class BasketController {
         Access userFromDb = accessRepository.findUserByPhone(phone);
         //
 
-        Basket basket = basketRepository.findBasketByProductId(id);
+        Basket basket = basketRepository.findBasketByProductIdAndUserId(id, userFromDb.getUser().getId());
 
         if (basket != null) {
             basket = new Basket(new BasketId(userFromDb.getUser().getId(), id),new User(userFromDb.getUser().getId()),new Product(id),basket.getAmount() + 1);
@@ -61,7 +61,7 @@ public class BasketController {
         Access userFromDb = accessRepository.findUserByPhone(phone);
         //
 
-        Basket basket = basketRepository.findBasketByProductId(id);
+        Basket basket = basketRepository.findBasketByProductIdAndUserId(id, userFromDb.getUser().getId());
 
         if (basket.getAmount() == 1) {
             basketRepository.delete(new Basket(new BasketId(userFromDb.getUser().getId(), id), new User(userFromDb.getUser().getId()), new Product(id), basket.getAmount()));
@@ -89,7 +89,8 @@ public class BasketController {
         Access userFromDb = accessRepository.findUserByPhone(phone);
         //
 
-        Basket basket = basketRepository.findBasketByProductId(id);
+
+        Basket basket = basketRepository.findBasketByProductIdAndUserId(id, userFromDb.getUser().getId());
 
         basketRepository.delete(new Basket(new BasketId(userFromDb.getUser().getId(), id), new User(userFromDb.getUser().getId()), new Product(id), basket.getAmount()));
 
@@ -111,7 +112,7 @@ public class BasketController {
         return "redirect:/menu/rolls#blackout-basket";
     }
 
-    @PostMapping("/menu/selection/{id}/add/{count}")
+    @PostMapping("/selection/{id}/add/{count}")
     public String addCount(@PathVariable(value = "id") int id, @PathVariable(value = "count") int count) {
 
         //
@@ -119,7 +120,7 @@ public class BasketController {
         Access userFromDb = accessRepository.findUserByPhone(phone);
         //
 
-        Basket basket = basketRepository.findBasketByProductId(id);
+        Basket basket = basketRepository.findBasketByProductIdAndUserId(id, userFromDb.getUser().getId());
 
         if (basket != null) {
             basket = new Basket(new BasketId(userFromDb.getUser().getId(), id),new User(userFromDb.getUser().getId()),new Product(id),basket.getAmount() + count);

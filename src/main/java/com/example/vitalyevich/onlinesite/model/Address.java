@@ -28,15 +28,18 @@ public class Address {
     @Column(name = "home", nullable = false)
     private Integer home;
 
-    @OneToMany(mappedBy = "address")
-    private Set<Order> orders = new LinkedHashSet<>();
+    @ManyToMany
+    @JoinTable(name = "user_addresses",
+            joinColumns = @JoinColumn(name = "address_id"),
+            inverseJoinColumns = @JoinColumn(name = "client_id"))
+    private Set<User> users = new LinkedHashSet<>();
 
-    public Set<Order> getOrders() {
-        return orders;
+    public Set<User> getUsers() {
+        return users;
     }
 
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 
     public Integer getHome() {
@@ -85,5 +88,12 @@ public class Address {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Address(Integer id) {
+        this.id = id;
+    }
+
+    public Address() {
     }
 }

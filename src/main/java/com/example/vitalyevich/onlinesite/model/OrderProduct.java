@@ -66,4 +66,15 @@ public class OrderProduct {
         this.product = product;
         this.amount = amount;
     }
+
+    public OrderProduct(Integer id) {
+        this.id = id;
+    }
+
+    public OrderProduct(Integer id, Order order, Product product, Integer amount) {
+        this.id = id;
+        this.order = order;
+        this.product = product;
+        this.amount = amount;
+    }
 }

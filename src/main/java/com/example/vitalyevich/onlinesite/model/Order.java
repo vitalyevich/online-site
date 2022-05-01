@@ -66,8 +66,8 @@ public class Order {
         this.status = status;
     }
 
-    public Double getPrice() {
-        return price;
+    public String getPrice() {
+        return String.format("%.2f",price);
     }
 
     public void setPrice(Double price) {
@@ -159,4 +159,13 @@ public class Order {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    public Order() {
+    }
+
+    public Order(Integer id) {
+        this.id = id;
+    }
+
+
 }

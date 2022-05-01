@@ -11,18 +11,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.SecureRandom;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Controller for {@link User}'s pages.
@@ -54,6 +48,9 @@ public class UserController {
 
     @Autowired
     private OrderRepository orderRepository;
+
+    @Autowired
+    private AddressRepository addressRepository;
 
     @GetMapping("/registration")
     public String registration() {
@@ -202,9 +199,49 @@ public class UserController {
         //
 
         List<Order> orders = orderRepository.findOrderByAccessId(access.getId());
+
         model.addAttribute("orders", orders);
 
         return "client-orders";
+    }
+
+    @GetMapping("/profile/address")
+    public String address(Model model) {
+        //
+        String phone = SecurityContextHolder.getContext().getAuthentication().getName();
+        access = accessRepository.findByPhone(phone);
+        //
+
+
+        List<Address> addresses = addressRepository.findAddressByUsers(new User(access.getUser().getId()));
+
+        model.addAttribute("address", addresses);
+
+        return "client-address";
+    }
+
+    @PostMapping({"/profile/address/save/{id}", "/profile/address/save"})
+    public String saveAddress(Address address,@RequestParam(name = "cityName") int cityId, @PathVariable(required = false) Integer id) {
+        //
+        String phone = SecurityContextHolder.getContext().getAuthentication().getName();
+        access = accessRepository.findByPhone(phone);
+        //
+
+        List<User> users = new ArrayList<>();
+        users.add(access.getUser());
+        address.setCity(new City(cityId));
+        Set<User> userSet = new HashSet<>(users);
+        address.setUsers(userSet);
+        addressRepository.save(address);
+
+       return "redirect:/profile/address";
+    }
+
+    @GetMapping("/profile/address/del/{id}")
+    public String delAddress(Model model, @PathVariable(required = false) Integer id) {
+        
+        addressRepository.delete(new Address(id));
+        return "redirect:/profile/address";
     }
 }
 

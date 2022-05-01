@@ -34,7 +34,7 @@ public class AdminController {
     private Category category = new Category();
 
     @GetMapping("/admin/clients")
-    private String adminClient(Model model) {
+    public String adminClient(Model model) {
         List<Access> accesses = accessRepository.findAll();
         model.addAttribute("accesses", accesses);
         return "work-clients";

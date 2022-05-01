@@ -35,8 +35,11 @@ public class OrderController {
     @Autowired
     private OrderProductRepository productRepository;
 
+    @Autowired
+    private AddressRepository addressRepository;
+
     @GetMapping("/order")
-    private String order(Model model) {
+    public String order(Model model) {
 
         //
         String phone = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -63,24 +66,32 @@ public class OrderController {
             sum += b.getAmount() * Double.parseDouble(b.getProduct().getPrice().getPrice());
         }
 
-        if (sum >= 20) {
-            model.addAttribute("delivery", 0);
-            result = sum;
-        } else {
+        try {
+            if (sum >= 20) {
+                model.addAttribute("delivery", 0);
+                result = sum;
+            } else {
+                throw new Exception();
+            }
+        }
+        catch (Exception e) {
             model.addAttribute("delivery", 7);
             delivery = 7;
             result = sum + delivery;
         }
 
+        List<Address> address = addressRepository.findAddressByUsers(new User(userFromDb.getUser().getId()));
 
+        model.addAttribute("address",address);
         model.addAttribute("sum",sum);
         model.addAttribute("result",result);
         model.addAttribute("delivery",delivery);
         model.addAttribute("balance", userPoint.getBalance());
         return "order";
     }
+
     @PostMapping("/order")
-    private String add(Model model, @RequestParam(name = "address") String address,
+    public String add(Model model, @RequestParam(name = "address") int addressId,
                        @RequestParam(name = "h") int h,
                        @RequestParam(name = "m") int m,
                        @RequestParam(name = "d") int date,
@@ -90,29 +101,30 @@ public class OrderController {
         //
         String phone = SecurityContextHolder.getContext().getAuthentication().getName();
         Access userFromDb = accessRepository.findUserByPhone(phone);
-
         User user = userFromDb.getUser();
         //
 
         Iterable<Basket> baskets = basketRepository.findBasketByUserId(userFromDb.getUser().getId());
         List<Basket> basketList = new ArrayList<>();
         baskets.forEach(basketList::add);
+
         List<OrderProduct> orderProducts = new ArrayList<>();
 
+        double sum = 0;
         for (Basket basket: basketList) {
             orderProducts.add(new OrderProduct(basket.getProduct(),basket.getAmount()));
+            sum += basket.getAmount() * Double.parseDouble(basket.getProduct().getPrice().getPrice());
         }
 
-
         Set<OrderProduct> productSet = new HashSet<>(orderProducts);
-
 
         Order order = new Order();
 
         Address addressClient = new Address();
-        addressClient.setId(1);
+        addressClient.setId(addressId);
         order.setAddress(addressClient);
-        order.setType("Самовывоз");
+
+        order.setType("Доставка");
         order.setEndDate(Instant.now());
         order.setOrderDate(Instant.now());
 
@@ -128,13 +140,22 @@ public class OrderController {
 
         order.setPayment(paymentClient);
 
-        order.setPrice(500.0);
+        order.setStatus("Новый");
+
+        order.setPrice(sum);
         order.setAccess(userFromDb);
+        order.setOrderProducts(productSet);
 
         orderRepository.save(order);
 
+        /*List<OrderProduct> orderProductList = productRepository.findAll();
+        int size = orderProductList.size() + 1;*/
+
+        OrderProduct orderProduct;
+
         for (Basket basket: basketList) {
-            productRepository.save(new OrderProduct(order,basket.getProduct(),basket.getAmount()));
+            orderProduct = new OrderProduct(order,basket.getProduct(),basket.getAmount());
+            productRepository.save(orderProduct);
             basketRepository.delete(basket);
         }
 
@@ -142,7 +163,7 @@ public class OrderController {
     }
 
     @GetMapping("/profile/orders/cancel/{id}")
-    private String cancelOrder(Model model, @PathVariable(name = "id") int id) {
+    public String cancelOrder(Model model, @PathVariable(name = "id") int id) {
 
         Order order = orderRepository.findOrderById(id);
 

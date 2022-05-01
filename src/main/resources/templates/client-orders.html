@@ -13,13 +13,15 @@
     <div th:insert="blocks/header :: header"></div>
 
     <div class="v40_16">
+    <span class="v61_390" th:inline="text">Заказы</span>
 
     <ul class="orderList">
             <li th:style="'top:' + ${iterStat.index * 321} + 'px;'" class="v0" th:each="el, iterStat : ${orders}">
                 <span class="v77_1496" style="top: 27px;" th:text="'Дата заказа: ' + ${el.orderDate}"></span>
                 <span class="v77_1496" style="font-weight: 400;top: 67px;left: 29px;width: 375px;" th:text="${el.order}"></span>
-                <span class="v77_1497" style="top: 148px;width: 201px;left: 30px;" th:text="'Стоимость: ' + ${el.price} + ' BYN'"></span>
-                <span class="v77_1497" style="top: 199px;left: 145px;width: 200px;" th:text="'Статус: ' + ${el.status}"></span>
+                <span class="v77_1497" style="top: 166px;width: 282px;left: 30px;" th:text="'Стоимость: ' + ${el.price} + ' BYN'"></span>
+                <span class="v77_1497" style="top: 203px;left: 160px;width: 200px;" th:text="'Статус: ' + ${el.status}"></span>
+                <span class="v77_1497" style="top: 183px;left: 30px;width: 212px;" th:text="'Комментарий: ' + ${el.comment}"></span>
                 <a th:href="'/profile/orders/cancel/' + ${el.id}">
                 <input type="submit" class="v77_1497" style="top: 231px;left: 112px;width: 200px;border-radius: 15px;height: 33px;cursor:pointer;" value="Отменить">
                 </a>
@@ -52,6 +54,18 @@
 }
 body {
   font-size: 14px;
+}
+.v61_390 {
+  width: 582px;
+  color: rgba(55,55,55,1);
+  position: absolute;
+  top: 40px;
+  left: 150px;
+  font-family: Montserrat;
+  font-weight: Bold;
+  font-size: 36px;
+  opacity: 1;
+  text-align: left;
 }
 .v77_1496 {
     width: 250px;

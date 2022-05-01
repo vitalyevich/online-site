@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/product.css">
+    <link rel="stylesheet" href="/css/product-footer.css">
+    <script src="https://snipp.ru/cdn/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="v61_346">
+        <div th:insert="blocks/header :: header"></div>
+        <div class="v40_16">
+
+
+<span class="v90_133">Адреса</span>
+
+     <ul class="list">
+            <li th:style="'top:' + ${iterStat.index * 321} + 'px;'" class="v0" th:each="el, iterStat : ${address}">
+                <a th:href="'/profile/address/del/' + ${el.id}" style="cursor:pointer;">
+                <div class="v77_1490"></div>
+                </a>
+                <span class="v77_1496" style="top: 27px;" th:text="'Адрес №' + ${iterStat.index + 1}"></span>
+                <span class="v77_1496" style="font-weight: 400;top: 67px;left:-55px;width: 375px;" th:text="${'Город: ' + el.city.cityName}"></span>
+                <span class="v77_1497" style="top: 103px;width: 213px;left: 30px;" th:text="'Улица ' + ${el.street}"></span>
+                <span class="v77_1497" style="top: 165px;left: 31px;width: 200px;" th:text="'Подъезд: ' + ${el.entrance}"></span>
+                <span class="v77_1497" style="top: 190px;left: 32px;width: 200px;" th:text="'Этаж: ' + ${el.floor}"></span>
+                <span class="v77_1497" style="top: 129px;left: 30px;width: 200px;" th:text="'Дом: ' + ${el.home}"></span>
+                <a th:href="'/profile/address/save/' + ${el.id}">
+                <input type="submit" class="v77_1497" style="top: 231px;left: 27px;width: 200px;border-radius: 15px;height: 33px;cursor: pointer;" value="Изменить">
+                </a>
+            </li>
+    </ul>
+
+<form th:action="@{/profile/address/save}" method="post">
+    <span class="v90_146">Город: <span class="v90_000"></span></span>
+    <select required name="cityName" type="text" class="v90_134">
+                <option selected="selected" value="1">Столбцы</option>
+                <option value="2">Минск</option>
+    </select>
+
+    <span class="v90_147">Улица:
+
+    <input required type="text" name="street" class="v90_142" placeholder="Укажите название улицы">
+
+    <span class="v90_154">Подъезд: <span class="v90_000"></span></span>
+
+    <input name="entrance" class="v90_157" type="number"
+    placeholder="Укажите номер подъезда">
+
+    <span class="v90_158">Этаж:
+    <span class="v90_000"></span></span>
+
+    <input type="number" name="floor" class="v90_139" placeholder="Укажите номер вашего этажа">
+
+
+    <span class="v90_152">Дом: <span class="v90_000"></span></span>
+    <input required name="home" type="number" class="v90_151" placeholder="Укажите номер вашего дома">
+
+
+    <input type="submit" class="v90_164" value="Сохранить изменения">
+</form>
+
+        </div>
+        <div th:insert="blocks/footer :: footer"></div>
+
+        <style>
+            .v40_72 {
+                 background: #404040;
+            }
+        </style>
+    </div>
+</body>
+</html>
+
+<style>
+.v77_1496 {
+width: 121px;
+    height: 20px;
+    top: 4px;
+    left: 68px;
+    color: #383838;
+    position: absolute;
+    font-family: Montserrat;
+    font-weight: 700;
+    font-size: 16px;
+    opacity: 1;
+    text-align: center;
+}
+.v77_1497 {
+    width: 110px;
+    height: 17px;
+    top: 25px;
+    left: 788px;
+    color: black;
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 14px;
+    opacity: 1;
+    position: absolute;
+    overflow: hidden;
+}
+.list {
+    list-style: none;
+    display: block;
+    overflow: hidden;
+    top: 24px;
+    left: 719px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+}
+.v0 {
+    position: absolute;
+    width: 253px;
+    height: 290px;
+    opacity: 1;
+    overflow: hidden;
+    border: 2px solid;
+    border-color: #c9c9c9;
+    border-radius: 50px;
+}
+.v61_429 {
+  width: 424px;
+  color: rgba(55,55,55,1);
+  position: absolute;
+  top: 552px;
+  left: 155px;
+  font-family: Montserrat;
+  font-weight: Bold;
+  font-size: 32px;
+  opacity: 1;
+  text-align: left;
+}
+.v61_455 {
+  width: 34px;
+  height: 34px;
+  background: transparent;
+  opacity: 1;
+  position: absolute;
+  top: 555px;
+  left: 1255px;
+  overflow: hidden;
+}
+.v61_458 {
+  width: 34px;
+  height: 34px;
+  background: transparent;
+  opacity: 1;
+  position: absolute;
+  top: 555px;
+  left: 1210px;
+  overflow: hidden;
+}
+.v61_346 {
+  width: 100%;
+  height: 1345px;
+  background: rgba(255,255,255,1);
+  opacity: 1;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+.v40_16 {
+  width: 1440px;
+  height: 984px;
+  margin: auto;
+  background: transparent;
+  opacity: 1;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+.v90_133 {
+  width: 401px;
+  color: rgba(55,55,55,1);
+  position: absolute;
+  top: 40px;
+  left: 150px;
+  font-family: Montserrat;
+  font-weight: Bold;
+  font-size: 36px;
+  opacity: 1;
+  text-align: left;
+}
+.v90_134 {
+border: none;
+outline: none;
+width: 100px;
+left: 250px;
+  height: 26px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 125px;
+  overflow: hidden;
+  width: 360px;
+    color: rgba(87,87,87,1);
+    font-family: Montserrat;
+    font-weight: 400;
+    font-size: 16px;
+    opacity: 1;
+    text-align: left;
+    border-bottom: 1px solid rgba(87,87,87,1)
+}
+.v90_134:focus {
+    border-bottom: 2px solid rgba(87,87,87,1)
+}
+.v90_142:focus {
+    border-bottom: 2px solid rgba(87,87,87,1)
+}
+.v90_145:focus {
+    border-bottom: 2px solid rgba(87,87,87,1)
+}
+.v90_157:focus {
+    border-bottom: 2px solid rgba(87,87,87,1)
+}
+.v90_139:focus {
+    border-bottom: 2px solid rgba(87,87,87,1)
+}
+.v90_151:focus {
+    border-bottom: 2px solid rgba(87,87,87,1)
+}
+.v90_164:hover {
+    opacity: 0.7;
+}
+.v90_139 {
+    width: 360px;
+    height: 26px;
+    top: 132px;
+    left: 96px;
+    color: rgba(87,87,87,1);
+    position: absolute;
+    font-family: Montserrat;
+    font-weight: 400;
+    font-size: 16px;
+    opacity: 1;
+    text-align: left;
+    border-bottom: 1px solid rgba(87,87,87,1);
+}
+.v90_142 {
+
+    background: transparent;
+    border-bottom: 1px solid #575757;
+    position: relative;
+    width: 360px;
+    height: 26px;
+    font-family: Montserrat;
+    font-weight: 400;
+    font-size: 16px;
+    opacity: 1;
+    text-align: left;
+    top: -30px;
+    left: 99px;
+    color: rgba(87,87,87,1);
+
+}
+.v90_145 {
+  width: 360px;
+  height: 26px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  top: 257px;
+  left: 443px;
+  color: rgba(87,87,87,1);
+  position: absolute;
+  font-family: Montserrat;
+  font-weight: 400;
+  font-size: 16px;
+  opacity: 1;
+  text-align: left;
+  border-bottom: 1px solid rgba(87,87,87,1)
+}
+.v90_146 {
+  width: 202px;
+  color: rgba(55,55,55,1);
+  position: absolute;
+  top: 126px;
+  left: 150px;
+  font-size: 20px;
+  opacity: 1;
+  text-align: left;
+  font-family: Montserrat;
+  font-weight: 500;
+}
+.v90_004 {
+    width: 335px;
+    color: rgba(55,55,55,1);
+    position: absolute;
+    top: 57px;
+    left: 579px;
+    font-size: 14px;
+    opacity: 1;
+    text-align: left;
+    font-family: Montserrat;
+    font-weight: 500;
+}
+.v77_1490 {
+    width: 44px;
+    height: 44px;
+    background: rgba(255,255,255,1);
+    opacity: 1;
+    position: absolute;
+top: 6px;
+    left: 179px;
+    overflow: hidden;
+    background: url("/images/close.svg");
+}
+.v90_000 {
+  font-family: Montserrat;
+  font-weight: 700;
+}
+.v90_147 {
+  width: 137px;
+  color: rgba(55,55,55,1);
+  position: absolute;
+  top: 207px;
+  left: 150px;
+  font-size: 20px;
+  opacity: 1;
+  text-align: left;
+    font-family: Montserrat;
+    font-weight: 500;
+}
+.v90_151 {
+width: 360px;
+    height: 26px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    top: 201px;
+    left: 96px;
+    color: rgba(87,87,87,1);
+    position: absolute;
+    font-family: Montserrat;
+    font-weight: 400;
+    font-size: 16px;
+    opacity: 1;
+    text-align: left;
+    border-bottom: 1px solid rgba(87,87,87,1);
+}
+
+.v90_152 {
+    width: 300px;
+    color: rgba(55,55,55,1);
+    position: absolute;
+    top: 210px;
+    left: 18px;
+    font-size: 20px;
+    opacity: 1;
+    text-align: left;
+    font-family: Montserrat;
+    font-weight: 500;
+}
+
+.v90_154 {
+    width: 300px;
+    color: rgba(55,55,55,1);
+    position: absolute;
+    top: 69px;
+    left: -26px;
+    font-size: 20px;
+    opacity: 1;
+    text-align: left;
+    font-family: Montserrat;
+    font-weight: 500;
+}
+
+.v90_157 {
+    width: 360px;
+    height: 26px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    top: 62px;
+    left: 97px;
+    color: rgba(87,87,87,1);
+    position: absolute;
+    font-family: Montserrat;
+    font-weight: 400;
+    font-size: 16px;
+    opacity: 1;
+    text-align: left;
+    border-bottom: 1px solid rgba(87,87,87,1);
+}
+.v90_158 {
+width: 244px;
+    color: rgba(55,55,55,1);
+    position: absolute;
+    top: 140px;
+    left: 11px;
+    font-size: 20px;
+    opacity: 1;
+    text-align: left;
+    font-family: Montserrat;
+    font-weight: 500;
+}
+.v90_164 {
+    width: 360px;
+    height: 44px;
+    top: 282px;
+    left: 103px;
+    background: linear-gradient(90deg, rgba(216,84,97,1) 0%, rgba(241,172,85,1) 100%);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: rgba(255,255,255,1);
+    position: absolute;
+    font-family: Montserrat;
+    font-weight: 600;
+    font-size: 20px;
+    opacity: 1;
+    text-align: center;
+    cursor: pointer;
+}
+</style>

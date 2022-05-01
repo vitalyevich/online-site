@@ -26,7 +26,11 @@
 
 <div class="target target-1">
             <div class="v75_885">
-                        <input required name="address" id="suggest" class="v75_894" placeholder="Введите ваш адрес">
+                        <select name="address" class="v75_894" id="resizing_select">
+                                    <option th:each="el, iterStat : ${address}" th:value="${iterStat.index + 1}" th:text="${el.city.cityName + ', ул.' + el.street + ', дом ' + el.home}">
+                                    </option>
+                        </select>
+                        <!-- <input required name="address" id="suggest" class="v75_894" placeholder="Введите ваш адрес"> -->
 
                         <input name="comment" class="v75_897" type="text" placeholder="Комментарий к заказу">
 
@@ -260,6 +264,9 @@
                 <span class="v75_935">Итого к оплате<span class="v72_000">.............................................................................................
                 <span class="v72_002" th:inline="text">[[${result}]] BYN</span></span></span>
 
+                <input type="submit" class="v75_945" value="Оформить заказ">
+                 </form>
+
                 <ul class="basketList">
                     <li th:style="'top:' + ${iterStat.index * 71} + 'px;'" class="v0" th:each="el, iterStat : ${baskets}">
                         <img class="v77_1499" th:src="@{${el.product.photo.path + el.product.photo.name + el.product.photo.format}}"/>
@@ -273,7 +280,23 @@
                     </li>
                 </ul>
 
-                    <style>
+
+
+                <span class="v75_948">Нажимая кнопку «Оформить заказ», я соглашаюсь с публичной офертой.</span>
+    </div>
+
+    <div th:insert="blocks/footer :: footer"></div>
+
+    <style>
+        .v40_72 {
+             background: #404040;
+        }
+    </style>
+
+    </div>
+</body>
+</html>
+ <style>
                         .basketList {
                             list-style: none;
                             display: block;
@@ -302,12 +325,12 @@
                           color: #C5C5C5;
                         }
                         .v72_001 {
-                          position: absolute;
-                          font-family: Montserrat;
-                          font-weight: 500;
-                          font-size: 20px;
-                          color: black;
-                          width: 100px;
+                            position: absolute;
+                                font-family: Montserrat;
+                                font-weight: 500;
+                                font-size: 20px;
+                                color: black;
+                                width: 118px;
                         }
                         .v72_002 {
                           position: absolute;
@@ -318,25 +341,6 @@
                           width: 140px;
                         }
                     </style>
-
-                <input type="submit" class="v75_945" value="Оформить заказ">
-                 </form>
-
-                <span class="v75_948">Нажимая кнопку «Оформить заказ», я соглашаюсь с публичной офертой.</span>
-    </div>
-
-    <div th:insert="blocks/footer :: footer"></div>
-
-    <style>
-        .v40_72 {
-             background: #404040;
-        }
-    </style>
-
-    </div>
-</body>
-</html>
-
 <style>* {
  box-sizing: border-box;
 }

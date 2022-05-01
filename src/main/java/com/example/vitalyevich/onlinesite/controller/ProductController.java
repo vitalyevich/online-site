@@ -32,7 +32,12 @@ public class ProductController {
     @Autowired
     private BasketRepository basketRepository;
 
-    private Category category = new Category();
+    private Page getCategory(Category category, int id, int offset) {
+        category = new Category();
+        category.setId(id);
+        Page<Product> page = productRepository.findByCategory(category,PageRequest.of(offset, 6));
+        return page;
+    }
 
 
     @GetMapping({"/menu/rolls/page/{offset}", "/menu/rolls"})
@@ -71,8 +76,7 @@ public class ProductController {
             return "redirect:/menu/rolls";
         }
 
-        category.setId(1);
-        Page<Product> page = productRepository.findByCategory(category,PageRequest.of(offset, 6));
+        Page<Product> page = getCategory(new Category(), 1, offset);
         Iterable<Product> products = page;
 
         if (offset >= page.getTotalPages()) {
@@ -99,8 +103,7 @@ public class ProductController {
             return "redirect:/menu/sushi";
         }
 
-        category.setId(2);
-        Page<Product> page = productRepository.findByCategory(category,PageRequest.of(offset, 6));
+        Page<Product> page = getCategory(new Category(), 2, offset);
         Iterable<Product> products = page;
 
         if (offset >= page.getTotalPages()) {
@@ -127,8 +130,7 @@ public class ProductController {
             return "redirect:/menu/woks";
         }
 
-        category.setId(3);
-        Page<Product> page = productRepository.findByCategory(category,PageRequest.of(offset, 6));
+        Page<Product> page = getCategory(new Category(), 3, offset);
         Iterable<Product> products = page;
 
         if (offset >= page.getTotalPages()) {
@@ -155,8 +157,7 @@ public class ProductController {
             return "redirect:/menu/soups";
         }
 
-        category.setId(4);
-        Page<Product> page = productRepository.findByCategory(category,PageRequest.of(offset, 6));
+        Page<Product> page = getCategory(new Category(), 4, offset);
         Iterable<Product> products = page;
 
         if (offset >= page.getTotalPages()) {
@@ -183,8 +184,7 @@ public class ProductController {
             return "redirect:/menu/sauces";
         }
 
-        category.setId(5);
-        Page<Product> page = productRepository.findByCategory(category,PageRequest.of(offset, 6));
+        Page<Product> page = getCategory(new Category(), 5, offset);
         Iterable<Product> products = page;
 
         if (offset >= page.getTotalPages()) {
@@ -211,8 +211,7 @@ public class ProductController {
             return "redirect:/menu/drinks";
         }
 
-        category.setId(6);
-        Page<Product> page = productRepository.findByCategory(category,PageRequest.of(offset, 6));
+        Page<Product> page = getCategory(new Category(), 6, offset);
         Iterable<Product> products = page;
 
         if (offset >= page.getTotalPages()) {
@@ -239,8 +238,7 @@ public class ProductController {
             return "redirect:/menu/sets";
         }
 
-        category.setId(7);
-        Page<Product> page = productRepository.findByCategory(category,PageRequest.of(offset, 6));
+        Page<Product> page = getCategory(new Category(), 7, offset);
         Iterable<Product> products = page;
 
         if (offset >= page.getTotalPages()) {
@@ -268,7 +266,6 @@ public class ProductController {
         ArrayList<Product> res = new ArrayList<>();
         product.ifPresent(res::add);
         model.addAttribute("product", res);
-
 
         Category category = new Category();
         category.setId(res.get(0).getCategory().getId());

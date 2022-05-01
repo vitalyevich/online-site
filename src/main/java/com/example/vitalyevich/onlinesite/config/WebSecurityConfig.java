@@ -31,7 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                     .mvcMatchers("/profile", "/menu/rolls#blackout-basket", "/order", "/basket").hasAnyRole("USER", "ADMIN")
-                    .mvcMatchers("/admin/panel").hasRole("ADMIN")
+                    .mvcMatchers("/admin/**").hasRole("ADMIN")
                     .antMatchers("/menu/**", "/delivery", "/authorization", "/registration").permitAll()
                     .anyRequest().authenticated()
                 .and()
