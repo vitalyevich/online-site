@@ -1,8 +1,10 @@
 package com.example.vitalyevich.onlinesite.controller;
 
 import com.example.vitalyevich.onlinesite.model.*;
-import com.example.vitalyevich.onlinesite.repository.*;
-import org.springframework.beans.factory.CannotLoadBeanClassException;
+import com.example.vitalyevich.onlinesite.repository.AccessRepository;
+import com.example.vitalyevich.onlinesite.repository.ActionRepository;
+import com.example.vitalyevich.onlinesite.repository.OrderRepository;
+import com.example.vitalyevich.onlinesite.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
@@ -13,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-import java.util.stream.StreamSupport;
 
 @Controller
 public class AdminController {

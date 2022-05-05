@@ -1,5 +1,6 @@
 package com.example.vitalyevich.onlinesite.controller;
 
+import com.example.vitalyevich.onlinesite.config.Seance;
 import com.example.vitalyevich.onlinesite.model.*;
 import com.example.vitalyevich.onlinesite.repository.*;
 import net.bytebuddy.utility.RandomString;
@@ -140,13 +141,15 @@ public class UserController {
         }
         accessRepository.save(access);
 
-        user.setId(access.getUser().getId());
+        user.setId(seance.getUserId());
         user.setUserCode(access.getUser().getUserCode());
         user.setInviteCode(access.getUser().getInviteCode());
         userRepository.save(user);
 
         return "redirect:/profile";
     }
+
+    private Seance seance = Seance.getInstance();
 
     @GetMapping("/profile")
     public String profile(Model model) {
@@ -155,8 +158,9 @@ public class UserController {
             String phone = SecurityContextHolder.getContext().getAuthentication().getName();
 
             Access userFromDb = accessRepository.findByPhone(phone);
-
             User user = userFromDb.getUser();
+
+            seance.setUserId(user.getId());
 
             UserPoint userPoint = userPointRepository.findUserPointById(user.getId());
 

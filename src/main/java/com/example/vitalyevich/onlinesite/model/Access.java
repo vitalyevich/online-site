@@ -97,5 +97,4 @@ public class Access {
         this.active = active;
         this.roles = roles;
     }
-
 }

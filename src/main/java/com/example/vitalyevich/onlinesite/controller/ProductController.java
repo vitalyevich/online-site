@@ -43,7 +43,6 @@ public class ProductController {
     @GetMapping({"/menu/rolls/page/{offset}", "/menu/rolls"})
     public String menuRolls(Model model, @PathVariable(required = false) Integer offset) {
 
-        // корзина
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser")) {
             String phone = SecurityContextHolder.getContext().getAuthentication().getName();
             Access userFromDb = accessRepository.findUserByPhone(phone);
@@ -66,8 +65,6 @@ public class ProductController {
             model.addAttribute("sum", String.format("%.1f",sum).replace(',','.'));
             model.addAttribute("number", basketList.size());
         }
-        //
-
 
         if (offset == null) {
             offset = 0;
